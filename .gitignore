@@ -21,6 +21,10 @@ yarn-error.log*
 .env
 .env*.local
 
+# never commit anything that might hold pasted secrets
+Credentials.txt
+*credentials*.txt
+
 # vercel
 .vercel
 

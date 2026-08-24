@@ -34,9 +34,11 @@ if (!databaseUrl || !directUrl) {
 
 const contents = `DATABASE_URL="${databaseUrl}"\nDIRECT_URL="${directUrl}"\n`;
 
-// Prisma CLI reads prisma/.env (next to schema.prisma) when present;
-// Next.js reads the project-root .env. Write both so nothing is missed.
-fs.writeFileSync(path.join(process.cwd(), "prisma", ".env"), contents);
+// Write ONLY the project-root .env: Next.js reads it directly, and Prisma
+// CLI falls back to the project root whenever prisma/.env doesn't exist.
+// Writing to both prisma/.env and .env makes Prisma 5.x treat the (even
+// identical) duplicate DATABASE_URL/DIRECT_URL declarations as a conflict
+// and refuse to run.
 fs.writeFileSync(path.join(process.cwd(), ".env"), contents);
 
 console.log("Resolved DATABASE_URL/DIRECT_URL for this build.");
