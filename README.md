@@ -73,13 +73,35 @@ moderated comments on posts and newsletter/email capture.
 
 ## Deploying
 
+Works on either Vercel or Netlify — both auto-detect Next.js.
+
 1. Push this repo to GitHub (already configured to push to
    `github.com/zacq/PoweringHouse.git`).
-2. Create a Vercel project and import the repo.
-3. In Vercel's project settings, add every variable from `.env.example` as an
-   environment variable (production + preview).
-4. Deploy. The build runs `prisma generate && prisma migrate deploy && next build`,
-   so schema migrations apply automatically on every deploy.
+2. Create a Vercel or Netlify project and import the repo.
+3. Add every variable from `.env.example` as an environment variable in that
+   project's settings (production + preview/branch deploys).
+   - **If your database is Netlify's built-in "Neon" extension**, it already
+     sets `NETLIFY_DATABASE_URL` / `NETLIFY_DATABASE_URL_UNPOOLED` for you —
+     you don't need to add `DATABASE_URL`/`DIRECT_URL` yourself;
+     `scripts/resolve-db-env.cjs` maps them automatically at build time.
+   - If your database is Neon directly (or any other Postgres host), set
+     `DATABASE_URL` and `DIRECT_URL` yourself.
+4. Deploy. The build runs `resolve-db-env.cjs`, then
+   `prisma generate && prisma migrate deploy && next build`, so the DB
+   connection is normalized and schema migrations apply automatically on
+   every deploy.
+
+### Troubleshooting: `Environment variable not found: DIRECT_URL`
+
+This means neither `DATABASE_URL`/`DIRECT_URL` nor the Netlify Neon
+extension's variables were visible to the build. Check:
+- The database extension/integration is actually connected to *this* site
+  (Site settings → Extensions, or → Environment variables) and not just to
+  your Netlify account in general.
+- If you're on Vercel or using Neon directly, that `DATABASE_URL` and
+  `DIRECT_URL` are set as environment variables on the project.
+- The variables are enabled for the deploy context you're building in
+  (production vs. deploy previews can have different variable sets).
 
 ## Scripts
 
