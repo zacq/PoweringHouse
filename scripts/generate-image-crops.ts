@@ -36,7 +36,13 @@ async function main() {
     .jpeg({ quality: 85 })
     .toFile(path.join(OUT_DIR, "hero-mobile.jpg"));
 
-  console.log("Generated public/images/avatar.jpg, hero-desktop.jpg, hero-mobile.jpg");
+  // Bio portrait: taller crop for the "Meet Gachoka" section on the home page.
+  await sharp(SOURCE)
+    .resize(480, 600, { fit: "cover", position: "top" })
+    .jpeg({ quality: 88 })
+    .toFile(path.join(OUT_DIR, "bio.jpg"));
+
+  console.log("Generated public/images/avatar.jpg, hero-desktop.jpg, hero-mobile.jpg, bio.jpg");
 }
 
 main().catch((err) => {

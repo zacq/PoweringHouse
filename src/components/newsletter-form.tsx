@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
-export function NewsletterForm() {
+export function NewsletterForm({ buttonLabel = "Join the room" }: { buttonLabel?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -54,7 +54,7 @@ export function NewsletterForm() {
         aria-label="Email address"
       />
       <button className="btn btn--primary" type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Joining…" : "Join the room"}
+        {status === "loading" ? "Joining…" : buttonLabel}
       </button>
       {message && (
         <p className="join__note" data-state={status === "ok" ? "ok" : "error"}>

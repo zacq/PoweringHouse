@@ -3,9 +3,7 @@ import Link from "next/link";
 
 const LINKS = [
   { href: "/blog", label: "Writing" },
-  { href: "/#programme", label: "The Programme" },
-  { href: "/#speaking", label: "Speaking" },
-  { href: "/#join", label: "Join" },
+  { href: "#join", label: "Join" },
 ];
 
 export function Nav() {

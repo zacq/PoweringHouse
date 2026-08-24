@@ -57,8 +57,9 @@ export function Hero() {
       <div className="hero__scrim" />
 
       <div className="hero__copy">
-        <p className="eyebrow">Gachoka Kang&apos;ata</p>
-        <h1>Every business is scalable.</h1>
+        <p className="eyebrow">Powering House</p>
+        <h1>Entrepreneurship is freedom.</h1>
+        <p className="hero__sub">Every business is scalable.</p>
 
         <svg className="wave" viewBox="0 0 420 34" aria-hidden="true" preserveAspectRatio="none">
           {bars.map((bar, i) => (
@@ -74,21 +75,23 @@ export function Hero() {
           ))}
         </svg>
 
+        {/* DRAFT: content-map v2 §1 "The mechanism" — the thesis line the whole practice runs on */}
         <p className="lede">
-          I work with Kenyan business owners on the structure underneath the
-          hustle &mdash; clarity, systems, and money discipline that hold when
-          the business grows. <em>Empowering people.</em>
+          <em>
+            You don&apos;t take time to grow a business. You take time
+            becoming the right person to grow the business.
+          </em>
         </p>
 
         <div className="actions">
-          <a className="btn btn--primary" href="#join">
-            Join the room
+          <a className="btn btn--primary" href="#lifecycle">
+            Start your growth journey
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
               <path d="M2 8h11M9 4l4 4-4 4" />
             </svg>
           </a>
           <a className="btn btn--ghost" href="/blog">
-            Read the writing
+            Read the letter
           </a>
         </div>
       </div>
