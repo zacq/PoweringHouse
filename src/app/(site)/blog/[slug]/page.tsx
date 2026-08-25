@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Nav } from "@/components/nav";
 import { CommentList } from "@/components/comment-list";
 import { CommentForm } from "@/components/comment-form";
 import { prisma } from "@/lib/prisma";
@@ -47,25 +46,22 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   return (
     <>
-      <Nav />
-      <main>
-        <article className="post">
-          <div className="post__meta">
-            <span>{category.tag}</span>
-            <span>{date}</span>
-          </div>
-          <h1>{post.title}</h1>
-          <div className="post__body" dangerouslySetInnerHTML={{ __html: html }} />
-        </article>
+      <article className="post">
+        <div className="post__meta">
+          <span>{category.tag}</span>
+          <span>{date}</span>
+        </div>
+        <h1>{post.title}</h1>
+        <div className="post__body" dangerouslySetInnerHTML={{ __html: html }} />
+      </article>
 
-        <section className="comments" aria-labelledby="comments-title">
-          <h2 id="comments-title">
-            Comments {comments.length > 0 ? `(${comments.length})` : ""}
-          </h2>
-          <CommentList comments={comments} />
-          <CommentForm postId={post.id} />
-        </section>
-      </main>
+      <section className="comments" aria-labelledby="comments-title">
+        <h2 id="comments-title">
+          Comments {comments.length > 0 ? `(${comments.length})` : ""}
+        </h2>
+        <CommentList comments={comments} />
+        <CommentForm postId={post.id} />
+      </section>
     </>
   );
 }

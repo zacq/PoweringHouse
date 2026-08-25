@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Nav } from "@/components/nav";
 import { PostCard } from "@/components/post-card";
 import { CategoryFilter } from "@/components/category-filter";
 import { prisma } from "@/lib/prisma";
@@ -30,30 +29,27 @@ export default async function BlogIndexPage({
 
   return (
     <>
-      <Nav />
-      <main>
-        <header className="blog-header">
-          <h1>Writing</h1>
-          <p>
-            Business Design, Money Discipline, Growth Systems &mdash; the same
-            three lines of work, written up as I learn them in the room.
-          </p>
-        </header>
-        <CategoryFilter active={activeCategory?.slug} />
-        {posts.length === 0 ? (
-          <p className="empty-state">
-            {activeCategory
-              ? `Nothing published under ${activeCategory.title} yet — check back soon.`
-              : "Nothing published yet — check back soon."}
-          </p>
-        ) : (
-          <div className="post-grid">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        )}
-      </main>
+      <header className="blog-header">
+        <h1>Writing</h1>
+        <p>
+          Business Design, Money Discipline, Growth Systems &mdash; the same
+          three lines of work, written up as I learn them in the room.
+        </p>
+      </header>
+      <CategoryFilter active={activeCategory?.slug} />
+      {posts.length === 0 ? (
+        <p className="empty-state">
+          {activeCategory
+            ? `Nothing published under ${activeCategory.title} yet — check back soon.`
+            : "Nothing published yet — check back soon."}
+        </p>
+      ) : (
+        <div className="post-grid">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </>
   );
 }
