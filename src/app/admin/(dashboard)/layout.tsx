@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { SignOutButton } from "@/components/admin/sign-out-button";
 
+// Every admin page under here reads live data straight from Prisma with no
+// fetch() cache directives Next.js can see -- without this, it can silently
+// statically prerender these pages at build time and never re-query the
+// database again. Admin data must always be current, so this route segment
+// (and everything nested under it) is never cached, applied once here.
+export const dynamic = "force-dynamic";
+
 export default function AdminDashboardLayout({
   children,
 }: {
