@@ -114,3 +114,40 @@ model Enquiry {
   @@index([offerId])
   @@index([status])
 }
+
+model Venture {
+  id            String   @id @default(cuid())
+  businessName  String
+  sector        String
+  before        String   @db.Text
+  after         String   @db.Text
+  metricLabel   String
+  metricBefore  String
+  metricAfter   String
+  consentOnFile Boolean  @default(false)
+  photo         String?
+  published     Boolean  @default(false)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([published, order])
+}
+
+enum EResourceAccess {
+  OPEN
+  GATED
+}
+
+model EResource {
+  id          String          @id @default(cuid())
+  title       String
+  description String          @db.Text
+  fileUrl     String
+  access      EResourceAccess @default(OPEN)
+  published   Boolean         @default(true)
+  publishedAt DateTime        @default(now())
+  createdAt   DateTime        @default(now())
+
+  @@index([published, publishedAt])
+}

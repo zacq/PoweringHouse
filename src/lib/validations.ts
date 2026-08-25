@@ -78,3 +78,34 @@ export const enquiryInputSchema = z.object({
   message: z.string().trim().max(2000).optional().or(z.literal("")),
   website: z.string().max(0).optional().or(z.literal("")),
 });
+
+export const ventureInputSchema = z
+  .object({
+    businessName: z.string().trim().min(2, "Business name is too short").max(160),
+    sector: z.string().trim().min(2, "Sector is too short").max(100),
+    before: z.string().trim().min(10, "Before is too short"),
+    after: z.string().trim().min(10, "After is too short"),
+    metricLabel: z.string().trim().min(2, "Metric label is too short").max(80),
+    metricBefore: z.string().trim().min(1, "Metric before is required").max(80),
+    metricAfter: z.string().trim().min(1, "Metric after is required").max(80),
+    consentOnFile: z.boolean().default(false),
+    photo: z.string().trim().url().optional().or(z.literal("")),
+    published: z.boolean().default(false),
+    order: z.coerce.number().int().min(0).max(999).default(0),
+  })
+  .refine((data) => !data.published || data.consentOnFile, {
+    message: "Can't publish a venture without consent on file",
+    path: ["published"],
+  });
+
+export type VentureInput = z.infer<typeof ventureInputSchema>;
+
+export const eResourceInputSchema = z.object({
+  title: z.string().trim().min(3, "Title is too short").max(160),
+  description: z.string().trim().min(10, "Description is too short"),
+  fileUrl: z.string().trim().url("Enter a valid URL"),
+  access: z.enum(["OPEN", "GATED"]),
+  published: z.boolean().default(true),
+});
+
+export type EResourceInput = z.infer<typeof eResourceInputSchema>;

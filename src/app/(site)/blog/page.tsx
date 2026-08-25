@@ -5,8 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { categoryBySlug } from "@/lib/categories";
 
 export const metadata: Metadata = {
-  title: "Writing",
-  description: "Business design, money discipline, and growth systems.",
+  title: "Seed of Power",
+  description: "Raw thinking on what it actually takes to build the business you love.",
 };
 
 export const revalidate = 60;
@@ -30,10 +30,12 @@ export default async function BlogIndexPage({
   return (
     <>
       <header className="blog-header">
-        <h1>Writing</h1>
+        <h1>Seed of Power</h1>
+        {/* DRAFT: content-map v2 §5, verbatim — cadence and name still need Gachoka's sign-off, §8.1/§8.2 */}
         <p>
-          Business Design, Money Discipline, Growth Systems &mdash; the same
-          three lines of work, written up as I learn them in the room.
+          It&apos;s my raw thought write-up, every fourth night. I tell you
+          what I find my own mind telling me. It could save you years of the
+          lone journey of trying to build the enterprise you love.
         </p>
       </header>
       <CategoryFilter active={activeCategory?.slug} />

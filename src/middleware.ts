@@ -25,6 +25,8 @@ export const config = {
     "/admin/subscribers/:path*",
     "/admin/offers/:path*",
     "/admin/enquiries/:path*",
+    "/admin/ventures/:path*",
+    "/admin/resources/:path*",
     "/api/admin/:path*",
   ],
 };

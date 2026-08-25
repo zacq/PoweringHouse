@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const LINKS = [
-  { href: "/blog", label: "Writing" },
-  { href: "#join", label: "Join" },
+  { href: "/blog", label: "Seed of Power" },
+  { href: "/ways-we-help", label: "Ways We Help" },
+  { href: "/universe-of-freedom", label: "Universe of Freedom" },
+  { href: "/market-place", label: "Market Place" },
 ];
 
 export function Nav() {

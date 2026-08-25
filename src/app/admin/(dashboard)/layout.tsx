@@ -25,6 +25,8 @@ export default function AdminDashboardLayout({
           <Link href="/admin/subscribers">Subscribers</Link>
           <Link href="/admin/offers">Offers</Link>
           <Link href="/admin/enquiries">Enquiries</Link>
+          <Link href="/admin/ventures">Ventures</Link>
+          <Link href="/admin/resources">Resources</Link>
           <Link href="/" target="_blank">
             View site
           </Link>
