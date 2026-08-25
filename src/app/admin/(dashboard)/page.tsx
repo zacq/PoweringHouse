@@ -2,11 +2,12 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
 export default async function AdminDashboardPage() {
-  const [published, drafts, pendingComments, subscribers] = await Promise.all([
+  const [published, drafts, pendingComments, subscribers, newEnquiries] = await Promise.all([
     prisma.post.count({ where: { published: true } }),
     prisma.post.count({ where: { published: false } }),
     prisma.comment.count({ where: { approved: false } }),
     prisma.subscriber.count({ where: { unsubscribedAt: null } }),
+    prisma.enquiry.count({ where: { status: "NEW" } }),
   ]);
 
   return (
@@ -28,6 +29,10 @@ export default async function AdminDashboardPage() {
         <div className="admin-card">
           <div className="stat__num">{subscribers}</div>
           <p className="stat__label">Newsletter subscribers</p>
+        </div>
+        <div className="admin-card">
+          <div className="stat__num">{newEnquiries}</div>
+          <p className="stat__label">New enquiries</p>
         </div>
       </div>
       <p>

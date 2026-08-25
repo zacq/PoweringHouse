@@ -51,3 +51,66 @@ model Subscriber {
   createdAt      DateTime  @default(now())
   unsubscribedAt DateTime?
 }
+
+enum OfferLine {
+  BUSINESS_GROWTH_DESIGN
+  OPERATIONS_EXCELLENCE
+  BOTH
+}
+
+enum OfferCtaType {
+  ENQUIRY_FORM
+  EXTERNAL_LINK
+  INTERNAL_LINK
+}
+
+model Offer {
+  id                String       @id @default(cuid())
+  slug              String       @unique
+  name              String
+  offerLine         OfferLine
+  order             Int          @default(0)
+  isFree            Boolean      @default(false)
+  showInMarketPlace Boolean      @default(true)
+  promise           String       @db.Text
+  whoFor            String       @db.Text
+  whoNotFor         String       @db.Text
+  whatHappens       String       @db.Text
+  commitment        String?      @db.Text
+  price             String?
+  priceIsDraft      Boolean      @default(true)
+  story             String?      @db.Text
+  storyIsDraft      Boolean      @default(true)
+  ctaType           OfferCtaType
+  ctaLabel          String?
+  externalUrl       String?
+  published         Boolean      @default(true)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  enquiries         Enquiry[]
+
+  @@index([offerLine])
+  @@index([published, order])
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
+
+model Enquiry {
+  id           String        @id @default(cuid())
+  offerId      String
+  offer        Offer         @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  fullName     String
+  email        String
+  phone        String?
+  businessName String?
+  message      String?       @db.Text
+  status       EnquiryStatus @default(NEW)
+  createdAt    DateTime      @default(now())
+
+  @@index([offerId])
+  @@index([status])
+}

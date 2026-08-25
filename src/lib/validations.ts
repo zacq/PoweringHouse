@@ -33,3 +33,48 @@ export const subscribeInputSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(160),
   website: z.string().max(0).optional().or(z.literal("")),
 });
+
+export const offerInputSchema = z
+  .object({
+    slug: z
+      .string()
+      .trim()
+      .min(3)
+      .max(80)
+      .regex(/^[a-z0-9-]+$/, "Slug must be lowercase letters, numbers, and hyphens only"),
+    name: z.string().trim().min(3, "Name is too short").max(160),
+    offerLine: z.enum(["BUSINESS_GROWTH_DESIGN", "OPERATIONS_EXCELLENCE", "BOTH"]),
+    order: z.coerce.number().int().min(0).max(999).default(0),
+    isFree: z.boolean().default(false),
+    showInMarketPlace: z.boolean().default(true),
+    promise: z.string().trim().min(10, "Promise is too short"),
+    whoFor: z.string().trim().min(10, "Who it's for is too short"),
+    whoNotFor: z.string().trim().min(10, "Who it's not for is too short"),
+    whatHappens: z.string().trim().min(10, "What happens is too short"),
+    commitment: z.string().trim().optional().or(z.literal("")),
+    price: z.string().trim().optional().or(z.literal("")),
+    priceIsDraft: z.boolean().default(true),
+    story: z.string().trim().optional().or(z.literal("")),
+    storyIsDraft: z.boolean().default(true),
+    ctaType: z.enum(["ENQUIRY_FORM", "EXTERNAL_LINK", "INTERNAL_LINK"]),
+    ctaLabel: z.string().trim().optional().or(z.literal("")),
+    externalUrl: z.string().trim().url().optional().or(z.literal("")),
+    published: z.boolean().default(true),
+  })
+  .refine((data) => data.ctaType !== "EXTERNAL_LINK" || Boolean(data.externalUrl), {
+    message: "External-link offers need a URL",
+    path: ["externalUrl"],
+  });
+
+export type OfferInput = z.infer<typeof offerInputSchema>;
+
+// Honeypot field "website" must stay empty; real users never see/fill it.
+export const enquiryInputSchema = z.object({
+  offerId: z.string().min(1),
+  fullName: z.string().trim().min(2, "Name is too short").max(120),
+  email: z.string().trim().email("Enter a valid email").max(160),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  businessName: z.string().trim().max(160).optional().or(z.literal("")),
+  message: z.string().trim().max(2000).optional().or(z.literal("")),
+  website: z.string().max(0).optional().or(z.literal("")),
+});

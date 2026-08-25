@@ -1,4 +1,4 @@
-import { PrismaClient, Category } from "@prisma/client";
+import { PrismaClient, Category, OfferLine, OfferCtaType } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -86,6 +86,80 @@ const posts: Array<{
   },
 ];
 
+// DRAFT: content-map v2 §4 gives each offer's "promise" but not who-for/who-not-for/
+// what-happens/commitment/price/story — those need real content from Gachoka before
+// publishing, so every offer here seeds as published:false until reviewed in admin.
+const NEEDS_COPY = "DRAFT — not written yet. Add real copy in admin before publishing.";
+
+const offers: Array<{
+  slug: string;
+  name: string;
+  order: number;
+  isFree: boolean;
+  promise: string;
+  ctaType: OfferCtaType;
+  ctaLabel?: string;
+  externalUrl?: string;
+}> = [
+  {
+    slug: "free-start-pack",
+    name: "FREE Start Pack",
+    order: 1,
+    isFree: true,
+    promise: "Understand entrepreneurship. Start where you are.",
+    ctaType: "EXTERNAL_LINK",
+    ctaLabel: "Get the Start Pack",
+    externalUrl: "#",
+  },
+  {
+    slug: "360-entrepreneurial-community",
+    name: "FREE 360° Entrepreneurial Community",
+    order: 2,
+    isFree: true,
+    promise: "Join your peers. Don't walk alone. Well-curated programmes.",
+    ctaType: "ENQUIRY_FORM",
+    ctaLabel: "Join the community",
+  },
+  {
+    slug: "productivity-tools",
+    name: "Productivity Tools",
+    order: 3,
+    isFree: false,
+    promise: "Real freedom. Tools that let your business run beyond yourself. The power of compounding.",
+    ctaType: "INTERNAL_LINK",
+    ctaLabel: "See the tools",
+    externalUrl: "/market-place#tools",
+  },
+  {
+    slug: "self-paced-master-classes",
+    name: "Self-Paced Master Classes",
+    order: 4,
+    isFree: false,
+    promise: "Build your business through continuous learning: Elements of Business Design and Pillars of Growth.",
+    ctaType: "EXTERNAL_LINK",
+    ctaLabel: "Start a master class",
+    externalUrl: "#",
+  },
+  {
+    slug: "boot-camp-business-design-coaching",
+    name: "Boot Camp — Business Design Coaching",
+    order: 5,
+    isFree: false,
+    promise: "Design your micro business to grow.",
+    ctaType: "ENQUIRY_FORM",
+    ctaLabel: "Apply for the Boot Camp",
+  },
+  {
+    slug: "1-1-clarity-session",
+    name: "1:1 Clarity Session",
+    order: 6,
+    isFree: false,
+    promise: "Don't walk in doubt. Doubt will kill all your dreams. Feel welcome.",
+    ctaType: "ENQUIRY_FORM",
+    ctaLabel: "Book a Clarity Session",
+  },
+];
+
 async function main() {
   console.log("Seeding database…");
 
@@ -130,6 +204,28 @@ async function main() {
     }
   }
 
+  for (const o of offers) {
+    await prisma.offer.upsert({
+      where: { slug: o.slug },
+      update: {},
+      create: {
+        slug: o.slug,
+        name: o.name,
+        offerLine: OfferLine.BUSINESS_GROWTH_DESIGN,
+        order: o.order,
+        isFree: o.isFree,
+        promise: o.promise,
+        whoFor: NEEDS_COPY,
+        whoNotFor: NEEDS_COPY,
+        whatHappens: NEEDS_COPY,
+        ctaType: o.ctaType,
+        ctaLabel: o.ctaLabel ?? null,
+        externalUrl: o.externalUrl ?? null,
+        published: false,
+      },
+    });
+  }
+
   await prisma.subscriber.createMany({
     data: [
       { email: "wanjiru@example.com" },
@@ -139,7 +235,9 @@ async function main() {
     skipDuplicates: true,
   });
 
-  console.log(`Seeded ${posts.length} posts, comments, and subscribers.`);
+  console.log(
+    `Seeded ${posts.length} posts, comments, subscribers, and ${offers.length} offers (unpublished, need real copy).`
+  );
 }
 
 main()

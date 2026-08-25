@@ -477,6 +477,14 @@ h1{
 .post__body p{margin:0 0 1.3rem}
 .post__body strong{color:#fff}
 .post__body a{color:var(--amber);text-decoration:underline}
+.post__body h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.15rem;
+  letter-spacing:-.01em;
+  margin:2rem 0 .8rem;
+  color:#fff;
+}
 
 .comments{
   max-width:42rem;
