@@ -76,12 +76,20 @@ export function Hero() {
         </svg>
 
         {/* DRAFT: content-map v2 §1 "The mechanism" — the thesis line the whole practice runs on */}
-        <p className="lede">
-          <em>
-            You don&apos;t take time to grow a business. You take time
-            becoming the right person to grow the business.
-          </em>
-        </p>
+        <div className="lede-carousel">
+          <p className="lede">
+            <em>
+              You don&apos;t take time to grow a business. You take time
+              becoming the right person to grow the business.
+            </em>
+          </p>
+          <p className="lede">
+            <em>
+              Let&apos;s redesign your entrepreneurship journey and amplify
+              it.
+            </em>
+          </p>
+        </div>
 
         <div className="actions">
           <a className="btn btn--primary" href="#lifecycle">

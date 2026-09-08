@@ -154,9 +154,30 @@ h1{
 }
 @keyframes speak{to{transform:scaleY(1)}}
 
-.lede{
+.lede-carousel{
+  display:grid;
   margin:0 0 2.2rem;
   max-width:30rem;
+}
+.lede-carousel .lede{
+  grid-area:1/1;
+  margin:0;
+  animation:lede-fade 11s ease-in-out infinite;
+}
+.lede-carousel .lede:nth-child(2){
+  animation-delay:-5.5s;
+}
+@keyframes lede-fade{
+  0%,4%{opacity:0}
+  9%,42%{opacity:.94}
+  47%,100%{opacity:0}
+}
+@media (prefers-reduced-motion: reduce){
+  .lede-carousel .lede{animation:none;opacity:0}
+  .lede-carousel .lede:first-child{opacity:.94}
+}
+
+.lede{
   font-size:clamp(1.02rem,1.9vw,1.17rem);
   color:var(--bone);
   opacity:.94;
