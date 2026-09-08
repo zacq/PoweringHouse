@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
-import { OfferCard } from "@/components/offer-card";
+import Link from "next/link";
 import { ToolsGrid } from "@/components/tools-grid";
 import { EcommerceCards } from "@/components/ecommerce-cards";
 
@@ -9,14 +8,7 @@ export const metadata: Metadata = {
   description: "Where intent turns into access.",
 };
 
-export const revalidate = 60;
-
-export default async function MarketPlacePage() {
-  const offers = await prisma.offer.findMany({
-    where: { published: true, showInMarketPlace: true },
-    orderBy: { order: "asc" },
-  });
-
+export default function MarketPlacePage() {
   return (
     <>
       <header className="blog-header">
@@ -46,19 +38,30 @@ export default async function MarketPlacePage() {
         <EcommerceCards />
       </section>
 
-      {offers.length > 0 && (
-        <section className="themes" aria-labelledby="ways-title">
-          <div className="themes__head">
-            <h2 id="ways-title">Ways We Help</h2>
-            <p>The same offers as Ways We Help — pick whichever fits.</p>
-          </div>
-          <div className="themes__grid">
-            {offers.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} />
-            ))}
-          </div>
-        </section>
-      )}
+      <section className="themes" aria-labelledby="six-pack-title">
+        <div className="themes__head">
+          <h2 id="six-pack-title">6 Pack Packages</h2>
+          <p>Find the offer that fits where your business is right now.</p>
+        </div>
+        <div className="themes__grid">
+          <Link className="theme" href="/ways-we-help">
+            <span className="theme__tag">6 Pack Packages</span>
+            <h3>Ways We Help</h3>
+            <p>Six ways to work with us, from free tools to 1:1 coaching.</p>
+            <span className="theme__count">See all offers</span>
+          </Link>
+          <Link className="theme" href="/ways-we-help">
+            <span className="theme__tag">Self-paced</span>
+            <h3>Self-Paced Master Classes</h3>
+            <p>
+              Build your business through continuous learning — well-designed
+              programs covering Elements of Business Design and Pillars of
+              Growth. Connect with the self-paced platform on free content.
+            </p>
+            <span className="theme__count">Explore in Ways We Help</span>
+          </Link>
+        </div>
+      </section>
     </>
   );
 }
