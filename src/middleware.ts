@@ -27,6 +27,8 @@ export const config = {
     "/admin/enquiries/:path*",
     "/admin/ventures/:path*",
     "/admin/resources/:path*",
+    "/admin/events/:path*",
+    "/admin/contact-messages/:path*",
     "/api/admin/:path*",
   ],
 };

@@ -6,6 +6,7 @@ const LINKS = [
   { href: "/ways-we-help", label: "Ways We Help" },
   { href: "/universe-of-freedom", label: "Universe of Freedom" },
   { href: "/market-place", label: "Market Place" },
+  { href: "/lets-connect", label: "Let's Connect" },
 ];
 
 export function Nav() {

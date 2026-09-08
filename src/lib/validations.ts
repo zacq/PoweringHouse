@@ -109,3 +109,23 @@ export const eResourceInputSchema = z.object({
 });
 
 export type EResourceInput = z.infer<typeof eResourceInputSchema>;
+
+export const eventInputSchema = z.object({
+  title: z.string().trim().min(3, "Title is too short").max(160),
+  description: z.string().trim().max(2000).optional().or(z.literal("")),
+  startsAt: z.coerce.date({ errorMap: () => ({ message: "Enter a valid date and time" }) }),
+  location: z.string().trim().max(160).optional().or(z.literal("")),
+  link: z.string().trim().url().optional().or(z.literal("")),
+  published: z.boolean().default(true),
+});
+
+export type EventInput = z.infer<typeof eventInputSchema>;
+
+// Honeypot field "website" must stay empty; real users never see/fill it.
+export const contactMessageInputSchema = z.object({
+  fullName: z.string().trim().min(2, "Name is too short").max(120),
+  email: z.string().trim().email("Enter a valid email").max(160),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  message: z.string().trim().max(2000).optional().or(z.literal("")),
+  website: z.string().max(0).optional().or(z.literal("")),
+});
