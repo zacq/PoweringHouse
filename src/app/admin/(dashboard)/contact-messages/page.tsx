@@ -20,6 +20,11 @@ export default async function AdminContactMessagesPage() {
         <div>
           {messages.map((m) => (
             <div className="admin-card" key={m.id}>
+              {m.subject && (
+                <p style={{ margin: "0 0 .3rem", fontSize: ".78rem", color: "var(--amber)" }}>
+                  Re: {m.subject}
+                </p>
+              )}
               <strong>{m.fullName}</strong>{" "}
               <span style={{ color: "var(--bone-dim)", fontSize: ".82rem" }}>
                 {m.email}

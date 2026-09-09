@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
-export function ContactForm() {
+export function ContactForm({ subject }: { subject?: string } = {}) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -16,6 +16,7 @@ export function ContactForm() {
       fullName: (data.get("fullName") as string) ?? "",
       email: (data.get("email") as string) ?? "",
       phone: (data.get("phone") as string) ?? "",
+      subject: subject ?? "",
       message: (data.get("message") as string) ?? "",
       website: (data.get("website") as string) ?? "",
     };
@@ -51,7 +52,11 @@ export function ContactForm() {
   }
 
   return (
-    <form className="comment-form" onSubmit={onSubmit} aria-label="Register your interest">
+    <form
+      className="comment-form"
+      onSubmit={onSubmit}
+      aria-label={subject ? `Register interest — ${subject}` : "Register your interest"}
+    >
       <label className="comment-form__honeypot" aria-hidden="true">
         Leave this field empty
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />

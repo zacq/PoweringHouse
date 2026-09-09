@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { fullName, email, phone, message, website } = parsed.data;
+  const { fullName, email, phone, subject, message, website } = parsed.data;
 
   // Honeypot: bots fill hidden fields. Pretend success without persisting.
   if (website) {
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   }
 
   await prisma.contactMessage.create({
-    data: { fullName, email, phone: phone || null, message: message || null },
+    data: { fullName, email, phone: phone || null, subject: subject || null, message: message || null },
   });
 
   return NextResponse.json({ ok: true });

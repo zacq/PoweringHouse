@@ -171,6 +171,7 @@ model ContactMessage {
   fullName  String
   email     String
   phone     String?
+  subject   String?
   message   String?  @db.Text
   createdAt DateTime @default(now())
 
