@@ -438,6 +438,41 @@ h1{
 .filters a:hover{color:var(--bone);border-color:rgba(228,225,218,.4)}
 .filters a[aria-current="true"]{color:#141414;background:var(--amber);border-color:var(--amber)}
 
+/* ---------- modal ---------- */
+.modal{
+  border:none;
+  border-radius:14px;
+  padding:1.8rem;
+  max-width:34rem;
+  width:calc(100vw - 2.4rem);
+  max-height:calc(100vh - 4rem);
+  overflow-y:auto;
+  background:var(--ink-raised);
+  color:var(--bone);
+}
+.modal::backdrop{
+  background:rgba(0,0,0,.6);
+}
+.modal__head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  margin:0 0 1.2rem;
+}
+.modal__head h3{margin:0}
+.modal__close{
+  background:none;
+  border:none;
+  color:var(--bone-dim);
+  font-size:1.6rem;
+  line-height:1;
+  cursor:pointer;
+  padding:.2rem .5rem;
+  flex:none;
+}
+.modal__close:hover{color:var(--bone)}
+
 .post-grid{
   display:grid;
   gap:1px;
