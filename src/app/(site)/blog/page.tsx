@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { PostCard } from "@/components/post-card";
 import { CategoryFilter } from "@/components/category-filter";
+import { FeedCard, formatFeedDate } from "@/components/feed-card";
 import { prisma } from "@/lib/prisma";
-import { categoryBySlug } from "@/lib/categories";
+import { categoryBySlug, categoryByValue } from "@/lib/categories";
+import { fetchBeehiivPosts } from "@/lib/beehiiv";
 
 export const metadata: Metadata = {
   title: "Seed of Power",
@@ -27,6 +28,42 @@ export default async function BlogIndexPage({
     orderBy: { publishedAt: "desc" },
   });
 
+  // Beehiiv posts carry no category, so a category filter (a request for
+  // posts tagged X) excludes them rather than mislabeling them into one.
+  const beehiivPosts = activeCategory ? [] : await fetchBeehiivPosts();
+
+  const items = [
+    ...posts.map((post) => ({
+      key: post.id,
+      time: post.publishedAt?.getTime() ?? 0,
+      node: (
+        <FeedCard
+          key={post.id}
+          href={`/blog/${post.slug}`}
+          tag={categoryByValue(post.category).tag}
+          title={post.title}
+          excerpt={post.excerpt}
+          date={formatFeedDate(post.publishedAt)}
+        />
+      ),
+    })),
+    ...beehiivPosts.map((post) => ({
+      key: post.id,
+      time: post.publishedAt?.getTime() ?? 0,
+      node: (
+        <FeedCard
+          key={post.id}
+          href={post.url}
+          external
+          tag="Newsletter"
+          title={post.title}
+          excerpt={post.excerpt}
+          date={formatFeedDate(post.publishedAt)}
+        />
+      ),
+    })),
+  ].sort((a, b) => b.time - a.time);
+
   return (
     <>
       <header className="blog-header">
@@ -39,18 +76,14 @@ export default async function BlogIndexPage({
         </p>
       </header>
       <CategoryFilter active={activeCategory?.slug} />
-      {posts.length === 0 ? (
+      {items.length === 0 ? (
         <p className="empty-state">
           {activeCategory
             ? `Nothing published under ${activeCategory.title} yet — check back soon.`
             : "Nothing published yet — check back soon."}
         </p>
       ) : (
-        <div className="post-grid">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
+        <div className="post-grid">{items.map((item) => item.node)}</div>
       )}
     </>
   );
