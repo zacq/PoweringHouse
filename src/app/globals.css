@@ -589,92 +589,9 @@ h1{
   .comment-form__row{grid-template-columns:1fr}
 }
 
-/* ---------- admin ---------- */
-.admin-shell{min-height:100vh;background:var(--ink);color:var(--bone)}
-.admin-nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:1.1rem var(--gutter);
-  border-bottom:1px solid rgba(228,225,218,.12);
-}
-.admin-nav__links{display:flex;gap:1.4rem;flex-wrap:wrap}
-.admin-nav__links a{
-  text-decoration:none;
-  color:var(--bone-dim);
-  font-size:.86rem;
-  font-family:var(--display);
-}
-.admin-nav__links a:hover{color:var(--bone)}
-.admin-main{padding:2.4rem var(--gutter) 5rem;max-width:64rem;margin:0 auto}
-.admin-main h1{font-size:1.9rem;margin:0 0 1.6rem}
-.admin-card{
-  background:var(--ink-raised);
-  border:1px solid rgba(228,225,218,.1);
-  border-radius:6px;
-  padding:1.4rem 1.6rem;
-  margin-bottom:1rem;
-}
-.admin-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:2rem}
-.admin-table{width:100%;border-collapse:collapse;font-size:.9rem}
-.admin-table th{
-  text-align:left;
-  color:var(--bone-dim);
-  font-weight:500;
-  font-size:.76rem;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  padding:.6rem .8rem;
-  border-bottom:1px solid rgba(228,225,218,.14);
-}
-.admin-table td{padding:.7rem .8rem;border-bottom:1px solid rgba(228,225,218,.08);vertical-align:top}
-.admin-table tr:last-child td{border-bottom:none}
-.pill{
-  display:inline-block;
-  font-size:.72rem;
-  padding:.2rem .55rem;
-  border-radius:999px;
-  border:1px solid rgba(228,225,218,.2);
-  color:var(--bone-dim);
-}
-.pill[data-state="published"]{color:var(--amber);border-color:var(--amber)}
-.pill[data-state="pending"]{color:#E8836B;border-color:#E8836B}
-.admin-form{display:grid;gap:1.1rem;max-width:38rem}
-.admin-form label{font-size:.82rem;color:var(--bone-dim);display:block;margin-bottom:.4rem}
-.admin-form input[type="text"],
-.admin-form input[type="email"],
-.admin-form input[type="password"],
-.admin-form select,
-.admin-form textarea{
-  width:100%;
-  background:var(--ink);
-  border:1px solid rgba(228,225,218,.2);
-  color:var(--bone);
-  font-family:var(--body);
-  font-size:.95rem;
-  padding:.75rem .9rem;
-  border-radius:4px;
-}
-.admin-form textarea{min-height:16rem;font-family:ui-monospace,monospace;font-size:.88rem;line-height:1.6}
-.admin-form__row{display:flex;align-items:center;gap:.6rem}
+/* ---------- shared form bits (originally admin) ---------- */
 .admin-form__actions{display:flex;gap:.7rem;align-items:center;margin-top:.4rem}
-.admin-error{color:#E8836B;font-size:.86rem}
 .admin-empty{color:var(--bone-dim);font-size:.9rem;padding:1.4rem 0}
-.login-shell{
-  min-height:100vh;
-  display:grid;
-  place-items:center;
-  background:var(--ink);
-  padding:2rem;
-}
-.login-card{
-  width:min(100%,22rem);
-  background:var(--ink-raised);
-  border:1px solid rgba(228,225,218,.1);
-  border-radius:8px;
-  padding:2rem;
-}
-.login-card h1{font-size:1.4rem;margin:0 0 1.4rem}
 
 /* ---------- mobile: art-directed, stacked hero ---------- */
 @media (max-width:767px){

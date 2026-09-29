@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createRecord } from "@/lib/airtable";
 import { contactMessageInputSchema } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
@@ -19,9 +19,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  await prisma.contactMessage.create({
-    data: { fullName, email, phone: phone || null, subject: subject || null, message: message || null },
-  });
+  try {
+    await createRecord("Contact Messages", {
+      "Full Name": fullName,
+      Email: email,
+      Phone: phone || undefined,
+      Subject: subject || undefined,
+      Message: message || undefined,
+    });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: "Couldn't send that right now. Try again shortly." }, { status: 502 });
+  }
 
   return NextResponse.json({ ok: true });
 }

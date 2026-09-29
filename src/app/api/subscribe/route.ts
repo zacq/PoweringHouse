@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createRecord } from "@/lib/airtable";
 import { subscribeInputSchema } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
@@ -12,24 +12,19 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { email, website } = parsed.data;
+  const { email, source, website } = parsed.data;
 
   // Honeypot: bots fill hidden fields. Pretend success without persisting.
   if (website) {
     return NextResponse.json({ ok: true });
   }
 
-  const existing = await prisma.subscriber.findUnique({ where: { email } });
-  if (existing) {
-    if (existing.unsubscribedAt) {
-      await prisma.subscriber.update({
-        where: { email },
-        data: { unsubscribedAt: null },
-      });
-    }
-    return NextResponse.json({ ok: true, alreadySubscribed: true });
+  try {
+    await createRecord("Subscribers", { Email: email, Source: source || "Newsletter" });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: "Couldn't save that right now. Try again shortly." }, { status: 502 });
   }
 
-  await prisma.subscriber.create({ data: { email } });
-  return NextResponse.json({ ok: true, alreadySubscribed: false });
+  return NextResponse.json({ ok: true });
 }

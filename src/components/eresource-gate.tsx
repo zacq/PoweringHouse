@@ -26,7 +26,7 @@ export function EResourceGate({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: `E-Resource: ${title}` }),
       });
       if (!res.ok) {
         const data = await res.json();

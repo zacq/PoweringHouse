@@ -1,4 +1,12 @@
-import { prisma } from "@/lib/prisma";
+import { listRecords } from "@/lib/airtable";
+
+interface EventFields {
+  Title: string;
+  Description: string;
+  "Starts At": string;
+  Location: string;
+  Link: string;
+}
 
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat("en-GB", {
@@ -11,10 +19,16 @@ function formatDate(date: Date): string {
 }
 
 export async function EventsList() {
-  const events = await prisma.event.findMany({
-    where: { published: true, startsAt: { gte: new Date() } },
-    orderBy: { startsAt: "asc" },
+  const records = await listRecords<EventFields>("Events", {
+    filterByFormula: "AND({Published}, IS_AFTER({Starts At}, NOW()))",
+    sort: [{ field: "Starts At", direction: "asc" }],
   });
+  // The fetch is cached for an hour, so re-check "upcoming" at render time.
+  const now = Date.now();
+  const events = records
+    .filter((r) => r.fields.Title && r.fields["Starts At"])
+    .map((r) => ({ id: r.id, ...r.fields, startsAt: new Date(r.fields["Starts At"]!) }))
+    .filter((ev) => ev.startsAt.getTime() >= now);
 
   if (events.length === 0) {
     return <p className="admin-empty">Nothing on the calendar yet — check back soon.</p>;
@@ -25,13 +39,13 @@ export async function EventsList() {
       {events.map((ev) => (
         <div className="theme" key={ev.id}>
           <span className="theme__tag">{formatDate(ev.startsAt)}</span>
-          <h3>{ev.title}</h3>
-          {ev.description && <p>{ev.description}</p>}
-          {ev.location && <span className="theme__count">{ev.location}</span>}
-          {ev.link && (
+          <h3>{ev.Title}</h3>
+          {ev.Description && <p>{ev.Description}</p>}
+          {ev.Location && <span className="theme__count">{ev.Location}</span>}
+          {ev.Link && (
             <a
               className="btn btn--ghost"
-              href={ev.link}
+              href={ev.Link}
               style={{ marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
             >
               Details

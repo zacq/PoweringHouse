@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Partnerships, resources, and the businesses that are growing.",
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default function UniverseOfFreedomPage() {
   return (

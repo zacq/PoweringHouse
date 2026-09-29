@@ -1,5 +1,13 @@
-import { prisma } from "@/lib/prisma";
+import { listRecords } from "@/lib/airtable";
 import { EResourceGate } from "./eresource-gate";
+
+interface EResourceFields {
+  Title: string;
+  Description: string;
+  "File URL": string;
+  Access: "Open" | "Gated";
+  "Published At": string;
+}
 
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat("en-GB", {
@@ -11,36 +19,42 @@ function formatDate(date: Date): string {
 
 /** content-map v2 §4 — "show the date of the most recent upload so the promise is visibly kept." */
 export async function EResourceList() {
-  const resources = await prisma.eResource.findMany({
-    where: { published: true },
-    orderBy: { publishedAt: "desc" },
-  });
+  const resources = (
+    await listRecords<EResourceFields>("E-Resources", {
+      filterByFormula: "{Published}",
+      sort: [{ field: "Published At", direction: "desc" }],
+    })
+  ).filter((r) => r.fields.Title && r.fields["File URL"]);
 
   if (resources.length === 0) {
     return <p className="admin-empty">Nothing uploaded yet — check back soon.</p>;
   }
 
+  const latest = resources[0].fields["Published At"];
+
   return (
     <div>
-      <p style={{ fontSize: ".82rem", color: "var(--bone-dim)", marginBottom: "1.4rem" }}>
-        Most recent upload: {formatDate(resources[0].publishedAt)}
-      </p>
+      {latest && (
+        <p style={{ fontSize: ".82rem", color: "var(--bone-dim)", marginBottom: "1.4rem" }}>
+          Most recent upload: {formatDate(new Date(latest))}
+        </p>
+      )}
       <div className="themes__grid">
-        {resources.map((r) => (
-          <div className="theme" key={r.id}>
-            <span className="theme__tag">{r.access === "GATED" ? "Email required" : "Open"}</span>
-            <h3>{r.title}</h3>
-            <p>{r.description}</p>
-            {r.access === "OPEN" ? (
+        {resources.map(({ id, fields: r }) => (
+          <div className="theme" key={id}>
+            <span className="theme__tag">{r.Access === "Gated" ? "Email required" : "Open"}</span>
+            <h3>{r.Title}</h3>
+            <p>{r.Description}</p>
+            {r.Access !== "Gated" ? (
               <a
                 className="btn btn--ghost"
-                href={r.fileUrl}
+                href={r["File URL"]}
                 style={{ marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
               >
                 Get it
               </a>
             ) : (
-              <EResourceGate resourceId={r.id} fileUrl={r.fileUrl} title={r.title} />
+              <EResourceGate resourceId={id} fileUrl={r["File URL"]!} title={r.Title!} />
             )}
           </div>
         ))}

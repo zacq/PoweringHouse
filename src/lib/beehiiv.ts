@@ -39,7 +39,7 @@ export async function fetchBeehiivPosts(): Promise<BeehiivPost[]> {
       `https://api.beehiiv.com/v2/publications/${publicationId}/posts?${params}`,
       {
         headers: { Authorization: `Bearer ${apiKey}` },
-        next: { revalidate: 60 },
+        next: { revalidate: 3600 },
       }
     );
 

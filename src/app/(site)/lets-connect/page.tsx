@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Upcoming events, and how to reach Powering House directly.",
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default function LetsConnectPage() {
   return (

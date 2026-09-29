@@ -6,7 +6,7 @@ import { GachokaBio } from "@/components/gachoka-bio";
 import { ToolsGrid } from "@/components/tools-grid";
 import { MarketSpaceGrid } from "@/components/market-space-grid";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default function HomePage() {
   return (
