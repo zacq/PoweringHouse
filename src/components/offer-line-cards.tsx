@@ -26,12 +26,12 @@ export function OfferLineCards() {
           <p>Design the business so it can grow. The offer, the model, the customer, the plan &mdash; decided before you scale them.</p>
           <span className="theme__count">Ways We Help</span>
         </Link>
-        <a className="theme" id="operations-excellence" href={refill.url}>
+        <Link className="theme" id="operations-excellence" href={refill.url}>
           <span className="theme__tag">KES 10M+</span>
           <h3>Operations Excellence</h3>
           <p>Eliminate waste. Build the productivity of your people and your machines. Compound growth through efficiency.</p>
           <span className="theme__count">{refill.name}</span>
-        </a>
+        </Link>
       </div>
     </section>
   );

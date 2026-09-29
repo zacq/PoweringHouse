@@ -19,7 +19,7 @@ export const PARTNERS: Partner[] = [
     id: "refill",
     name: "Refill Business Excellence",
     description: "Operations Excellence, delivered — waste, productivity, and compounding growth.",
-    url: "#",
+    url: "/cina",
   },
   {
     id: "quest-spark",

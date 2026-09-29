@@ -25,11 +25,11 @@ export function MarketSpaceGrid() {
           <p>Six ways to work together, from free to one-to-one.</p>
         </Link>
 
-        <a className="theme" href={refill.url}>
+        <Link className="theme" href={refill.url}>
           <span className="theme__tag">03 · Operations</span>
           <h3>Business Operation Excellence</h3>
           <p>Eliminate wastes · Build productivity of people and machines · Compound growth through efficiency</p>
-        </a>
+        </Link>
 
         <Link className="theme" href="/universe-of-freedom">
           <span className="theme__tag">04 · Resources</span>

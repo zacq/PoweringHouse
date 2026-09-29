@@ -3,7 +3,19 @@
 import { useRef } from "react";
 import { ContactForm } from "@/components/contact-form";
 
-export function RegisterModal({ label, subject }: { label: string; subject: string }) {
+export function RegisterModal({
+  label,
+  subject,
+  className,
+  children,
+}: {
+  label: string;
+  subject: string;
+  /** Replaces the default small ghost-button styling of the trigger. */
+  className?: string;
+  /** Trigger content; defaults to `label`. */
+  children?: React.ReactNode;
+}) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   function onBackdropClick(e: React.MouseEvent<HTMLDialogElement>) {
@@ -16,11 +28,12 @@ export function RegisterModal({ label, subject }: { label: string; subject: stri
     <>
       <button
         type="button"
-        className="btn btn--ghost"
-        style={{ marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
+        className={className ?? "btn btn--ghost"}
+        style={className ? undefined : { marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
+        aria-label={children ? label : undefined}
         onClick={() => dialogRef.current?.showModal()}
       >
-        {label}
+        {children ?? label}
       </button>
       <dialog ref={dialogRef} className="modal" aria-label={subject} onClick={onBackdropClick}>
         <div className="modal__head">
