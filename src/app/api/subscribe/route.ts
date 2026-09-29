@@ -23,10 +23,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { email, resourceId } = parsed.data;
+  const { email, resourceId, name, list } = parsed.data;
+
+  if (list === "growth-kit" && !name) {
+    return NextResponse.json({ error: "Please add your name." }, { status: 400 });
+  }
 
   // Gated E-Resource: the file URL never reaches the page, only this response.
-  let source = "Newsletter";
+  let source = list === "growth-kit" ? "Growth Kit" : "Newsletter";
   let fileUrl: string | undefined;
   if (resourceId) {
     const resource = await getRecord<GatedResourceFields>("E-Resources", resourceId);
@@ -39,7 +43,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    await createRecord("Subscribers", { Email: email, Source: source });
+    await createRecord("Subscribers", { Email: email, Source: source, ...(name ? { Name: name } : {}) });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Couldn't save that right now. Try again shortly." }, { status: 502 });

@@ -1,4 +1,4 @@
-export type WayCtaType = "SELF_PACED" | "REG_FORM" | "UNIVERSE";
+export type WayCtaType = "SELF_PACED" | "REG_FORM" | "UNIVERSE" | "GROWTH_KIT";
 
 export interface Way {
   slug: string;
@@ -15,7 +15,7 @@ export const WAYS_WE_HELP: Way[] = [
     tag: "Free",
     title: "FREE Start Pack",
     blurb: "Understand entrepreneurship.",
-    cta: "SELF_PACED",
+    cta: "GROWTH_KIT",
   },
   {
     slug: "free-360-entrepreneurial-community",

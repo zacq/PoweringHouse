@@ -34,6 +34,15 @@ export default function WaysWeHelpPage() {
             {way.cta === "REG_FORM" && (
               <RegisterModal label="Register your interest" subject={way.title} />
             )}
+            {way.cta === "GROWTH_KIT" && (
+              <Link
+                className="btn btn--ghost"
+                href="/growth-kit"
+                style={{ marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
+              >
+                Get the free Growth Kit
+              </Link>
+            )}
             {way.cta === "UNIVERSE" && (
               <Link
                 className="btn btn--ghost"
