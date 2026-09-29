@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createRecord } from "@/lib/airtable";
-import { contactMessageInputSchema } from "@/lib/validations";
+import { contactMessageInputSchema, isHoneypotHit } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
+  if (isHoneypotHit(body)) {
+    return NextResponse.json({ ok: true });
+  }
+
   const parsed = contactMessageInputSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
@@ -12,12 +16,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { fullName, email, phone, subject, message, website } = parsed.data;
-
-  // Honeypot: bots fill hidden fields. Pretend success without persisting.
-  if (website) {
-    return NextResponse.json({ ok: true });
-  }
+  const { fullName, email, phone, subject, message } = parsed.data;
 
   try {
     await createRecord("Contact Messages", {

@@ -4,17 +4,10 @@ import { FormEvent, useState } from "react";
 
 type Status = "idle" | "loading" | "unlocked" | "error";
 
-export function EResourceGate({
-  resourceId,
-  fileUrl,
-  title,
-}: {
-  resourceId: string;
-  fileUrl: string;
-  title: string;
-}) {
+export function EResourceGate({ resourceId, title }: { resourceId: string; title: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [fileUrl, setFileUrl] = useState("");
   const inputId = `gate-email-${resourceId}`;
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -26,14 +19,15 @@ export function EResourceGate({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: `E-Resource: ${title}` }),
+        body: JSON.stringify({ email, resourceId }),
       });
-      if (!res.ok) {
-        const data = await res.json();
+      const data = await res.json();
+      if (!res.ok || !data.fileUrl) {
         setStatus("error");
         setMessage(data.error ?? "Something went wrong. Try again.");
         return;
       }
+      setFileUrl(data.fileUrl);
       setStatus("unlocked");
     } catch {
       setStatus("error");

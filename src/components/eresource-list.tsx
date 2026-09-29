@@ -54,7 +54,7 @@ export async function EResourceList() {
                 Get it
               </a>
             ) : (
-              <EResourceGate resourceId={id} fileUrl={r["File URL"]!} title={r.Title!} />
+              <EResourceGate resourceId={id} title={r.Title!} />
             )}
           </div>
         ))}

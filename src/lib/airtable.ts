@@ -48,6 +48,24 @@ export async function listRecords<T>(
   }
 }
 
+/** Uncached single-record lookup; null when missing, misconfigured, or on API error. */
+export async function getRecord<T>(table: string, id: string): Promise<AirtableRecord<T> | null> {
+  const cfg = config();
+  if (!cfg || !/^rec[A-Za-z0-9]{14}$/.test(id)) return null;
+
+  try {
+    const res = await fetch(`${tableUrl(cfg.baseId, table)}/${id}`, {
+      headers: { Authorization: `Bearer ${cfg.token}` },
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as AirtableRecord<T>;
+  } catch (err) {
+    console.error(`Airtable get ${table}/${id} failed:`, err);
+    return null;
+  }
+}
+
 /** Throws on failure — a lost form submission must surface to the user. */
 export async function createRecord(table: string, fields: Record<string, unknown>): Promise<void> {
   const cfg = config();
