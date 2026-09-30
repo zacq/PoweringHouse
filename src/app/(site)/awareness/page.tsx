@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { GrowthKitBar, GrowthKitForm } from "@/components/growth-kit-form";
+import { RegisterModal } from "@/components/register-modal";
+import { WAYS_WE_HELP } from "@/lib/ways-we-help";
 import {
   GK_BARS,
   GK_ELEMENTS,
@@ -30,6 +32,11 @@ export const metadata: Metadata = {
 };
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+// Awareness is the free level; these are the paid-path next steps it leads prospects to.
+const NEXT_STEP_OFFERS = WAYS_WE_HELP.filter((w) =>
+  ["1-1-clarity-session", "boot-camp-business-design-coaching"].includes(w.slug)
+);
 
 function Rail({ level, title, children }: { level: number; title: string; children?: React.ReactNode }) {
   return (
@@ -347,6 +354,27 @@ export default function GrowthKitPage() {
                 You only need commitment and <strong>one hour per day</strong> to keep mastering. Next you will be
                 taken away in growth that you never imagined.
               </p>
+            </div>
+            <div className="gk-offers">
+              <span className="gk-label gk-label--amber">Awareness is free. Take the next step</span>
+              <p className="gk-offers__title">Grow your micro business with GK — one-to-one or in coaching.</p>
+              <div className="gk-offers__grid">
+                {NEXT_STEP_OFFERS.map((way) => (
+                  <div key={way.slug} className="gk-offer">
+                    <span className="gk-num">{way.tag}</span>
+                    <h4>{way.title}</h4>
+                    <p>{way.blurb}</p>
+                    <RegisterModal
+                      label={way.slug === "1-1-clarity-session" ? "Book a 1:1 session" : "Register for coaching"}
+                      subject={`${way.title} (Awareness page)`}
+                      className="btn btn--primary gk-btn-wide"
+                    >
+                      {way.slug === "1-1-clarity-session" ? "Book a 1:1 session" : "Register for coaching"}
+                      <span aria-hidden="true">→</span>
+                    </RegisterModal>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

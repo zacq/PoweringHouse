@@ -784,6 +784,15 @@ h1{
 .gk .gk-plan__foot{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--gk-rule);color:var(--bone-dim)}
 .gk-plan__foot strong{color:var(--bone)}
 
+/* level 5 next steps (1:1 / coaching) */
+.gk-offers{margin-top:2.5rem}
+.gk .gk-offers__title{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,2.4vw,1.85rem);line-height:1.12;letter-spacing:-.02em;margin:.75rem 0 1.5rem}
+.gk-offers__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:1rem}
+.gk-offer{display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;border:1px solid rgba(228,225,218,.2);border-top:3px solid var(--amber)}
+.gk-offer h4{font-family:var(--display);font-weight:800;font-size:1.25rem;line-height:1.2;margin:0}
+.gk .gk-offer p{color:var(--bone-dim);flex:1;margin-bottom:.6rem}
+.gk-offer .btn{width:100%;min-width:0}
+
 /* talk */
 .gk-talk{background:var(--amber);color:#141414;padding:clamp(4rem,9vw,7.5rem) 0;scroll-margin-top:1rem}
 .gk-talk__kicker{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.2}
