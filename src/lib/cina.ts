@@ -135,6 +135,26 @@ export const CINA_SCOPE: string[] = [
   "ISO Management Systems",
 ];
 
+/**
+ * Continuous Improvement Framework — the next steps the page leads prospects to.
+ * DRAFT: titles from the brief ("1:1 / Free OpEx assessment, cohort training"); descriptions
+ * reuse this page's own program copy until the client supplies dedicated wording.
+ */
+export const CINA_NEXT_STEPS: { tag: string; title: string; description: string; cta: string }[] = [
+  {
+    tag: "Free · 1:1",
+    title: "Free OpEx Assessment",
+    description: "A free face-to-face dialogue and assessment — plus free affiliate membership.",
+    cta: "Book my free assessment",
+  },
+  {
+    tag: "Cohort",
+    title: "Cohort Training",
+    description: "Optimizing staff potential through the practice of operations excellence.",
+    cta: "Register for the next cohort",
+  },
+];
+
 export interface CinaLead {
   name: string;
   role: string;

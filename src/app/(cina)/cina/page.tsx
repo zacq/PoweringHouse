@@ -7,6 +7,7 @@ import { RegisterModal } from "@/components/register-modal";
 import {
   CINA_LEADS,
   CINA_LINKEDIN_URL,
+  CINA_NEXT_STEPS,
   CINA_PHILOSOPHY,
   CINA_PILLARS,
   CINA_PROGRAMS,
@@ -223,6 +224,33 @@ export default function CinaPage() {
                 </li>
               ))}
             </ol>
+
+            <section className="cina-framework" aria-labelledby="framework-title">
+              <p className="cina-eyebrow cina-eyebrow--amber">Continuous Improvement Framework</p>
+              {/* DRAFT: heading and intro written for this block — confirm wording with the client. */}
+              <h2 id="framework-title" className="cina-h2">
+                Put the framework to work in your business.
+              </h2>
+              <p className="cina-lede cina-lede--blue">
+                Start with a free one-to-one OpEx assessment, or bring your team into the next cohort training.
+              </p>
+              <div className="cina-framework__grid">
+                {CINA_NEXT_STEPS.map((step) => (
+                  <article key={step.title} className="cina-framework__card">
+                    <p className="cina-program__tag">{step.tag}</p>
+                    <h3>{step.title}</h3>
+                    <p className="cina-framework__text">{step.description}</p>
+                    <RegisterModal
+                      label={step.cta}
+                      subject={`CINA — ${step.title} (Continuous Improvement Framework)`}
+                      className="cina-btn cina-btn--amber cina-btn--block"
+                    >
+                      {step.cta} <span aria-hidden="true">→</span>
+                    </RegisterModal>
+                  </article>
+                ))}
+              </div>
+            </section>
           </div>
         </section>
 
