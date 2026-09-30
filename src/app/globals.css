@@ -705,6 +705,7 @@ h1{
 .gk-form .btn{width:100%;min-height:3.25rem}
 .gk-form--done h3{font-size:1.5rem}
 .gk-form__story{align-self:flex-start;margin-top:.4rem}
+.gk-form__download{width:100%;min-height:3.25rem}
 .gk-next .gk-form h3{font-size:1.35rem;margin-top:.75rem}
 
 /* level layout */

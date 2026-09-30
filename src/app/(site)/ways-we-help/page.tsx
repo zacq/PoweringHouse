@@ -37,7 +37,7 @@ export default function WaysWeHelpPage() {
             {way.cta === "GROWTH_KIT" && (
               <Link
                 className="btn btn--ghost"
-                href="/growth-kit"
+                href="/awareness"
                 style={{ marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
               >
                 Get the free Growth Kit

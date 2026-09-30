@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import { GK_KIT_PDF, GK_KIT_PDF_NAME } from "@/lib/growth-kit";
 
 const KEY = "gk-kit-submitted";
 const EVENT = "gk-kit-submitted";
@@ -75,10 +76,14 @@ export function GrowthKitForm({ variant = "card" }: { variant?: "card" | "compac
             <path d="M4 12l5 5L20 6" />
           </svg>
         )}
-        <h3>Check your inbox — the kit is on its way.</h3>
+        <h3>Your kit is ready.</h3>
         <p>
-          Sent to {submittedEmail}.{variant === "card" && " While you wait, read how it started below."}
+          Registered as {submittedEmail}. Download all 5 levels below.
         </p>
+        {/* When email delivery is added, send the kit to submittedEmail instead of offering it here. */}
+        <a href={GK_KIT_PDF} download={GK_KIT_PDF_NAME} className="btn btn--primary gk-btn-wide gk-form__download">
+          Download the Growth Kit (PDF) <span aria-hidden="true">↓</span>
+        </a>
         {variant === "card" && (
           <a href="#level-1" className="btn btn--ghost gk-form__story">
             Read GK’s story
@@ -93,7 +98,7 @@ export function GrowthKitForm({ variant = "card" }: { variant?: "card" | "compac
       {variant === "card" ? (
         <div>
           <h3>Get the free kit</h3>
-          <p>All 5 levels, sent to your inbox as a PDF.</p>
+          <p>All 5 levels as a PDF — download it as soon as you register.</p>
         </div>
       ) : (
         <h3>Get the free Growth Kit</h3>
@@ -123,11 +128,11 @@ export function GrowthKitForm({ variant = "card" }: { variant?: "card" | "compac
         </p>
       )}
       <button type="submit" className="btn btn--primary gk-btn-wide" disabled={loading}>
-        {loading ? "Sending…" : variant === "card" ? "Send Me the Kit" : "Get My Free Copy"}
+        {loading ? "Registering…" : variant === "card" ? "Get the Kit" : "Get My Free Copy"}
         <span aria-hidden="true">→</span>
       </button>
       {variant === "card" && (
-        <p className="gk-form__fine">No spam. One email with the kit, then occasional notes from GK.</p>
+        <p className="gk-form__fine">No spam. Just the kit, then occasional notes from GK.</p>
       )}
     </form>
   );

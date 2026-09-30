@@ -8,6 +8,8 @@ const nextConfig = {
       { source: "/ways-we-help/:slug", destination: "/ways-we-help", permanent: true },
       { source: "/admin/:path*", destination: "/", permanent: true },
       { source: "/admin", destination: "/", permanent: true },
+      // The awareness landing page launched as /growth-kit; the address shown to people is /awareness.
+      { source: "/growth-kit", destination: "/awareness", permanent: true },
     ];
   },
 };

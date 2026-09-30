@@ -1,5 +1,5 @@
 /**
- * "Every Business is Scalable" — Micro Business Growth Kit landing page (/growth-kit).
+ * "Every Business is Scalable" — Micro Business Growth Kit landing page (/awareness).
  * Copy is verbatim from the supplied page (Awareness lnding pge/Every Business is Scalable.html).
  */
 
@@ -11,6 +11,13 @@ export interface NumberedItem {
 
 const pad = (i: number) => String(i + 1).padStart(2, "0");
 const split = (arr: [string, string][]): NumberedItem[] => arr.map(([t, d], i) => ({ num: pad(i), t, d }));
+
+/**
+ * The kit PDF (public/downloads/). The form offers it as a download once the sign-up is saved;
+ * when email delivery is added, send it to the subscriber instead.
+ */
+export const GK_KIT_PDF = "/downloads/every-business-is-scalable-growth-kit.pdf";
+export const GK_KIT_PDF_NAME = "Every Business is Scalable — PH Growth Kit.pdf";
 
 export const GK_WHATSAPP = "https://wa.me/254725412802";
 export const GK_WHATSAPP_LABEL = "0725 412 802";
