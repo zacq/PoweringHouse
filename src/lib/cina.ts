@@ -48,6 +48,7 @@ export const CINA_PILLARS: string[] = [
 
 export type CinaProgramAction =
   | { kind: "register"; label: string }
+  | { kind: "breakfast"; label: string }
   | { kind: "diagnose"; label: string }
   | { kind: "link"; label: string; href: string };
 
@@ -72,7 +73,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
     tag: "Free · In person",
     title: "Executive Roundtable Breakfast",
     description: "Exclusive in-person dialogue for Business Owners, CEOs and Executive Decision Makers.",
-    action: { kind: "register", label: "Reserve Your Seat" },
+    action: { kind: "breakfast", label: "Reserve your seat & get the brief" },
   },
   {
     icon: "📊",
@@ -105,6 +106,29 @@ export const CINA_PROGRAMS: CinaProgram[] = [
     action: { kind: "register", label: "Request a Visit" },
   },
 ];
+
+/**
+ * Executive Breakfast registration — copy from CINA_Executive_Breakfast_Improved.pdf.
+ * Registering unlocks the brief as a download; email delivery replaces this later.
+ */
+export const CINA_BREAKFAST = {
+  pdf: "/downloads/cina-executive-breakfast.pdf",
+  pdfName: "CINA Executive Breakfast — Session Brief.pdf",
+  eyebrow: "Executive Round Table Dialogue & Breakfast",
+  title: "Business Excellence Is Your Key Priority",
+  theme: "Reclaim it — Refill your potential.",
+  reasons: [
+    {
+      t: "Who should attend",
+      d: "Chief executives, managing directors, owners and heads of department committed to sustainable growth.",
+    },
+    { t: "What you get", d: "Practical frameworks, candid peer insight and strategies you can act on the same week." },
+    { t: "The format", d: "An executive breakfast with facilitated dialogue, real case sharing and unhurried networking." },
+  ],
+  quote: "Your refreshing morning with real return on investment.",
+  briefTitle: "Get the session brief",
+  briefLine: "The seven shifts, the seven pillars and how the morning runs — download it as soon as you register.",
+};
 
 export const CINA_PHILOSOPHY: { title: string; description: string }[] = [
   {

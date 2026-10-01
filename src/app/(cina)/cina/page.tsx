@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CinaHeader } from "@/components/cina/cina-header";
 import { SymptomChecker } from "@/components/cina/symptom-checker";
+import { ExecutiveBreakfastModal } from "@/components/cina/executive-breakfast-modal";
 import { RegisterModal } from "@/components/register-modal";
 import {
   CINA_LEADS,
@@ -39,6 +40,9 @@ function ProgramAction({ program }: { program: CinaProgram }) {
       {action.label} <span aria-hidden="true">→</span>
     </>
   );
+  if (action.kind === "breakfast") {
+    return <ExecutiveBreakfastModal label={action.label} className="cina-textlink" />;
+  }
   if (action.kind === "register") {
     return (
       <RegisterModal label={action.label} subject={`CINA — ${program.title}`} className="cina-textlink">
