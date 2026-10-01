@@ -930,3 +930,49 @@ h1{
   .eres-featured{grid-template-columns:1fr}
   .eres-featured__cover{width:9rem}
 }
+
+/* ---------- about gachoka page ---------- */
+.about-page{padding-top:clamp(4.5rem,8vw,6rem)}
+.about-page .bio{border-top:none}
+
+/* ---------- hero: meet gachoka link ---------- */
+.hero__meet{
+  display:inline-flex;gap:.45rem;margin-top:1.2rem;font-size:.86rem;letter-spacing:.02em;
+  color:var(--bone);text-decoration:none;border-bottom:1px solid rgba(228,225,218,.3);padding-bottom:2px;
+  transition:border-color .18s ease,color .18s ease;
+}
+.hero__meet:hover{color:#fff;border-color:var(--amber)}
+
+/* ---------- home: what we offer ---------- */
+.offers{
+  padding:clamp(3rem,8vw,5.5rem) var(--gutter) clamp(4rem,9vw,6rem);
+  border-top:1px solid rgba(228,225,218,.1);
+}
+.offers__tracks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:start}
+.offers__track{border-top:3px solid var(--amber);background:var(--ink-raised)}
+.offers__track-head{padding:1.6rem 1.6rem 1.3rem;border-bottom:1px solid rgba(228,225,218,.12)}
+.offers__track-head h3{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,2.6vw,1.8rem);letter-spacing:-.02em;margin:0}
+.offers__track-head p{margin:.4rem 0 .7rem;font-size:.92rem;color:var(--bone-dim)}
+.offers__track-head a{font-size:.84rem;color:var(--amber);text-decoration:none}
+.offers__track-head a:hover{text-decoration:underline}
+.offers__list{list-style:none;margin:0;padding:0}
+.offer{padding:1.5rem 1.6rem 1.7rem;border-bottom:1px solid rgba(228,225,218,.12)}
+.offer:last-child{border-bottom:none}
+.offer__top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.offer__num{font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--amber)}
+.offer__badge{
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  padding:.3rem .6rem;border:1px solid rgba(228,225,218,.25);color:var(--bone);
+}
+.offer__badge[data-paid]{background:var(--amber);border-color:var(--amber);color:#141414}
+.offer h4{font-family:var(--display);font-weight:800;font-size:1.25rem;line-height:1.2;margin:.8rem 0 .4rem}
+.offer > p{margin:0;font-size:.93rem;color:var(--bone-dim);max-width:34rem}
+.offer__price{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem .8rem;margin:1rem 0 1.1rem}
+.offer__price strong{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--bone)}
+.offer[data-paid] .offer__price strong{color:var(--amber)}
+.offer__price span{font-size:.82rem;color:var(--bone-dim)}
+.offer__actions{display:flex;flex-wrap:wrap;gap:.6rem}
+.offer__btn{padding:.7rem 1.1rem;font-size:.86rem}
+@media (max-width:900px){
+  .offers__tracks{grid-template-columns:1fr}
+}

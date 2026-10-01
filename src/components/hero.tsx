@@ -102,6 +102,9 @@ export function Hero() {
             Read the letter
           </a>
         </div>
+        <a className="hero__meet" href="/about-gachoka">
+          Meet Gachoka Kang&apos;ata <span aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
   );

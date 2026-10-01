@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { LifecycleBand } from "@/components/lifecycle-band";
 import { OfferLineCards } from "@/components/offer-line-cards";
-import { GachokaBio } from "@/components/gachoka-bio";
+import { OffersSection } from "@/components/offers-section";
 import { ToolsGrid } from "@/components/tools-grid";
 import { MarketSpaceGrid } from "@/components/market-space-grid";
 
@@ -14,7 +14,8 @@ export default function HomePage() {
       <Hero />
       <LifecycleBand />
       <OfferLineCards />
-      <GachokaBio />
+      {/* Gachoka's bio moved to /about-gachoka; this slot now lists every offer. */}
+      <OffersSection />
 
       {/* One tool as the primary lead magnet, ahead of the Free Start Pack offer — content-map v2 §7.1 */}
       <section className="themes" aria-labelledby="lead-magnet-title">

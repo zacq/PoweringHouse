@@ -7,6 +7,7 @@ const LINKS = [
   { href: "/universe-of-freedom", label: "Universe of Freedom" },
   { href: "/market-place", label: "Market Place" },
   { href: "/lets-connect", label: "Let's Connect" },
+  { href: "/about-gachoka", label: "About Gachoka" },
 ];
 
 export function Nav() {

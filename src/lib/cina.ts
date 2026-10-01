@@ -72,7 +72,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
   },
   {
     icon: "☕",
-    tag: "Free · In person",
+    tag: "Paid · In person",
     title: "Executive Roundtable Breakfast",
     description: "Exclusive in-person dialogue for Business Owners, CEOs and Executive Decision Makers.",
     action: { kind: "breakfast", label: "Reserve your seat & get the brief" },
