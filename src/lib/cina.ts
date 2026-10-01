@@ -4,6 +4,8 @@
  * screenshots cut off or never showed is marked DRAFT.
  */
 
+import type { LeadMagnet } from "@/components/lead-magnet-modal";
+
 export const CINA_TICKER: string[] = [
   // DRAFT: the start of this item is cut off in the screenshot — only "…va Stanley, Nairobi. Reserve your seat." is visible.
   "☕ Executive Roundtable Breakfast — Sarova Stanley, Nairobi. Reserve your seat.",
@@ -111,7 +113,8 @@ export const CINA_PROGRAMS: CinaProgram[] = [
  * Executive Breakfast registration — copy from CINA_Executive_Breakfast_Improved.pdf.
  * Registering unlocks the brief as a download; email delivery replaces this later.
  */
-export const CINA_BREAKFAST = {
+export const CINA_BREAKFAST: LeadMagnet = {
+  list: "cina-breakfast",
   pdf: "/downloads/cina-executive-breakfast.pdf",
   pdfName: "CINA Executive Breakfast — Session Brief.pdf",
   eyebrow: "Executive Round Table Dialogue & Breakfast",
@@ -128,6 +131,47 @@ export const CINA_BREAKFAST = {
   quote: "Your refreshing morning with real return on investment.",
   briefTitle: "Get the session brief",
   briefLine: "The seven shifts, the seven pillars and how the morning runs — download it as soon as you register.",
+  cta: "Reserve my seat & get the brief",
+  fine: "No spam. Just the brief, then the round table details from CINA.",
+  doneTitle: "Your seat request is in.",
+  doneText: "Download the session brief below — we’ll confirm the date and venue with you directly.",
+  downloadLabel: "Download the session brief (PDF)",
+};
+
+/**
+ * Free e-resource on /universe-of-freedom — copy from CINA_Craftsmanship_Legacy_V1.pdf.
+ * Same pattern as the breakfast: register, then download (email delivery later).
+ */
+export const CINA_CRAFTSMANSHIP: LeadMagnet = {
+  list: "cina-craftsmanship",
+  pdf: "/downloads/cina-craftsmanship-legacy.pdf",
+  pdfName: "CINA — Craftsmanship Legacy.pdf",
+  eyebrow: "Free e-resource · The Continuous Improvement Model",
+  title: "Craftsmanship Legacy",
+  theme: "How one person can drive BIG results from very small, coordinated efforts.",
+  reasons: [
+    {
+      t: "Seven deliberate stages",
+      d: "Beginning, Culture, Implementation, Empowering, Visible Progress, Embedding — and The Legacy.",
+    },
+    {
+      t: "75% less time to reach competency",
+      d: "Training Within Industry and standardised methods: competency in about three months, not twelve.",
+    },
+    {
+      t: "One model. Every operation.",
+      d: "Tailoring, warehousing, transport, manufacturing and wholesale — if people, materials and time move through it, the model applies.",
+    },
+  ],
+  quote: "Equipment can be bought. Mindset must be built.",
+  briefTitle: "Get the Craftsmanship Legacy guide",
+  briefLine:
+    "15 pages: the seven-stage roadmap, PDCA floor walks, 5S and vision boards, and what changes for the owner — download it as soon as you register.",
+  cta: "Send me the guide",
+  fine: "No spam. Just the guide, then occasional notes from CINA.",
+  doneTitle: "Your guide is ready.",
+  doneText: "Reclaim. Refill. Repeat. — start with one process and one owner this week.",
+  downloadLabel: "Download Craftsmanship Legacy (PDF)",
 };
 
 export const CINA_PHILOSOPHY: { title: string; description: string }[] = [

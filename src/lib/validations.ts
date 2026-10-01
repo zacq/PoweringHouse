@@ -12,9 +12,9 @@ export const subscribeInputSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(160),
   // Set by the E-Resource gate; the server looks the resource up itself.
   resourceId: z.string().optional(),
-  // Set by the /awareness growth-kit forms and the CINA Executive Breakfast form.
+  // Set by the /awareness growth-kit forms and the LeadMagnetModal downloads.
   name: z.string().trim().max(120).optional(),
-  list: z.enum(["growth-kit", "cina-breakfast"]).optional(),
+  list: z.enum(["growth-kit", "cina-breakfast", "cina-craftsmanship"]).optional(),
 });
 
 export const contactMessageInputSchema = z.object({

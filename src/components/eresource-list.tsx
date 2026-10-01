@@ -1,5 +1,33 @@
 import { listRecords } from "@/lib/airtable";
 import { EResourceGate } from "./eresource-gate";
+import { LeadMagnetModal } from "./lead-magnet-modal";
+import { CINA_CRAFTSMANSHIP } from "@/lib/cina";
+
+const SECTORS = ["Tailoring", "Warehousing", "Transport", "Manufacturing", "Wholesale"];
+
+/** Featured CINA guide — always shown; gated behind name + email, then downloads. */
+function FeaturedResource() {
+  return (
+    <div className="eres-featured">
+      <div className="eres-featured__cover" aria-hidden="true">
+        <span>CINA</span>
+        <strong>Craftsmanship Legacy</strong>
+        <em>The Continuous Improvement Model</em>
+      </div>
+      <div>
+        <span className="theme__tag">Free guide · 15 pages · Email required</span>
+        <h3>{CINA_CRAFTSMANSHIP.title}</h3>
+        <p>{CINA_CRAFTSMANSHIP.theme} A simple road map to reclaim and refill — seven deliberate stages from a natural choice to a legacy of pride and growth.</p>
+        <ul className="eres-featured__chips">
+          {SECTORS.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+        <LeadMagnetModal content={CINA_CRAFTSMANSHIP} label="Get the free guide" className="btn btn--primary" />
+      </div>
+    </div>
+  );
+}
 
 interface EResourceFields {
   Title: string;
@@ -27,13 +55,14 @@ export async function EResourceList() {
   ).filter((r) => r.fields.Title && r.fields["File URL"]);
 
   if (resources.length === 0) {
-    return <p className="admin-empty">Nothing uploaded yet — check back soon.</p>;
+    return <FeaturedResource />;
   }
 
   const latest = resources[0].fields["Published At"];
 
   return (
     <div>
+      <FeaturedResource />
       {latest && (
         <p style={{ fontSize: ".82rem", color: "var(--bone-dim)", marginBottom: "1.4rem" }}>
           Most recent upload: {formatDate(new Date(latest))}

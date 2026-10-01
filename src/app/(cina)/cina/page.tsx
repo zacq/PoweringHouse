@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { CinaHeader } from "@/components/cina/cina-header";
 import { SymptomChecker } from "@/components/cina/symptom-checker";
-import { ExecutiveBreakfastModal } from "@/components/cina/executive-breakfast-modal";
+import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";
 import {
+  CINA_BREAKFAST,
   CINA_LEADS,
   CINA_LINKEDIN_URL,
   CINA_NEXT_STEPS,
@@ -41,7 +42,7 @@ function ProgramAction({ program }: { program: CinaProgram }) {
     </>
   );
   if (action.kind === "breakfast") {
-    return <ExecutiveBreakfastModal label={action.label} className="cina-textlink" />;
+    return <LeadMagnetModal content={CINA_BREAKFAST} label={action.label} className="cina-textlink" />;
   }
   if (action.kind === "register") {
     return (

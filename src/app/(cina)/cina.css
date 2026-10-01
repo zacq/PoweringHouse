@@ -361,50 +361,13 @@
 .cina .modal__head h3{font-size:1.4rem;color:#fff}
 .cina .modal .btn--primary{background:var(--c-amber);border-color:var(--c-amber);color:#1A1406}
 
-/* ---------- executive breakfast registration ---------- */
-.cina .modal.cina-eb{
-  max-width:60rem;padding:0;border-radius:22px;overflow:auto;position:relative;
-  display:none;grid-template-columns:1.05fr 1fr;background:var(--c-navy-2);
+/* ---------- lead-magnet popup (shared component, CINA palette) ---------- */
+.cina .modal.lm{
+  --lm-bg:var(--c-navy-2);--lm-pitch:var(--c-navy);--lm-glow:rgba(47,111,237,.22);--lm-line:var(--c-line);
+  --lm-accent:var(--c-amber);--lm-accent-ink:#1A1406;--lm-text:#E8EDF6;--lm-muted:var(--c-mist);
+  --lm-input:var(--c-navy);--lm-heading:var(--c-serif);--lm-label:var(--c-mono);--lm-radius:22px;--lm-field-radius:10px;
 }
-.cina .modal.cina-eb[open]{display:grid}
-.cina-eb__close{position:absolute;top:.9rem;right:1rem;z-index:1}
-.cina-eb__pitch{
-  padding:2.6rem 2.4rem;color:#E8EDF6;
-  background:radial-gradient(30rem 18rem at 0% 0%,rgba(47,111,237,.22),transparent 70%),var(--c-navy);
-  border-right:1px solid var(--c-line);
-}
-.cina-eb__eyebrow{font:700 .72rem var(--c-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--c-amber)}
-.cina-eb__title{margin-top:.9rem!important;font:600 clamp(1.7rem,3vw,2.2rem)/1.1 var(--c-serif);color:#fff}
-.cina-eb__theme{margin-top:.7rem;font:italic 400 1.2rem var(--c-serif);color:var(--c-amber);font-variation-settings:"WONK" 1}
-.cina-eb__reasons{margin-top:1.8rem!important;display:grid;gap:1.1rem}
-.cina-eb__reasons li{padding-left:1rem;border-left:2px solid var(--c-amber)}
-.cina-eb__reasons strong{display:block;font-size:.98rem;color:#fff}
-.cina-eb__reasons span{display:block;margin-top:.2rem;font-size:.93rem;line-height:1.55;color:var(--c-mist)}
-.cina-eb__quote{margin-top:1.8rem;font:italic 400 1.05rem/1.5 var(--c-serif);color:#C9D3E4}
-.cina-eb__panel{padding:2.6rem 2.4rem;display:flex;align-items:center}
-.cina-eb__form{display:flex;flex-direction:column;gap:1.1rem;width:100%}
-.cina-eb__brief{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem;border-radius:14px;background:rgba(240,177,74,.08);border:1px solid rgba(240,177,74,.35)}
-.cina-eb__pdf{
-  flex:none;width:2.8rem;height:3.4rem;border-radius:6px;display:grid;place-items:center;
-  background:var(--c-amber);color:#1A1406;font:700 .72rem var(--c-mono);letter-spacing:.06em;
-}
-.cina-eb__form h4{margin:0;font:600 1.35rem/1.2 var(--c-serif);color:#fff}
-.cina-eb__form p{font-size:.95rem;line-height:1.55;color:var(--c-mist)}
-.cina-eb__brief p{margin-top:.3rem}
-.cina-eb__field{display:flex;flex-direction:column;gap:.4rem;font-size:.85rem;font-weight:600;color:#C9D3E4}
-.cina-eb__field input{
-  min-height:3.1rem;padding:.75rem .9rem;border-radius:10px;border:1px solid var(--c-line);
-  background:var(--c-navy);color:#fff;font:inherit;font-size:1rem;font-weight:400;
-}
-.cina-eb__field input:focus{outline:none;border-color:var(--c-amber)}
-.cina-eb__error{color:#F08C78!important;font-weight:600}
-.cina-eb__fine{font-size:.82rem!important}
-@media (max-width:760px){
-  .cina .modal.cina-eb[open]{display:block}
-  .cina-eb__pitch{border-right:none;border-bottom:1px solid var(--c-line);padding:2rem 1.5rem}
-  .cina-eb__reasons{display:none}
-  .cina-eb__panel{padding:1.8rem 1.5rem}
-}
+.cina .lm__theme{font-variation-settings:"WONK" 1}
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){

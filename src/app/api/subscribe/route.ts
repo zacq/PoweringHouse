@@ -9,6 +9,13 @@ interface GatedResourceFields {
   Published: boolean;
 }
 
+// Subscribers "Source" for each download/sign-up list.
+const LIST_SOURCES = {
+  "growth-kit": "Growth Kit",
+  "cina-breakfast": "CINA Executive Breakfast",
+  "cina-craftsmanship": "E-Resource: CINA Craftsmanship Legacy",
+} as const;
+
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   if (isHoneypotHit(body)) {
@@ -30,7 +37,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Gated E-Resource: the file URL never reaches the page, only this response.
-  let source = list === "growth-kit" ? "Growth Kit" : list === "cina-breakfast" ? "CINA Executive Breakfast" : "Newsletter";
+  let source: string = list ? LIST_SOURCES[list] : "Newsletter";
   let fileUrl: string | undefined;
   if (resourceId) {
     const resource = await getRecord<GatedResourceFields>("E-Resources", resourceId);
