@@ -2,10 +2,11 @@ import { RegisterModal } from "@/components/register-modal";
 import { CINA_TICKER } from "@/lib/cina";
 
 const LINKS = [
+  { href: "#about", label: "About" },
   { href: "#diagnose", label: "Diagnose" },
   { href: "#programs", label: "Programs" },
-  { href: "#philosophy", label: "Philosophy" },
-  { href: "#scope", label: "Scope" },
+  { href: "#practice", label: "Practice" },
+  { href: "#leadership", label: "Leadership" },
 ];
 
 export function CinaHeader() {

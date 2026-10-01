@@ -3,7 +3,7 @@ import "./cina.css";
 
 const serif = Fraunces({
   subsets: ["latin"],
-  // Variable font (no fixed weights) so the WONK axis is available for the swash italic "& Re-Fill".
+  // Variable font (no fixed weights) so the WONK axis is available for the swash italic "& Refill".
   style: ["normal", "italic"],
   axes: ["opsz", "SOFT", "WONK"],
   variable: "--font-cina-serif",

@@ -7,21 +7,27 @@ import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";
 import {
   CINA_BREAKFAST,
+  CINA_COMMUNITY,
+  CINA_CYCLE,
+  CINA_IMPACT,
   CINA_LEADS,
   CINA_LINKEDIN_URL,
+  CINA_METHODOLOGIES,
   CINA_NEXT_STEPS,
-  CINA_PHILOSOPHY,
-  CINA_PILLARS,
+  CINA_PRACTICE_AREAS,
+  CINA_PRINCIPLES,
+  CINA_PRIORITIES,
+  CINA_PROFILE as P,
   CINA_PROGRAMS,
   CINA_QUESTIONS,
-  CINA_SCOPE,
+  CINA_WHAT_WE_DO,
   type CinaProgram,
 } from "@/lib/cina";
 
 export const metadata: Metadata = {
-  title: { absolute: "CINA — Reclaim & Re-Fill" },
+  title: { absolute: "CINA — Reclaim & Refill · Driving the Practice of Operational Excellence" },
   description:
-    "CINA connects, equips and empowers Business Owners, CEOs and Executive Decision Makers to reclaim wasted operational potential — and re-fill the business with profitability, cash flow and sustainable growth.",
+    "The Continuous Improvement Network Association (CINA) is a professional community of Operational Excellence practitioners dedicated to enabling organisations to reclaim growth through excellence.",
 };
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -71,15 +77,14 @@ export default function CinaPage() {
               <p className="cina-eyebrow">Continuous Improvement Network Association</p>
               <h1 id="cina-hero-title" className="cina-hero__title">
                 Reclaim
-                <em>&amp; Re-Fill</em>
+                <em>&amp; Refill</em>
               </h1>
               <p className="cina-hero__sub">
-                Your business is leaking value you can&apos;t see — <em>profit, cash flow, capacity.</em>
+                <em>{P.tagline}.</em>
               </p>
               <p className="cina-hero__body">
-                You&apos;re a Business Owner, CEO or Executive Decision Maker. CINA exists to connect, equip and
-                empower you to <strong>reclaim</strong> wasted operational potential — and <strong>re-fill</strong>{" "}
-                your business with profitability, cash flow and sustainable growth.
+                {P.positioning} — dedicated to enabling organisations to <strong>reclaim</strong> growth through
+                excellence, and <strong>refill</strong> them with capability that stays.
               </p>
               <div className="cina-actions">
                 <BookButton />
@@ -98,9 +103,9 @@ export default function CinaPage() {
                   priority
                   sizes="(max-width: 900px) 100vw, 42vw"
                 />
-                <p className="cina-hero__caption">Operations excellence, built for owners &amp; CEOs.</p>
+                <p className="cina-hero__caption">Improvement as a way of working.</p>
               </div>
-              <span className="cina-hero__pill">Reclaim &amp; Re-Fill</span>
+              <span className="cina-hero__pill">Reclaim &amp; Refill</span>
               <div className="cina-hero__stat">
                 <span className="cina-hero__stat-label">Operational health</span>
                 <span className="cina-hero__stat-num">
@@ -108,6 +113,45 @@ export default function CinaPage() {
                 </span>
                 <span className="cina-hero__stat-text">dimensions diagnosed, in under 5 minutes.</span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- who we are (profile §01–03) ---------- */}
+        <section className="cina-section cina-section--white" id="about" aria-labelledby="about-title">
+          <div className="cina-wrap">
+            <div className="cina-about">
+              <div>
+                <p className="cina-eyebrow">Who we are</p>
+                <h2 id="about-title" className="cina-h2">
+                  A community of Operational Excellence practitioners.
+                </h2>
+                <p className="cina-body">{P.whoWeAre}</p>
+                <p className="cina-body">{P.summaryMore}</p>
+              </div>
+              <div>
+                <blockquote className="cina-quote cina-quote--belief">
+                  <span className="cina-quote__label">Our belief</span>
+                  {P.belief}
+                </blockquote>
+                <p className="cina-mini-label">Who we bring together</p>
+                <ul className="cina-together">
+                  {P.bringTogether.map((g) => (
+                    <li key={g}>
+                      <strong>{g}</strong>
+                      <span>Connected &amp; engaged through the Network</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="cina-pvm">
+              {P.pvm.map((x) => (
+                <article key={x.t} className="cina-pvm__card">
+                  <p className="cina-program__tag">{x.t}</p>
+                  <p>{x.d}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -136,18 +180,23 @@ export default function CinaPage() {
           </div>
         </section>
 
-        {/* ---------- statement ---------- */}
-        <section className="cina-section cina-section--deep cina-statement" aria-label="Why operations excellence">
+        {/* ---------- why the network matters (profile §08) ---------- */}
+        <section className="cina-section cina-section--deep cina-statement" aria-labelledby="why-title">
           <div className="cina-wrap">
-            <p className="cina-statement__text">
-              Operations Improvement &amp; Excellence is your strategic driver of{" "}
-              <em>Profitability, Cash Flow, Customer Satisfaction, Growth and Sustainability.</em>
-            </p>
-            <ul className="cina-pills">
-              {CINA_PILLARS.map((p) => (
-                <li key={p}>{p}</li>
+            <p className="cina-eyebrow cina-eyebrow--amber">Why the network matters</p>
+            <h2 id="why-title" className="cina-statement__text">
+              From strategy on paper to <em>disciplined, everyday improvement.</em>
+            </h2>
+            <p className="cina-lede cina-lede--blue cina-statement__lede">{P.whyMatters}</p>
+            <ol className="cina-cycle">
+              {CINA_CYCLE.map((step, i) => (
+                <li key={step}>
+                  <span>{pad(i + 1)}</span>
+                  {step}
+                </li>
               ))}
-            </ul>
+            </ol>
+            <p className="cina-lede cina-lede--blue cina-statement__lede">{P.whyObjective}</p>
           </div>
         </section>
 
@@ -175,30 +224,18 @@ export default function CinaPage() {
           </div>
         </section>
 
-        {/* ---------- philosophy ---------- */}
-        <section className="cina-section cina-section--white" id="philosophy" aria-labelledby="philosophy-title">
+        {/* ---------- what we stand for (profile §04) ---------- */}
+        <section className="cina-section cina-section--white" id="principles" aria-labelledby="principles-title">
           <div className="cina-wrap cina-philosophy">
             <div>
-              <p className="cina-eyebrow">The philosophy</p>
-              <h2 id="philosophy-title" className="cina-h2">
-                Business Money <em>&amp;</em> Business Excellence
+              <p className="cina-eyebrow">What we stand for</p>
+              <h2 id="principles-title" className="cina-h2">
+                Five enduring <em>principles</em>
               </h2>
-              <blockquote className="cina-quote">
-                &quot;Everybody has a need they wish and desire to be addressed. Knowing the pain point, addressing the
-                need and satisfying it requires insightful engagement.&quot;
-              </blockquote>
-              <p className="cina-body">
-                Not about disconnected tools — but <strong>real Operations Improvement and Excellence</strong>. To
-                increase market impact, win customer loyalty, accelerate profitability and improve commercial
-                excellence, every business leader needs the right skills and a network to draw from.
-              </p>
-              <p className="cina-body">
-                Business Owners and Decision Makers — welcome for dialogue. This might be the missing link you&apos;ve
-                been waiting much longer for.
-              </p>
+              <p className="cina-body">CINA is built around five enduring principles that guide everything we do.</p>
             </div>
             <ol className="cina-pillar-cards">
-              {CINA_PHILOSOPHY.map((p, i) => (
+              {CINA_PRINCIPLES.map((p, i) => (
                 <li key={p.title} className="cina-pillar-card">
                   <span className="cina-pillar-card__num">{pad(i + 1)}</span>
                   <div>
@@ -211,24 +248,31 @@ export default function CinaPage() {
           </div>
         </section>
 
-        {/* ---------- scope ---------- */}
-        <section className="cina-section cina-section--deep" id="scope" aria-labelledby="scope-title">
+        {/* ---------- areas of practice (profile §05) + next steps ---------- */}
+        <section className="cina-section cina-section--deep" id="practice" aria-labelledby="practice-title">
           <div className="cina-wrap cina-center">
-            <p className="cina-eyebrow cina-eyebrow--amber">Key scope</p>
-            <h2 id="scope-title" className="cina-h2">
-              One network. Every lever that moves the business.
+            <p className="cina-eyebrow cina-eyebrow--amber">Areas of practice</p>
+            <h2 id="practice-title" className="cina-h2">
+              An integrated approach to Operational Excellence.
             </h2>
             <p className="cina-lede cina-lede--blue">
-              The full system we work across — so improvement in one area doesn&apos;t leak out of another.
+              The Network promotes an integrated approach to Operational Excellence across the following disciplines.
             </p>
-            <ol className="cina-scope">
-              {CINA_SCOPE.map((s, i) => (
+            <ol className="cina-scope cina-scope--areas">
+              {CINA_PRACTICE_AREAS.map((s, i) => (
                 <li key={s} className="cina-scope__card">
                   <span className="cina-scope__num">{pad(i + 1)}</span>
                   <h3>{s}</h3>
                 </li>
               ))}
             </ol>
+            <p className="cina-mini-label cina-mini-label--light">Established methodologies we recognise</p>
+            <ul className="cina-pills">
+              {CINA_METHODOLOGIES.map((m) => (
+                <li key={m}>{m}</li>
+              ))}
+              <li>Other relevant improvement methodologies</li>
+            </ul>
 
             <section className="cina-framework" aria-labelledby="framework-title">
               <p className="cina-eyebrow cina-eyebrow--amber">Continuous Improvement Framework</p>
@@ -259,18 +303,80 @@ export default function CinaPage() {
           </div>
         </section>
 
-        {/* ---------- leads ---------- */}
-        <section className="cina-section cina-section--light" aria-labelledby="leads-title">
+        {/* ---------- what we do + community (profile §06–07) ---------- */}
+        <section className="cina-section cina-section--light" aria-labelledby="whatwedo-title">
+          <div className="cina-wrap">
+            <div className="cina-center">
+              <p className="cina-eyebrow">What we do</p>
+              <h2 id="whatwedo-title" className="cina-h2">
+                Connecting people, capability and practice.
+              </h2>
+            </div>
+            <div className="cina-wwd">
+              {CINA_WHAT_WE_DO.map((w) => (
+                <article key={w.letter} className="cina-wwd__card">
+                  <span className="cina-wwd__letter">{w.letter}</span>
+                  <h3>{w.title}</h3>
+                  <p>{w.description}</p>
+                </article>
+              ))}
+            </div>
+            <div className="cina-community">
+              <p className="cina-mini-label">Our professional community</p>
+              <p className="cina-body">
+                CINA welcomes individuals and organisations at every stage of their Operational Excellence journey.
+              </p>
+              <ul className="cina-chips">
+                {CINA_COMMUNITY.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- strategic priorities + desired impact (profile §09–10) ---------- */}
+        <section className="cina-section cina-section--deep" aria-labelledby="priorities-title">
+          <div className="cina-wrap cina-priorities">
+            <div>
+              <p className="cina-eyebrow cina-eyebrow--amber">Strategic priorities</p>
+              <h2 id="priorities-title" className="cina-h2">
+                Where the Network is focused.
+              </h2>
+              <ol className="cina-prio-list">
+                {CINA_PRIORITIES.map((p) => (
+                  <li key={p.title}>
+                    <strong>{p.title}</strong>
+                    <span>{p.description}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="cina-impact">
+              <p className="cina-mini-label cina-mini-label--light">Our desired impact</p>
+              <p className="cina-impact__lead">We envision organisations where:</p>
+              <ul>
+                {CINA_IMPACT.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- leadership (profile §12) ---------- */}
+        <section className="cina-section cina-section--light" id="leadership" aria-labelledby="leads-title">
           <div className="cina-wrap cina-center">
-            <p className="cina-eyebrow">Our leads</p>
+            <p className="cina-eyebrow">Our leadership</p>
             <h2 id="leads-title" className="cina-h2 cina-h2--wide">
-              The people behind the network
+              The founding team behind the network
             </h2>
-            <ul className="cina-leads">
+            <p className="cina-lede cina-lede--wide">{P.leadershipIntro}</p>
+            <ul className="cina-leads cina-leads--three">
               {CINA_LEADS.map((l) => (
                 <li key={l.name} className="cina-lead">
                   <div className="cina-lead__photo">
-                    <Image src={l.photo} alt={l.name} fill sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 25vw" />
+                    <Image src={l.photo} alt={l.name} fill sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" />
                   </div>
                   <h3>{l.name}</h3>
                   <p className="cina-lead__role">{l.role}</p>
@@ -281,16 +387,19 @@ export default function CinaPage() {
           </div>
         </section>
 
-        {/* ---------- final CTA ---------- */}
+        {/* ---------- commitment (profile §11) + final CTA ---------- */}
         <section className="cina-section cina-section--deep cina-final" aria-labelledby="final-title">
           <div className="cina-wrap cina-center">
-            <h2 id="final-title" className="cina-h2 cina-h2--xl">
+            <p className="cina-eyebrow cina-eyebrow--amber">Our commitment</p>
+            <ul className="cina-commitment">
+              {P.commitment.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+            <p className="cina-lede cina-lede--blue">{P.commitmentClose}</p>
+            <h2 id="final-title" className="cina-h2 cina-h2--xl cina-final__title">
               Ready to Reclaim Your Business Potential?
             </h2>
-            <p className="cina-lede cina-lede--blue">
-              One conversation can be the turning point. Connect with CINA and let&apos;s explore what&apos;s possible
-              for your business.
-            </p>
             <div className="cina-actions cina-actions--center">
               <BookButton />
               <a className="cina-btn cina-btn--dark" href={CINA_LINKEDIN_URL}>
@@ -301,10 +410,11 @@ export default function CinaPage() {
         </section>
       </main>
 
-      {/* DRAFT: the screenshots end at the final CTA — footer content to confirm. */}
       <footer className="cina-footer">
         <div className="cina-wrap cina-footer__row">
-          <span>© {new Date().getFullYear()} CINA — Continuous Improvement Network Association</span>
+          <span>
+            © {new Date().getFullYear()} CINA — Continuous Improvement Network Association · {P.tagline}
+          </span>
           <Link href="/">Part of Powering House</Link>
         </div>
       </footer>

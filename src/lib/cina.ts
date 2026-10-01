@@ -40,12 +40,14 @@ export const CINA_QUESTIONS: string[] = [
   "Do you have a 5-year strategy — and do daily operations execute to achieve it?",
 ];
 
-export const CINA_PILLARS: string[] = [
-  "Profitability",
-  "Cash Flow",
-  "Customer Satisfaction",
-  "Growth",
-  "Sustainability",
+/** "Why the Network Matters" — the six-step cycle (CINA Organisational Profile §08). */
+export const CINA_CYCLE: string[] = [
+  "See the problem",
+  "Understand the process",
+  "Find the cause",
+  "Improve the work",
+  "Measure the result",
+  "Sustain the gain",
 ];
 
 export type CinaProgramAction =
@@ -174,33 +176,204 @@ export const CINA_CRAFTSMANSHIP: LeadMagnet = {
   downloadLabel: "Download Craftsmanship Legacy (PDF)",
 };
 
-export const CINA_PHILOSOPHY: { title: string; description: string }[] = [
+/**
+ * Copy from the CINA Organisational Profile (Sept 2026). Section numbers refer to it.
+ */
+export const CINA_PROFILE = {
+  tagline: "Driving the Practice of Operational Excellence",
+  positioning: "A Professional Network for Continuous Improvement and Operational Excellence Practitioners",
+  // §01 Executive Summary
+  summary:
+    "A professional community of Operational Excellence practitioners dedicated to enabling organisations to reclaim growth through excellence.",
+  summaryMore:
+    "CINA exists to make improvement a normal way of working — not an occasional project. We connect people, build capability, share knowledge and promote practical improvement practices that enable organisations to achieve sustainable performance excellence.",
+  belief:
+    "Operational Excellence is not simply about processes, tools or technology. It is about creating organisations where people continuously improve processes, eliminate waste, make better decisions and consistently deliver value to customers and stakeholders.",
+  // §02 Who We Are
+  whoWeAre:
+    "CINA is a community of Operational Excellence practitioners, driven by experts with a focus on enabling businesses to reclaim their growth through excellence. We believe in building a body of knowledge that is replicable widely — turning proven improvement practice into shared professional capital.",
+  bringTogether: [
+    "Operational Excellence Practitioners",
+    "Business Leaders & Executives",
+    "Managers & Improvement Champions",
+    "Consultants & Academics",
+  ],
+  // §03 Purpose, Vision & Mission
+  pvm: [
+    {
+      t: "Our Purpose",
+      d: "To build a strong community of practitioners that advances the knowledge, application and adoption of Continuous Improvement and Operational Excellence — making improvement a normal way of working, not an occasional project.",
+    },
+    {
+      t: "Our Vision",
+      d: "To become a leading network for the advancement of Continuous Improvement and Operational Excellence practice.",
+    },
+    {
+      t: "Our Mission",
+      d: "To connect people, build capability, share knowledge and promote practical improvement practices that enable organisations to achieve sustainable performance excellence.",
+    },
+  ],
+  // §08 Why the Network Matters
+  whyMatters:
+    "Many organisations invest in strategies, technology and systems but struggle to translate these investments into consistent operational performance. CINA seeks to close this gap by promoting a culture of disciplined, everyday improvement.",
+  whyObjective:
+    "Our objective is to help create organisations where improvement is embedded in everyday management rather than dependent on isolated improvement projects.",
+  // §11 Our Commitment
+  commitment: [
+    "Continuous Improvement is the practice.",
+    "Operational Excellence is the performance ambition.",
+    "People are the drivers.",
+    "Sustainable results are the outcome.",
+  ],
+  commitmentClose:
+    "The Continuous Improvement Network Association exists to connect the people, knowledge and practices required to make this possible.",
+  // §12 Our Leadership
+  leadershipIntro:
+    "CINA is convened and led by a founding team of practitioners and entrepreneurs committed to building the Network's professional community and body of practice.",
+};
+
+/** §04 What We Stand For — five enduring principles. */
+export const CINA_PRINCIPLES: { title: string; description: string }[] = [
   {
-    title: "Business Money Operations",
-    description: "Optimizing cash flow and setting up finance structures to close cash leakages.",
+    title: "People First",
+    description:
+      "Improvement happens through people. We promote employee involvement, leadership capability, teamwork and a culture where people are encouraged to identify and solve problems.",
   },
   {
-    title: "Operations Improvement & Excellence",
-    description:
-      "Building from basics — process flow, waste reduction, value stream, productivity and workplace organization.",
+    title: "Customer Value",
+    description: "Improvement must ultimately create value for customers, stakeholders and the organisation.",
   },
   {
-    title: "Continuous Improvement Practice",
+    title: "Process Discipline",
+    description: "Strong performance requires clearly defined, understood, measured and continuously improved processes.",
+  },
+  {
+    title: "Evidence-Based Decisions",
     description:
-      "Change is people-driven. We capacity-build your team with continuous professional programs — low investment, real improvement.",
+      "We encourage the use of data, facts, financial information and performance measures to identify problems and guide improvement.",
+  },
+  {
+    title: "Sustainable Improvement",
+    description:
+      "Operational Excellence is not a one-time intervention. We promote systems, routines and behaviours that sustain improvement over time.",
   },
 ];
 
-export const CINA_SCOPE: string[] = [
-  "Operations Improvement & Excellence",
-  "Team Productivity",
-  "Business Finance Operations",
-  "Sales Performance & Business Development",
-  "Logistics & Supply Value Chain",
-  "ESG Framework",
-  "Market Intelligence & Data Analytics",
-  "Strategy Deployment",
-  "ISO Management Systems",
+/** §05 Areas of Practice. */
+export const CINA_PRACTICE_AREAS: string[] = [
+  "Continuous Improvement & Lean Management",
+  "Business Process Improvement",
+  "Process Excellence & Process Management",
+  "Supply Chain & Inventory Excellence",
+  "Operational Performance Management",
+  "Financial & Operational Performance",
+  "Waste & Cost Reduction",
+  "Digital Transformation & Automation",
+  "Productivity Improvement",
+  "Change Management",
+  "Quality Management",
+  "Leadership for Operational Excellence",
+  "People, Culture & Employee Engagement",
+  "Innovation & Business Improvement",
+  "Problem Solving & Root Cause Analysis",
+  "ESG Adoption",
+  "Performance Measurement & KPIs",
+  "Management Systems Adoption",
+];
+
+export const CINA_METHODOLOGIES: string[] = [
+  "Lean",
+  "Kaizen",
+  "Six Sigma",
+  "5S",
+  "Value Stream Mapping",
+  "PDCA",
+  "Root Cause Analysis",
+  "Standard Work",
+  "Visual Management",
+];
+
+/** §06 What We Do. */
+export const CINA_WHAT_WE_DO: { letter: string; title: string; description: string }[] = [
+  {
+    letter: "A",
+    title: "Build Professional Capability",
+    description:
+      "Learning opportunities, workshops, masterclasses, practical forums and professional development programmes for people involved in improvement.",
+  },
+  {
+    letter: "B",
+    title: "Create a Community of Practice",
+    description: "We connect practitioners and organisations to exchange experiences, lessons, tools, case studies and solutions.",
+  },
+  {
+    letter: "C",
+    title: "Promote Practical Application",
+    description: "We encourage members to move beyond theory by applying improvement principles to real organisational challenges.",
+  },
+  {
+    letter: "D",
+    title: "Develop & Share Knowledge",
+    description:
+      "We facilitate research, publications, case studies, benchmarking, thought leadership and practical improvement resources.",
+  },
+  {
+    letter: "E",
+    title: "Recognise Improvement Practice",
+    description:
+      "We promote recognition of individuals, teams and organisations demonstrating meaningful contributions to Continuous Improvement and Operational Excellence.",
+  },
+  {
+    letter: "F",
+    title: "Support Organisations",
+    description:
+      "Through the Network and its professional community, organisations can access knowledge, practitioners, improvement resources and opportunities for collaboration.",
+  },
+];
+
+/** §07 Our Professional Community. */
+export const CINA_COMMUNITY: string[] = [
+  "Business Owners & Entrepreneurs",
+  "CEOs & Senior Executives",
+  "Operations Managers",
+  "Finance & Business Performance Professionals",
+  "Quality Professionals",
+  "Supply Chain Professionals",
+  "HR & People Leaders",
+  "Continuous Improvement Practitioners",
+  "Lean & Six Sigma Practitioners",
+  "Consultants & Trainers",
+  "Engineers & Technical Professionals",
+  "Academics & Researchers",
+  "Students & Emerging Practitioners",
+  "Organisations Pursuing Operational Excellence",
+];
+
+/** §09 Strategic Priorities. */
+export const CINA_PRIORITIES: { title: string; description: string }[] = [
+  { title: "Capability", description: "Developing competent Continuous Improvement and Operational Excellence practitioners." },
+  { title: "Community", description: "Building a strong professional network for knowledge exchange and collaboration." },
+  { title: "Practice", description: "Encouraging practical application of improvement methodologies." },
+  { title: "Standards & Professionalism", description: "Promoting ethical, competent and responsible improvement practice." },
+  { title: "Research & Knowledge", description: "Generating and sharing relevant knowledge, evidence and case studies." },
+  { title: "Recognition", description: "Celebrating individuals, teams and organisations advancing improvement." },
+  {
+    title: "Organisational Impact",
+    description:
+      "Connecting improvement activity to measurable outcomes — productivity, quality, customer experience, cost, profitability, employee engagement and sustainability.",
+  },
+];
+
+/** §10 Our Desired Impact. */
+export const CINA_IMPACT: string[] = [
+  "Employees actively participate in improvement.",
+  "Leaders manage through facts and performance measures.",
+  "Processes are visible, understood and continuously improved.",
+  "Waste and inefficiencies are systematically identified and removed.",
+  "Problems are solved at their root rather than repeatedly treated as symptoms.",
+  "Improvement is connected to financial and business results.",
+  "Teams have the capability to sustain improvements.",
+  "Operational Excellence becomes part of organisational culture.",
 ];
 
 /**
@@ -232,34 +405,22 @@ export interface CinaLead {
 
 export const CINA_LEADS: CinaLead[] = [
   {
-    name: "Anthony Maina",
-    role: "CEO — Food Cloud Mega",
-    specialism: "Market Intelligence & Data Analytics",
-    photo: "/images/cina/anthony-maina.jpg",
-  },
-  {
     name: "Gachoka Kang'ata",
-    role: "CEO — Cygnus Safety Consulting",
-    specialism: "Business Finance Operations & Excellence",
+    role: "Lead Chief Executive",
+    specialism: "Founder, Powering House",
     photo: "/images/cina/gachoka-kangata.jpg",
   },
   {
-    name: "Esther Maina",
-    role: "CEO — M-Link Group International",
-    specialism: "Business Development",
-    photo: "/images/cina/esther-maina.jpg",
-  },
-  {
-    name: "Julius Mugo",
-    role: "CEO — Quest Spark Consulting",
-    specialism: "Igniting Potential & Productivity of Team",
-    photo: "/images/cina/julius-mugo.jpg",
-  },
-  {
     name: "Newton Opiyo",
-    role: "Sales Consultant & Business Coach — Bannem Business Consultancy",
-    specialism: "Sales Performance & Business Development",
+    role: "Lead, Business Development",
+    specialism: "Founder, Bannem Business Consultancy",
     photo: "/images/cina/newton-opiyo.jpg",
+  },
+  {
+    name: "Julius Mwangi",
+    role: "Lead, Operations Coordination",
+    specialism: "Founder, Quest Spark Consulting",
+    photo: "/images/cina/julius-mwangi.jpg",
   },
 ];
 
