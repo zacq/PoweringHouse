@@ -15,6 +15,7 @@ const LIST_SOURCES = {
   "cina-breakfast": "CINA Executive Breakfast",
   "cina-craftsmanship": "E-Resource: CINA Craftsmanship Legacy",
   "ph-coaching": "Quote request: Micro Business Growth Design (Personal Brand & Business Coaching)",
+  "cina-cohort": "Quote request: Cohort Training (BCIA Catalogue)",
 } as const;
 
 export async function POST(req: NextRequest) {

@@ -12,7 +12,8 @@ export type OfferAction =
   | { kind: "quote"; label: string }
   | { kind: "craftsmanship"; label: string }
   | { kind: "breakfast"; label: string }
-  | { kind: "coaching"; label: string };
+  | { kind: "coaching"; label: string }
+  | { kind: "cohort"; label: string };
 
 /**
  * Micro Business Growth Design popup — copy from "Personal Brand & Business Coaching.pdf".
@@ -138,8 +139,9 @@ export const OFFER_TRACKS: OfferTrack[] = [
         title: "Cohort Training",
         badge: "Paid",
         paid: true,
-        description: "Low-investment cohort training — your team learns to run PDCA, 5S and standard work.",
-        actions: [{ kind: "quote", label: "Request a quote" }],
+        description:
+          "Low-cost, practitioner-led monthly cohorts from CINA’s BCIA catalogue — 18 programmes across Lean & Six Sigma, Safety & ESG, and Logistics.",
+        actions: [{ kind: "cohort", label: "Get the catalogue & request a quote" }],
       },
     ],
   },

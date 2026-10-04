@@ -7,6 +7,7 @@ import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";
 import {
   CINA_BREAKFAST,
+  CINA_COHORT,
   CINA_COMMUNITY,
   CINA_CYCLE,
   CINA_IMPACT,
@@ -289,13 +290,21 @@ export default function CinaPage() {
                     <p className="cina-program__tag">{step.tag}</p>
                     <h3>{step.title}</h3>
                     <p className="cina-framework__text">{step.description}</p>
-                    <RegisterModal
-                      label={step.cta}
-                      subject={`CINA — ${step.title} (Continuous Improvement Framework)`}
-                      className="cina-btn cina-btn--amber cina-btn--block"
-                    >
-                      {step.cta} <span aria-hidden="true">→</span>
-                    </RegisterModal>
+                    {step.title === "Cohort Training" ? (
+                      <LeadMagnetModal
+                        content={CINA_COHORT}
+                        label={step.cta}
+                        className="cina-btn cina-btn--amber cina-btn--block"
+                      />
+                    ) : (
+                      <RegisterModal
+                        label={step.cta}
+                        subject={`CINA — ${step.title} (Continuous Improvement Framework)`}
+                        className="cina-btn cina-btn--amber cina-btn--block"
+                      >
+                        {step.cta} <span aria-hidden="true">→</span>
+                      </RegisterModal>
+                    )}
                   </article>
                 ))}
               </div>

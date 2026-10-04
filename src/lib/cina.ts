@@ -141,6 +141,43 @@ export const CINA_BREAKFAST: LeadMagnet = {
 };
 
 /**
+ * Cohort Training popup — copy from CINA_BCIA_Catalogue (Training & Business Excellence Catalogue, 2026).
+ * Register, then download the catalogue (email delivery later); the sign-up is the quote request.
+ */
+export const CINA_COHORT: LeadMagnet = {
+  list: "cina-cohort",
+  pdf: "/downloads/cina-bcia-training-catalogue.pdf",
+  pdfName: "CINA — BCIA Training & Business Excellence Catalogue.pdf",
+  eyebrow: "Training & Business Excellence Catalogue · 2026",
+  title: "Business Continuous Improvement Africa",
+  theme:
+    "Equipping leaders, teams and organisations across Africa with world-class tools for productivity, quality and sustainable growth.",
+  reasons: [
+    {
+      t: "18 structured training programmes",
+      d: "Across three core practice areas: Safety & Sustainability, Business Continuous Improvement & Excellence, and Logistics.",
+    },
+    {
+      t: "Cohort-based monthly trainings",
+      d: "Low-cost, recurring, practitioner-led courses delivered in structured cohorts.",
+    },
+    {
+      t: "From Lean Six Sigma to supply chain",
+      d: "Lean Six Sigma Foundation, Strategy Deployment, Data for Decision Making, ESG, Warehousing, Procurement and more.",
+    },
+  ],
+  quote: "Reduce waste, protect margins and build durable, investable operating systems.",
+  briefTitle: "Get the BCIA training catalogue",
+  briefLine:
+    "Every programme with its description and target audience — download it as soon as you register.",
+  cta: "Get the catalogue & request a quote",
+  fine: "No spam. Just the catalogue, then cohort dates and a price quote from CINA.",
+  doneTitle: "Your catalogue is ready.",
+  doneText: "Let’s build excellence, together — we’ll follow up with the next cohort dates and a price quote.",
+  downloadLabel: "Download the BCIA catalogue (PDF)",
+};
+
+/**
  * Free e-resource on /universe-of-freedom — copy from CINA_Craftsmanship_Legacy_V1.pdf.
  * Same pattern as the breakfast: register, then download (email delivery later).
  */
@@ -391,8 +428,9 @@ export const CINA_NEXT_STEPS: { tag: string; title: string; description: string;
   {
     tag: "Cohort",
     title: "Cohort Training",
-    description: "Optimizing staff potential through the practice of operations excellence.",
-    cta: "Register for the next cohort",
+    description:
+      "Low-cost, practitioner-led monthly cohorts — 18 programmes in the BCIA catalogue, from Lean Six Sigma to logistics.",
+    cta: "Get the catalogue & register",
   },
 ];
 

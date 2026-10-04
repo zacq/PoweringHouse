@@ -14,7 +14,7 @@ export const subscribeInputSchema = z.object({
   resourceId: z.string().optional(),
   // Set by the /awareness growth-kit forms and the LeadMagnetModal downloads.
   name: z.string().trim().max(120).optional(),
-  list: z.enum(["growth-kit", "cina-breakfast", "cina-craftsmanship", "ph-coaching"]).optional(),
+  list: z.enum(["growth-kit", "cina-breakfast", "cina-craftsmanship", "ph-coaching", "cina-cohort"]).optional(),
 });
 
 export const contactMessageInputSchema = z.object({
