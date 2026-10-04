@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 /** A downloadable document gated behind name + email (Executive Breakfast brief, e-resources…). */
 export interface LeadMagnet {
   /** /api/subscribe `list` value — decides the Airtable Subscribers Source. */
-  list: "cina-breakfast" | "cina-craftsmanship";
+  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching";
   pdf: string;
   pdfName: string;
   eyebrow: string;

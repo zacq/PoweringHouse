@@ -5,11 +5,52 @@
  * DRAFT: the one-line descriptions are drawn from each offer's own document; confirm wording.
  */
 
+import type { LeadMagnet } from "@/components/lead-magnet-modal";
+
 export type OfferAction =
   | { kind: "link"; label: string; href: string }
   | { kind: "quote"; label: string }
   | { kind: "craftsmanship"; label: string }
-  | { kind: "breakfast"; label: string };
+  | { kind: "breakfast"; label: string }
+  | { kind: "coaching"; label: string };
+
+/**
+ * Micro Business Growth Design popup — copy from "Personal Brand & Business Coaching.pdf".
+ * Register, then download the programme outline (email delivery later); the sign-up is the quote request.
+ */
+export const PH_COACHING: LeadMagnet = {
+  list: "ph-coaching",
+  pdf: "/downloads/ph-personal-brand-business-coaching.pdf",
+  pdfName: "Powering House — Personal Brand & Business Coaching.pdf",
+  eyebrow: "A two-part growth journey",
+  title: "Know who you are. Build what you do.",
+  theme:
+    "You already run a business. The next step is making sure it carries the right person, the right purpose and the right promise into the market.",
+  reasons: [
+    {
+      t: "Part one · The Personal Brand Program",
+      d: "Find your purpose and own your position: purpose & identity, distinct positioning, voice & message, and market presence.",
+    },
+    {
+      t: "Part two · Micro Business Coaching Program",
+      d: "Turn your brand into a business that performs — five modules from your value proposition to a personalised 90-day growth plan.",
+    },
+    {
+      t: "You leave with",
+      d: "A brand you can state in one sentence, live consistently, and take to market with confidence.",
+    },
+  ],
+  quote: "Brand gives your business its voice. Business gives your brand its proof.",
+  briefTitle: "Get the programme outline",
+  briefLine:
+    "Both parts on one page — the four brand pillars and the five coaching modules with their key outcomes. Download it as soon as you register.",
+  cta: "Get the outline & request a quote",
+  fine: "No spam. Just the outline, then a price quote from Powering House.",
+  doneTitle: "Your programme outline is ready.",
+  doneText:
+    "Let’s start with a conversation about where you are and where you are called to go — we’ll follow up with a price quote.",
+  downloadLabel: "Download the programme outline (PDF)",
+};
 
 export interface Offer {
   id: string;
@@ -51,8 +92,9 @@ export const OFFER_TRACKS: OfferTrack[] = [
         title: "Micro Business Growth Design",
         badge: "Paid mentorship",
         paid: true,
-        description: "Mentorship to design your micro business to grow — the elements, the pillars and the tools.",
-        actions: [{ kind: "quote", label: "Request a quote" }],
+        description:
+          "A two-part growth journey: the Personal Brand Program, then Micro Business Coaching — five modules to a 90-day growth plan.",
+        actions: [{ kind: "coaching", label: "Get the programme & request a quote" }],
       },
     ],
   },
