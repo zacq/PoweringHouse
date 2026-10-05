@@ -308,6 +308,23 @@ h1{
   outline-offset:-2px;
 }
 
+/* Light variant: breaks up the dark home page. Re-points the palette tokens, so the
+   cards, tags and dividers inside switch automatically. Amber is deepened for contrast on cream. */
+.themes--light{
+  --ink:#F5F1E8;
+  --ink-raised:#EBE4D4;
+  --bone:#1A1814;
+  --bone-dim:#5E594F;
+  --amber:#A86200;
+  background:var(--ink);
+  color:var(--bone);
+  border-top-color:rgba(20,20,20,.08);
+}
+.themes--light .themes__grid{background:rgba(20,20,20,.12)}
+.themes--light .theme{color:var(--bone)}
+.themes--light .theme:hover{background:#FFFFFF}
+.themes--light + .themes--light{border-top-color:rgba(20,20,20,.1)}
+
 /* ---------- bio ---------- */
 .bio{
   padding:clamp(3rem,8vw,5.5rem) var(--gutter);

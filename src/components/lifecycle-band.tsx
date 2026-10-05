@@ -7,7 +7,7 @@ import { LIFECYCLE_STAGES } from "@/lib/lifecycle";
  */
 export function LifecycleBand() {
   return (
-    <section className="themes" id="lifecycle" aria-labelledby="lifecycle-title">
+    <section className="themes themes--light" id="lifecycle" aria-labelledby="lifecycle-title">
       <div className="themes__head">
         <h2 id="lifecycle-title">Find yourself</h2>
         {/* DRAFT: content-map v2 §3.2, verbatim */}

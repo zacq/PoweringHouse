@@ -6,7 +6,7 @@ export function MarketSpaceGrid() {
   const refill = partnerById("refill");
 
   return (
-    <section className="themes" aria-labelledby="market-space-title">
+    <section className="themes themes--light" aria-labelledby="market-space-title">
       <div className="themes__head">
         <h2 id="market-space-title">Your Market Space</h2>
         <p>Four doors in. Pick whichever fits where you are right now.</p>

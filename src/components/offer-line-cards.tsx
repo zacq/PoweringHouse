@@ -13,7 +13,7 @@ export function OfferLineCards() {
   const refill = partnerById("refill");
 
   return (
-    <section className="themes" aria-labelledby="offer-lines-title">
+    <section className="themes themes--light" aria-labelledby="offer-lines-title">
       <div className="themes__head">
         <h2 id="offer-lines-title">Choose your line</h2>
         <p>Two ways to work together, split by what your business needs right now.</p>
