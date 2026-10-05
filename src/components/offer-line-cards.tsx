@@ -18,19 +18,23 @@ export function OfferLineCards() {
         <h2 id="offer-lines-title">Choose your line</h2>
         <p>Two ways to work together, split by what your business needs right now.</p>
       </div>
-      <div className="themes__grid">
-        <Link className="theme" id="growth-design" href="/ways-we-help">
+      <div className="themes__grid line-cards">
+        <Link className="theme line-card" id="growth-design" href="/ways-we-help">
           <span className="theme__tag">0 – KES 10M</span>
           <h3>Business Growth Design</h3>
           {/* DRAFT: content-map v2 §3.3 */}
           <p>Design the business so it can grow. The offer, the model, the customer, the plan &mdash; decided before you scale them.</p>
-          <span className="theme__count">Ways We Help</span>
+          <span className="line-card__cta">
+            Explore Business Growth Design <span aria-hidden="true">→</span>
+          </span>
         </Link>
-        <Link className="theme" id="operations-excellence" href={refill.url}>
+        <Link className="theme line-card" id="operations-excellence" href={refill.url}>
           <span className="theme__tag">KES 10M+</span>
           <h3>Operations Excellence</h3>
           <p>Eliminate waste. Build the productivity of your people and your machines. Compound growth through efficiency.</p>
-          <span className="theme__count">{refill.name}</span>
+          <span className="line-card__cta">
+            Explore Operations Excellence <span aria-hidden="true">→</span>
+          </span>
         </Link>
       </div>
     </section>
