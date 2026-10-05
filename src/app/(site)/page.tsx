@@ -17,7 +17,7 @@ export default function HomePage() {
       {/* Gachoka's bio moved to /about-gachoka; this slot now lists every offer. */}
       <OffersSection />
 
-      {/* One tool as the primary lead magnet, ahead of the Free Start Pack offer — content-map v2 §7.1 */}
+      {/* Free tools as lead magnets, ahead of the Free Start Pack offer — content-map v2 §7.1 */}
       <section className="themes" aria-labelledby="lead-magnet-title">
         <div className="themes__head">
           <h2 id="lead-magnet-title">Start with a real tool</h2>
@@ -26,7 +26,7 @@ export default function HomePage() {
             <Link href="/market-place#tools">See all the tools →</Link>
           </p>
         </div>
-        <ToolsGrid limit={1} />
+        <ToolsGrid limit={4} />
       </section>
 
       <MarketSpaceGrid />

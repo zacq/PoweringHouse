@@ -328,6 +328,9 @@ h1{
 /* "Choose your line": floating, clearly clickable cards with a visible call to action. */
 .themes__grid.line-cards{background:none;gap:clamp(1.2rem,2.5vw,2rem);padding:.4rem}
 .theme.line-card{
+  /* The card carries its own light palette, so it reads the same on light and dark sections. */
+  --bone:#1A1814;--bone-dim:#5E594F;--amber:#A86200;
+  color:var(--bone);
   display:flex;flex-direction:column;align-items:flex-start;
   padding:2rem 2rem 2.2rem;border-radius:16px;
   background:#fff;border:1px solid rgba(20,20,20,.08);border-top:4px solid var(--amber);
@@ -346,6 +349,9 @@ h1{
   transition:background .2s ease,gap .2s ease;
 }
 .line-card:hover .line-card__cta{background:#FFB833;gap:.9rem}
+button.line-card__cta{border:none;cursor:pointer}
+/* A popup opened from inside a card keeps the site's dark palette, not the card's light one. */
+.line-card .modal{--bone:#E4E1DA;--bone-dim:#94908A;--amber:#F2A517;color:var(--bone)}
 /* Market Space: four narrower doors. */
 .line-cards--four .theme.line-card{padding:1.7rem 1.6rem 1.9rem}
 .line-cards--four .line-card__cta{padding:.7rem 1.1rem;font-size:.85rem}
