@@ -1115,3 +1115,10 @@ button.line-card__cta{border:none;cursor:pointer}
   .offer__actions{flex-wrap:nowrap}
   .offer .offer__btn{white-space:nowrap}
 }
+/* "Find yourself" and "Choose your line" are short and share the cream background, so they flow as
+   one band at natural height (a full window each left a large empty gap between them). */
+@media (min-width:901px){
+  .home-fit > #lifecycle,.home-fit > #lifecycle + section{min-height:0}
+  .home-fit > #lifecycle{padding-bottom:clamp(1.2rem,3vh,2.4rem)}
+  .home-fit > #lifecycle + section{padding-top:clamp(1.2rem,3vh,2.4rem);border-top:none}
+}
