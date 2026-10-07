@@ -493,3 +493,30 @@ html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
 
 /* Phones: the stat card sits over the photo's foot, so the caption would be hidden behind it. */
 @media (max-width:600px){.cina-hero__caption{display:none}}
+
+/* ---------- hero: fit the visible window on desktop/laptop ----------
+   The hero fills exactly the space under the sticky menu + ticker (~9rem) and its type and photo
+   scale with the window height, so it fits on short laptop screens (e.g. 1280x600 at 150% scaling)
+   as well as large monitors. */
+@media (min-width:901px){
+  .cina-hero{
+    min-height:calc(100dvh - 9rem);display:flex;align-items:center;
+    padding:clamp(1.5rem,4vh,4rem) 0 clamp(2rem,5vh,4.5rem);
+  }
+  .cina-hero__grid{width:min(100% - 2*var(--gutter),104rem);align-items:center;gap:clamp(2rem,5vw,5rem)}
+  .cina-hero__title{font-size:min(clamp(4.2rem,10.5vw,9.4rem),13vh)}
+  .cina-hero__sub{margin-top:clamp(.8rem,2.6vh,2.4rem);font-size:min(clamp(1.5rem,2.4vw,2.35rem),3.8vh)}
+  .cina-hero__body{margin-top:clamp(.6rem,1.8vh,1.6rem);font-size:min(1.28rem,2.6vh)}
+  .cina-hero .cina-eyebrow{margin-bottom:clamp(.5rem,1.6vh,1.1rem)}
+  .cina-hero .cina-actions{margin-top:clamp(1rem,3vh,2.4rem)}
+  .cina-hero__media{margin-top:0;justify-self:end;width:min(100%,calc((100dvh - 9rem - 7vh) * .8))}
+  .cina-hero__stat{bottom:clamp(1rem,4vh,3.2rem);padding:clamp(.9rem,2vh,1.5rem) clamp(1.1rem,2vh,1.8rem)}
+  .cina-hero__stat-num{font-size:min(3.4rem,6vh)}
+}
+/* Short laptop windows: a little tighter, and drop the photo caption, which the stat card would cover. */
+@media (min-width:901px) and (max-height:820px){
+  .cina-hero__title{font-size:min(clamp(4.2rem,10.5vw,9.4rem),11.5vh)}
+  .cina-hero__sub{font-size:min(clamp(1.5rem,2.4vw,2.35rem),3.4vh)}
+  .cina-hero__body{max-width:34rem}
+  .cina-hero__caption{display:none}
+}
