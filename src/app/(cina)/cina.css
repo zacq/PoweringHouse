@@ -1,5 +1,11 @@
 /* CINA landing page (/cina). Everything is scoped under .cina so nothing leaks into Powering House. */
 
+/* Page scale: every size below is in rem, so shrinking the root on this page alone brings the whole
+   layout (menu, type, cards, spacing) down to a comfortable size at 100% browser zoom. */
+html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
+@media (max-width:900px){html:has(.cina){font-size:14px}}
+@media (prefers-reduced-motion:reduce){html:has(.cina){scroll-behavior:auto}}
+
 .cina{
   --c-navy:#0B1426;
   --c-navy-2:#0F1C36;
@@ -42,7 +48,12 @@
 .cina main{scroll-margin-top:9rem}
 .cina section[id]{scroll-margin-top:7.5rem}
 
-.cina-wrap{width:min(100% - 2*var(--gutter),106rem);margin:0 auto}
+.cina-wrap{width:min(100% - 2*var(--gutter),104rem);margin:0 auto}
+/* Polish: no orphaned words in headings, no wrapped button labels, tactile press. */
+.cina :is(h1,h2,h3){text-wrap:balance}
+.cina :is(p,li){text-wrap:pretty}
+.cina :is(.cina-btn,.cina-header__links a,.cina-brand__sub){white-space:nowrap}
+.cina :is(.cina-btn,.cina-textlink):active{transform:translateY(1px) scale(.98)}
 .cina-center{text-align:center}
 .cina-center .cina-lede{margin-left:auto;margin-right:auto}
 
@@ -50,8 +61,8 @@
 .cina-eyebrow{
   font-family:var(--c-mono);
   font-weight:700;
-  font-size:.82rem;
-  letter-spacing:.32em;
+  font-size:.92rem;
+  letter-spacing:.28em;
   text-transform:uppercase;
   color:var(--c-blue);
   margin-bottom:1.1rem;
@@ -179,7 +190,8 @@
   background:linear-gradient(to top,rgba(11,20,38,.92),transparent);
 }
 .cina-hero__caption{
-  position:absolute;z-index:1;left:12%;right:6%;bottom:1.6rem;
+  /* Right-aligned so it clears the stat card overlapping the photo's bottom-left. */
+  position:absolute;z-index:1;left:48%;right:6%;bottom:1.6rem;text-align:right;
   font:600 clamp(1.3rem,2vw,1.9rem)/1.2 var(--c-serif);color:#fff;
 }
 .cina-hero__pill{
@@ -478,3 +490,6 @@
   .cina-cycle li::after{display:none}
   .cina-prio-list li{grid-template-columns:1fr;gap:.4rem}
 }
+
+/* Phones: the stat card sits over the photo's foot, so the caption would be hidden behind it. */
+@media (max-width:600px){.cina-hero__caption{display:none}}
