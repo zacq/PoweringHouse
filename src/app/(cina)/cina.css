@@ -685,3 +685,22 @@ html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
   #practice .cina-mini-label{margin-top:clamp(.6rem,1.8vh,1.6rem)}
 }
 .cina-wwd + .cina-more{display:flex;width:max-content;margin-left:auto;margin-right:auto}
+
+/* ---------- five principles: all five side by side in one view ---------- */
+.cina-principles__head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem 4rem;flex-wrap:wrap}
+.cina-principles__head .cina-h2{max-width:none}
+.cina-principles__head .cina-body{max-width:30rem;margin:0}
+.cina-principles{
+  margin-top:clamp(1.2rem,4vh,4rem);display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;counter-reset:none;
+}
+.cina-principle{
+  position:relative;display:flex;flex-direction:column;padding:clamp(1.1rem,3vh,2.2rem) 1.6rem clamp(1.2rem,3.2vh,2.4rem);
+  border-radius:18px;background:var(--c-light);border:1px solid #E1E8F2;border-top:3px solid var(--c-blue);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.cina-principle:hover{transform:translateY(-4px);box-shadow:0 18px 36px -22px rgba(14,22,40,.35)}
+.cina-principle__num{font:700 min(1rem,2.2vh) var(--c-mono);color:var(--c-blue)}
+.cina-principle h3{margin-top:clamp(.5rem,1.6vh,1.1rem);font-size:min(1.5rem,3.2vh);line-height:1.15;color:var(--c-ink)}
+.cina-principle p{margin-top:clamp(.4rem,1.2vh,.8rem);font-size:min(1.02rem,2.25vh);line-height:1.6;color:var(--c-text)}
+@media (max-width:1100px){.cina-principles{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:600px){.cina-principles{grid-template-columns:1fr}}

@@ -238,27 +238,25 @@ export default function CinaPage() {
 
         {/* ---------- what we stand for (profile §04) ---------- */}
         <section className="cina-section cina-section--white" id="principles" aria-labelledby="principles-title">
-          <div className="cina-wrap cina-philosophy">
-            <div>
-              <p className="cina-eyebrow">What we stand for</p>
-              <h2 id="principles-title" className="cina-h2">
-                Five enduring <em>principles</em>
-              </h2>
+          <div className="cina-wrap">
+            <div className="cina-principles__head">
+              <div>
+                <p className="cina-eyebrow">What we stand for</p>
+                <h2 id="principles-title" className="cina-h2">
+                  Five enduring <em>principles</em>
+                </h2>
+              </div>
               <p className="cina-body">CINA is built around five enduring principles that guide everything we do.</p>
             </div>
-            <div>
-            <Expandable as="ol" className="cina-pillar-cards" initial={3} moreLabel="Show all principles">
+            <ol className="cina-principles">
               {CINA_PRINCIPLES.map((p, i) => (
-                <li key={p.title} className="cina-pillar-card">
-                  <span className="cina-pillar-card__num">{pad(i + 1)}</span>
-                  <div>
-                    <h3>{p.title}</h3>
-                    <p>{p.description}</p>
-                  </div>
+                <li key={p.title} className="cina-principle">
+                  <span className="cina-principle__num">{pad(i + 1)}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.description}</p>
                 </li>
               ))}
-            </Expandable>
-            </div>
+            </ol>
           </div>
         </section>
 
