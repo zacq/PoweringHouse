@@ -10,7 +10,8 @@ export const revalidate = 3600;
 
 export default function HomePage() {
   return (
-    <>
+    // home-fit: on laptops/desktops each section fills one window (see globals.css).
+    <div className="home-fit">
       <Hero />
       <LifecycleBand />
       <OfferLineCards />
@@ -30,6 +31,6 @@ export default function HomePage() {
       </section>
 
       <MarketSpaceGrid />
-    </>
+    </div>
   );
 }
