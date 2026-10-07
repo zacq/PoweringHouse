@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RegisterModal } from "@/components/register-modal";
+import { Expandable } from "@/components/cina/expandable";
 import { CINA_SYMPTOMS } from "@/lib/cina";
 
 // Semicircle gauge geometry (viewBox 0 0 240 140, centre 120,120, radius 100).
@@ -33,7 +34,8 @@ export function SymptomChecker() {
             Tap every symptom that sounds familiar. Watch how much potential is sitting locked up — value CINA helps
             you reclaim.
           </p>
-          <div className="cina-symptoms" role="group" aria-label="Symptoms">
+          <div role="group" aria-label="Symptoms">
+            <Expandable className="cina-symptoms" initial={6} moreLabel="Show all symptoms" tone="dark">
             {CINA_SYMPTOMS.map((s) => {
               const on = selected.includes(s);
               return (
@@ -44,6 +46,7 @@ export function SymptomChecker() {
                 </label>
               );
             })}
+            </Expandable>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CinaHeader } from "@/components/cina/cina-header";
+import { Expandable } from "@/components/cina/expandable";
 import { SymptomChecker } from "@/components/cina/symptom-checker";
 import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";
@@ -146,6 +147,16 @@ export default function CinaPage() {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ---------- purpose, vision & mission (profile §03) ---------- */}
+        <section className="cina-section cina-section--light" aria-labelledby="pvm-title">
+          <div className="cina-wrap cina-center">
+            <p className="cina-eyebrow">Purpose, vision &amp; mission</p>
+            <h2 id="pvm-title" className="cina-h2 cina-h2--wide">
+              Improvement as a normal way of working.
+            </h2>
             <div className="cina-pvm">
               {P.pvm.map((x) => (
                 <article key={x.t} className="cina-pvm__card">
@@ -170,14 +181,14 @@ export default function CinaPage() {
               Honest answers here are where reclaiming begins. No diagnosis, no plan — until you can name what&apos;s
               really happening.
             </p>
-            <ol className="cina-questions">
+            <Expandable as="ol" className="cina-questions" initial={4} moreLabel="Show all 10 questions">
               {CINA_QUESTIONS.map((q, i) => (
                 <li key={q} className="cina-question">
                   <span className="cina-question__num">{i + 1}</span>
                   <span>{q}</span>
                 </li>
               ))}
-            </ol>
+            </Expandable>
           </div>
         </section>
 
@@ -209,7 +220,7 @@ export default function CinaPage() {
               How CINA supports your journey
             </h2>
             <p className="cina-lede">Most of it is free. All of it moves you from awareness to action.</p>
-            <div className="cina-programs">
+            <Expandable className="cina-programs" initial={3} moreLabel="Show all programs">
               {CINA_PROGRAMS.map((p) => (
                 <article key={p.title} className="cina-program">
                   <span className="cina-program__icon" aria-hidden="true">
@@ -221,7 +232,7 @@ export default function CinaPage() {
                   <ProgramAction program={p} />
                 </article>
               ))}
-            </div>
+            </Expandable>
           </div>
         </section>
 
@@ -235,7 +246,8 @@ export default function CinaPage() {
               </h2>
               <p className="cina-body">CINA is built around five enduring principles that guide everything we do.</p>
             </div>
-            <ol className="cina-pillar-cards">
+            <div>
+            <Expandable as="ol" className="cina-pillar-cards" initial={3} moreLabel="Show all principles">
               {CINA_PRINCIPLES.map((p, i) => (
                 <li key={p.title} className="cina-pillar-card">
                   <span className="cina-pillar-card__num">{pad(i + 1)}</span>
@@ -245,7 +257,8 @@ export default function CinaPage() {
                   </div>
                 </li>
               ))}
-            </ol>
+            </Expandable>
+            </div>
           </div>
         </section>
 
@@ -259,23 +272,31 @@ export default function CinaPage() {
             <p className="cina-lede cina-lede--blue">
               The Network promotes an integrated approach to Operational Excellence across the following disciplines.
             </p>
-            <ol className="cina-scope cina-scope--areas">
+            <Expandable
+              as="ol"
+              className="cina-scope cina-scope--areas"
+              initial={6}
+              moreLabel="Show all 18 areas"
+              tone="dark"
+            >
               {CINA_PRACTICE_AREAS.map((s, i) => (
                 <li key={s} className="cina-scope__card">
                   <span className="cina-scope__num">{pad(i + 1)}</span>
                   <h3>{s}</h3>
                 </li>
               ))}
-            </ol>
+            </Expandable>
             <p className="cina-mini-label cina-mini-label--light">Established methodologies we recognise</p>
-            <ul className="cina-pills">
-              {CINA_METHODOLOGIES.map((m) => (
-                <li key={m}>{m}</li>
-              ))}
-              <li>Other relevant improvement methodologies</li>
-            </ul>
+            <p className="cina-methods">
+              {CINA_METHODOLOGIES.join(" · ")} · and other relevant improvement methodologies
+            </p>
+          </div>
+        </section>
 
-            <section className="cina-framework" aria-labelledby="framework-title">
+        {/* ---------- continuous improvement framework: next steps ---------- */}
+        <section className="cina-section cina-section--deep" aria-labelledby="framework-title">
+          <div className="cina-wrap cina-center">
+            <div className="cina-framework">
               <p className="cina-eyebrow cina-eyebrow--amber">Continuous Improvement Framework</p>
               {/* DRAFT: heading and intro written for this block — confirm wording with the client. */}
               <h2 id="framework-title" className="cina-h2">
@@ -308,7 +329,7 @@ export default function CinaPage() {
                   </article>
                 ))}
               </div>
-            </section>
+            </div>
           </div>
         </section>
 
@@ -321,7 +342,7 @@ export default function CinaPage() {
                 Connecting people, capability and practice.
               </h2>
             </div>
-            <div className="cina-wwd">
+            <Expandable className="cina-wwd" initial={3} moreLabel="Show all six">
               {CINA_WHAT_WE_DO.map((w) => (
                 <article key={w.letter} className="cina-wwd__card">
                   <span className="cina-wwd__letter">{w.letter}</span>
@@ -329,7 +350,13 @@ export default function CinaPage() {
                   <p>{w.description}</p>
                 </article>
               ))}
-            </div>
+            </Expandable>
+          </div>
+        </section>
+
+        {/* ---------- professional community (profile §07) ---------- */}
+        <section className="cina-section cina-section--white" aria-label="Our professional community">
+          <div className="cina-wrap">
             <div className="cina-community">
               <p className="cina-mini-label">Our professional community</p>
               <p className="cina-body">
@@ -352,14 +379,14 @@ export default function CinaPage() {
               <h2 id="priorities-title" className="cina-h2">
                 Where the Network is focused.
               </h2>
-              <ol className="cina-prio-list">
+              <Expandable as="ol" className="cina-prio-list" initial={4} moreLabel="Show all priorities" tone="dark">
                 {CINA_PRIORITIES.map((p) => (
                   <li key={p.title}>
                     <strong>{p.title}</strong>
                     <span>{p.description}</span>
                   </li>
                 ))}
-              </ol>
+              </Expandable>
             </div>
             <div className="cina-impact">
               <p className="cina-mini-label cina-mini-label--light">Our desired impact</p>
