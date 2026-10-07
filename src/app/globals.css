@@ -1024,3 +1024,29 @@ button.line-card__cta{border:none;cursor:pointer}
 @media (max-width:900px){
   .offers__tracks{grid-template-columns:1fr}
 }
+
+/* Floating-card refinement: each track is an open column, each offer its own white card. */
+.offers__track{background:none;border-top:none}
+.offers__track-head{padding:0 .2rem 1.4rem;border-bottom:none}
+.offers__track-head h3{display:flex;align-items:center;gap:.7rem}
+.offers__track-head h3::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--amber);flex:none}
+.offers__list{display:grid;gap:1.2rem}
+.offer{
+  --bone:#1A1814;--bone-dim:#5E594F;--amber:#A86200;
+  color:var(--bone);background:#fff;
+  padding:1.7rem 1.8rem 1.9rem;border-radius:16px;
+  border:1px solid rgba(20,20,20,.08);border-top:4px solid #F2A517;
+  box-shadow:0 14px 34px -18px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.15);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.offer:last-child{border-bottom:1px solid rgba(20,20,20,.08)}
+.offer:hover{transform:translateY(-5px);box-shadow:0 26px 50px -22px rgba(0,0,0,.7),0 4px 10px rgba(0,0,0,.2)}
+.offer__badge{border-color:rgba(20,20,20,.2);border-radius:999px}
+.offer__badge[data-paid]{background:#F2A517;border-color:#F2A517;color:#141414}
+.offer .offer__btn{border-radius:999px}
+.offer .btn--primary{background:#F2A517;border-color:#F2A517;color:#141414}
+.offer .btn--primary:hover{background:#FFB833}
+.offer .btn--ghost{border-color:rgba(20,20,20,.25);color:#1A1814}
+.offer .btn--ghost:hover{border-color:#1A1814}
+/* Popups opened from inside an offer card keep the site's dark palette. */
+.offer .modal{--bone:#E4E1DA;--bone-dim:#94908A;--amber:#F2A517;color:var(--bone)}
