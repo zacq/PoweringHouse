@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { GrowthKitBar, GrowthKitForm } from "@/components/growth-kit-form";
+import { Expandable } from "@/components/expandable";
 import { RegisterModal } from "@/components/register-modal";
 import { WAYS_WE_HELP } from "@/lib/ways-we-help";
 import {
@@ -48,9 +49,9 @@ function Rail({ level, title, children }: { level: number; title: string; childr
   );
 }
 
-function NumberedList({ items }: { items: NumberedItem[] }) {
+function NumberedList({ items, initial, moreLabel }: { items: NumberedItem[]; initial: number; moreLabel: string }) {
   return (
-    <ol className="gk-numbered">
+    <Expandable as="ol" className="gk-numbered" initial={initial} moreLabel={moreLabel} buttonClassName="more-btn">
       {items.map((it) => (
         <li key={it.num}>
           <span className="gk-num">{it.num}</span>
@@ -60,7 +61,7 @@ function NumberedList({ items }: { items: NumberedItem[] }) {
           </div>
         </li>
       ))}
-    </ol>
+    </Expandable>
   );
 }
 
@@ -168,7 +169,7 @@ export default function GrowthKitPage() {
               </figcaption>
             </figure>
           </Rail>
-          <div className="gk-level__body">
+          <div className="gk-level__body"><Expandable initial={2} moreLabel="Read GK’s full story" lessLabel="Show less" buttonClassName="more-btn">
             <p className="gk-lead">
               It is until you get real push that you will get real awareness that differentiate hustle from real
               entrepreneurship.
@@ -218,7 +219,7 @@ export default function GrowthKitPage() {
                 ))}
               </div>
             </div>
-          </div>
+          </Expandable></div>
         </div>
       </section>
 
@@ -227,8 +228,6 @@ export default function GrowthKitPage() {
         <div className="gk-wrap gk-level">
           <Rail level={2} title="Business Design">
             <p className="gk-lead gk-mt-24">The world has changed. So you can as well.</p>
-          </Rail>
-          <div className="gk-level__body">
             <p className="gk-statement">Business is an art.</p>
             <p className="gk-mt-20">
               It’s never a random jargon that many people tend to liken and practice it. Designing a business is like
@@ -242,8 +241,10 @@ export default function GrowthKitPage() {
               Just like steam and electricity once transformed the world, entrepreneurship is about world customer —
               lightning speed.
             </p>
+          </Rail>
+          <div className="gk-level__body">
             <h3 className="gk-h3">Design your business for the following 8 elements</h3>
-            <NumberedList items={GK_ELEMENTS} />
+            <NumberedList items={GK_ELEMENTS} initial={3} moreLabel="Show all 8 elements" />
           </div>
         </div>
       </section>
@@ -255,8 +256,6 @@ export default function GrowthKitPage() {
             <p className="gk-mt-24">
               When you conquer discovering your business through design, next jab is mapping pillars of growth.
             </p>
-          </Rail>
-          <div className="gk-level__body">
             <p className="gk-statement">Pillars of growth is what gives you road to pass as you grow.</p>
             <p className="gk-mt-20">
               It starts by reprogramming your mind. These are practical pillars. They remove you from thinking that
@@ -265,8 +264,10 @@ export default function GrowthKitPage() {
             <p className="gk-mt-20">
               <strong>It opens you up to new possibilities of building non cash capital for your small enterprise.</strong>
             </p>
+          </Rail>
+          <div className="gk-level__body">
             <h3 className="gk-h3">Strengthen foundation of your business with following 11 Pillars</h3>
-            <NumberedList items={GK_PILLARS} />
+            <NumberedList items={GK_PILLARS} initial={3} moreLabel="Show all 11 pillars" />
           </div>
         </div>
       </section>
@@ -297,7 +298,7 @@ export default function GrowthKitPage() {
             </div>
           </div>
           <h3 className="gk-h3 gk-mt-72">Here are your 8 tools of productivity</h3>
-          <div className="gk-tools">
+          <Expandable className="gk-tools" initial={4} moreLabel="Show all 8 tools" buttonClassName="more-btn">
             {GK_TOOLS.map((it) => (
               <div key={it.num}>
                 <span className="gk-num">{it.num}</span>
@@ -305,7 +306,7 @@ export default function GrowthKitPage() {
                 <p>{it.d}</p>
               </div>
             ))}
-          </div>
+          </Expandable>
         </div>
       </section>
 
@@ -315,7 +316,7 @@ export default function GrowthKitPage() {
           <Rail level={5} title="What this means to you">
             <p className="gk-lead gk-mt-24">And the next 24 hours plan to adopt.</p>
           </Rail>
-          <div className="gk-level__body">
+          <div className="gk-level__body"><Expandable initial={5} moreLabel="Read more" lessLabel="Show less" buttonClassName="more-btn">
             <p>Maybe you are just getting started loaded with idea. Call it ideation stage.</p>
             <p className="gk-mt-16">
               Maybe you have been running your micro business last 6 months, 1 yr, 2 yr, 3 yr, 4 yr ….
@@ -341,6 +342,13 @@ export default function GrowthKitPage() {
               This is my mirror. Not just stories of what can work. I have lived it last 2 years. Every day and seen
               progress results every year.
             </p>
+          </Expandable></div>
+        </div>
+      </section>
+
+      {/* ---------- level 5: next 24 hours + next step ---------- */}
+      <section className="gk-section gk-section--ruled" aria-label="Your next 24 hours and next step">
+        <div className="gk-wrap gk-next24">
             <div className="gk-plan">
               <span className="gk-label gk-label--amber">Your next 24 hours</span>
               <p className="gk-plan__title">Don’t just save this document. Use it.</p>
@@ -376,7 +384,6 @@ export default function GrowthKitPage() {
                 ))}
               </div>
             </div>
-          </div>
         </div>
       </section>
 

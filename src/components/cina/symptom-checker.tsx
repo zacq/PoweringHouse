@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { RegisterModal } from "@/components/register-modal";
-import { Expandable } from "@/components/cina/expandable";
+import { Expandable } from "@/components/expandable";
 import { CINA_SYMPTOMS } from "@/lib/cina";
 
 // Semicircle gauge geometry (viewBox 0 0 240 140, centre 120,120, radius 100).

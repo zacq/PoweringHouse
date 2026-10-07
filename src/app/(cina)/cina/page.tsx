@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CinaHeader } from "@/components/cina/cina-header";
-import { Expandable } from "@/components/cina/expandable";
+import { Expandable } from "@/components/expandable";
 import { SymptomChecker } from "@/components/cina/symptom-checker";
 import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";

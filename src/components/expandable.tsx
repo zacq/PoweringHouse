@@ -13,6 +13,7 @@ export function Expandable({
   moreLabel,
   lessLabel = "Show less",
   tone = "light",
+  buttonClassName,
   children,
 }: {
   as?: "div" | "ol" | "ul";
@@ -22,6 +23,8 @@ export function Expandable({
   lessLabel?: string;
   /** "dark" for buttons on navy sections. */
   tone?: "light" | "dark";
+  /** Replaces the CINA button styling (e.g. "more-btn" on Powering House pages). */
+  buttonClassName?: string;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -34,12 +37,12 @@ export function Expandable({
       {hidden > 0 && (
         <button
           type="button"
-          className={`cina-more cina-more--${tone}`}
+          className={buttonClassName ?? `cina-more cina-more--${tone}`}
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
         >
           {open ? lessLabel : `${moreLabel} (+${hidden})`}
-          <span aria-hidden="true" className="cina-more__chev">
+          <span aria-hidden="true" className="more-chev">
             {open ? "↑" : "↓"}
           </span>
         </button>

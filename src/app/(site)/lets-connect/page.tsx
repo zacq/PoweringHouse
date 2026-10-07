@@ -23,16 +23,16 @@ export default function LetsConnectPage() {
         <EventsList />
       </section>
 
-      <section className="themes" aria-labelledby="contact-title">
-        <div className="themes__head">
+      <section className="themes contact-split" aria-labelledby="contact-title">
+        <div className="contact-split__intro">
           <h2 id="contact-title">Contact</h2>
-          <p>Reach out on WhatsApp, or register your interest below.</p>
-        </div>
-        <div className="actions" style={{ marginBottom: "1.6rem" }}>
+          <p>Reach out on WhatsApp, or register your interest and we&apos;ll get back to you.</p>
+        <div className="actions">
           {/* DRAFT: WhatsApp number not yet provided — swap href for a real https://wa.me/<number> link */}
           <a className="btn btn--primary" href="#">
             Chat on WhatsApp
           </a>
+        </div>
         </div>
         <ContactForm />
       </section>
