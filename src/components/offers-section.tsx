@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LeadMagnetModal } from "./lead-magnet-modal";
 import { RegisterModal } from "./register-modal";
 import { CINA_BREAKFAST, CINA_COHORT, CINA_CRAFTSMANSHIP } from "@/lib/cina";
-import { OFFER_TRACKS, PH_COACHING, type Offer, type OfferAction } from "@/lib/offers";
+import { OFFER_TRACKS, PH_ASSESSMENT, PH_COACHING, type Offer, type OfferAction } from "@/lib/offers";
 
 function Action({ offer, action, primary }: { offer: Offer; action: OfferAction; primary: boolean }) {
   const className = `btn ${primary ? "btn--primary" : "btn--ghost"} offer__btn`;
@@ -21,6 +21,8 @@ function Action({ offer, action, primary }: { offer: Offer; action: OfferAction;
       return <LeadMagnetModal content={PH_COACHING} label={action.label} className={className} />;
     case "cohort":
       return <LeadMagnetModal content={CINA_COHORT} label={action.label} className={className} />;
+    case "assessment":
+      return <LeadMagnetModal content={PH_ASSESSMENT} label={action.label} className={className} />;
     case "quote":
       return (
         <RegisterModal label={action.label} subject={`Quote request — ${offer.title}`} className={className}>

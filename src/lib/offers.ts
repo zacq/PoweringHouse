@@ -13,7 +13,42 @@ export type OfferAction =
   | { kind: "craftsmanship"; label: string }
   | { kind: "breakfast"; label: string }
   | { kind: "coaching"; label: string }
-  | { kind: "cohort"; label: string };
+  | { kind: "cohort"; label: string }
+  | { kind: "assessment"; label: string };
+
+/**
+ * Advanced Operation Assessment quote popup. No document yet, so it confirms instead of downloading.
+ * Copy from CINA's documents: the BCIA catalogue ("Business Excellence Assessment"), the Craftsmanship
+ * Legacy guide ("Try a Free Operation Assessment") and the Executive Breakfast brief (seven pillars).
+ */
+export const PH_ASSESSMENT: LeadMagnet = {
+  list: "ph-assessment",
+  briefBadge: "1:1",
+  eyebrow: "Business Excellence Assessment · Advanced",
+  title: "Find where your operation is leaking value",
+  theme: "A diagnostic review of operational maturity and improvement priorities.",
+  reasons: [
+    {
+      t: "An expert on your floor",
+      d: "An expert walk-through of your floor, warehouse or fleet to surface quick wins.",
+    },
+    {
+      t: "Across the seven pillars",
+      d: "Operational excellence, people & team, money, selling & market intelligence, customer experience, data intelligence and sustainability (ESG).",
+    },
+    {
+      t: "Clear improvement priorities",
+      d: "Where value leaks, what it is costing — and the first moves to make.",
+    },
+  ],
+  quote: "The value you are looking for is already inside the business.",
+  briefTitle: "Request your assessment quote",
+  briefLine: "Tell us who you are — we’ll send a price quote and propose a date for your advanced assessment.",
+  cta: "Request my assessment quote",
+  fine: "No spam. Just your quote, then the assessment details from CINA.",
+  doneTitle: "Your quote request is in.",
+  doneText: "We’ll send your price quote and propose a date for the assessment shortly.",
+};
 
 /**
  * Micro Business Growth Design popup — copy from "Personal Brand & Business Coaching.pdf".
@@ -131,7 +166,7 @@ export const OFFER_TRACKS: OfferTrack[] = [
         priceNote: "Advanced: price on request",
         actions: [
           { kind: "link", label: "Take the free online assessment", href: "/cina#diagnose" },
-          { kind: "quote", label: "Request advanced assessment quote" },
+          { kind: "assessment", label: "Request advanced assessment quote" },
         ],
       },
       {

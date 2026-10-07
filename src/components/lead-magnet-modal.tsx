@@ -2,12 +2,17 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 
-/** A downloadable document gated behind name + email (Executive Breakfast brief, e-resources…). */
+/**
+ * A document gated behind name + email (Executive Breakfast brief, e-resources…), or — with no `pdf` —
+ * a pitched request form (e.g. a quote request) that confirms instead of offering a download.
+ */
 export interface LeadMagnet {
   /** /api/subscribe `list` value — decides the Airtable Subscribers Source. */
-  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching" | "cina-cohort";
-  pdf: string;
-  pdfName: string;
+  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching" | "cina-cohort" | "ph-assessment";
+  pdf?: string;
+  pdfName?: string;
+  /** Short label on the tile beside the brief box (default "PDF"). */
+  briefBadge?: string;
   eyebrow: string;
   title: string;
   theme: string;
@@ -19,7 +24,7 @@ export interface LeadMagnet {
   fine: string;
   doneTitle: string;
   doneText: string;
-  downloadLabel: string;
+  downloadLabel?: string;
 }
 
 /**
@@ -123,14 +128,16 @@ export function LeadMagnetModal({
                 Registered as {registered}. {c.doneText}
               </p>
               {/* When email delivery is added, send the document to the registrant instead of offering it here. */}
-              <a href={c.pdf} download={c.pdfName} className="lm__btn">
-                {c.downloadLabel} <span aria-hidden="true">↓</span>
-              </a>
+              {c.pdf && (
+                <a href={c.pdf} download={c.pdfName} className="lm__btn">
+                  {c.downloadLabel} <span aria-hidden="true">↓</span>
+                </a>
+              )}
             </div>
           ) : (
             <form className="lm__form" onSubmit={onSubmit} noValidate>
               <div className="lm__brief">
-                <span className="lm__pdf" aria-hidden="true">PDF</span>
+                <span className="lm__pdf" aria-hidden="true">{c.briefBadge ?? "PDF"}</span>
                 <div>
                   <h4>{c.briefTitle}</h4>
                   <p>{c.briefLine}</p>
