@@ -1,5 +1,6 @@
 import { RegisterModal } from "@/components/register-modal";
 import { CINA_TICKER } from "@/lib/cina";
+import { ScrollFlag } from "./scroll-flag";
 
 const LINKS = [
   { href: "#about", label: "About" },
@@ -12,6 +13,7 @@ const LINKS = [
 export function CinaHeader() {
   return (
     <header className="cina-header">
+      <ScrollFlag />
       <div className="cina-header__bar">
         <a className="cina-brand" href="#top" aria-label="CINA — back to top">
           <span className="cina-brand__tile" aria-hidden="true">C</span>

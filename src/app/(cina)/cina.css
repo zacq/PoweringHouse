@@ -704,3 +704,16 @@ html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
 .cina-principle p{margin-top:clamp(.4rem,1.2vh,.8rem);font-size:min(1.02rem,2.25vh);line-height:1.6;color:var(--c-text)}
 @media (max-width:1100px){.cina-principles{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:600px){.cina-principles{grid-template-columns:1fr}}
+
+/* ---------- menu bar compacts once scrolling begins ---------- */
+.cina-header__bar,.cina-brand__tile,.cina-brand__name,.cina-brand__sub,.cina-header .cina-btn--blue{
+  transition:padding .25s ease,width .25s ease,height .25s ease,font-size .25s ease,opacity .2s ease,max-height .25s ease,margin .25s ease;
+}
+.cina-brand__sub{max-height:1.6rem;overflow:hidden}
+html[data-cina-scrolled] .cina-header__bar{padding-top:.45rem;padding-bottom:.45rem}
+html[data-cina-scrolled] .cina-brand__tile{width:2.3rem;height:2.3rem;font-size:1.15rem;border-radius:8px}
+html[data-cina-scrolled] .cina-brand__name{font-size:1.4rem}
+html[data-cina-scrolled] .cina-brand__sub{max-height:0;opacity:0;margin-top:0}
+html[data-cina-scrolled] .cina-header .cina-btn--blue{padding:.55rem 1.2rem;font-size:.95rem}
+/* Sections size to the window minus the (now slimmer) header. */
+html[data-cina-scrolled] .cina{--cina-head:7.35rem}
