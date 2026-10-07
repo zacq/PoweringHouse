@@ -34,7 +34,7 @@ export default function LetsConnectPage() {
           </a>
         </div>
         </div>
-        <ContactForm />
+        <ContactForm subject="Let's Connect — Contact page" />
       </section>
     </>
   );
