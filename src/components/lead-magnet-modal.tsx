@@ -25,6 +25,8 @@ export interface LeadMagnet {
   doneTitle: string;
   doneText: string;
   downloadLabel?: string;
+  /** Paid programmes: adds a "Register" switch that turns the panel into a registration form. */
+  register?: { label: string; title: string; intro: string; subject: string };
 }
 
 /**
@@ -46,6 +48,50 @@ export function LeadMagnetModal({
   const [registered, setRegistered] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [view, setView] = useState<"outline" | "register" | "registered">("outline");
+  const [regError, setRegError] = useState("");
+  const [regLoading, setRegLoading] = useState(false);
+
+  async function onRegister(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!c.register) return;
+    const d = new FormData(e.currentTarget);
+    const payload = {
+      fullName: String(d.get("fullName") ?? "").trim(),
+      email: String(d.get("email") ?? "").trim(),
+      phone: String(d.get("phone") ?? "").trim(),
+      message: String(d.get("message") ?? "").trim(),
+      website: String(d.get("website") ?? ""),
+      subject: c.register.subject,
+    };
+    if (payload.fullName.length < 2) return setRegError("Please add your name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return setRegError("Please enter a valid email address.");
+    setRegLoading(true);
+    setRegError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+      if (!res.ok) return setRegError(result.error ?? "Something went wrong. Try again.");
+      setView("registered");
+    } catch {
+      setRegError("Something went wrong. Try again.");
+    } finally {
+      setRegLoading(false);
+    }
+  }
+
+  const registerSwitch = c.register && (
+    <div className="lm__switch">
+      <span>Ready to join the paid programme?</span>
+      <button type="button" className="lm__btn lm__btn--ghost" onClick={() => setView("register")}>
+        {c.register.label} <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  );
 
   useEffect(() => {
     try {
@@ -118,7 +164,58 @@ export function LeadMagnetModal({
         </div>
 
         <div className="lm__panel">
-          {registered ? (
+          {view === "registered" && c.register ? (
+            <div role="status" className="lm__form">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--lm-accent)" strokeWidth="2.4" strokeLinecap="square" aria-hidden="true">
+                <path d="M4 12l5 5L20 6" />
+              </svg>
+              <h4>Your registration is in.</h4>
+              <p>Thank you — we’ll contact you shortly with the price, dates and next steps for {c.register.title}.</p>
+            </div>
+          ) : view === "register" && c.register ? (
+            <form className="lm__form" onSubmit={onRegister} noValidate>
+              <div className="lm__brief">
+                <span className="lm__pdf" aria-hidden="true">REG</span>
+                <div>
+                  <h4>Register — {c.register.title}</h4>
+                  <p>{c.register.intro}</p>
+                </div>
+              </div>
+              <label className="comment-form__honeypot" aria-hidden="true">
+                Leave this field empty
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+              </label>
+              <div className="lm__row">
+                <label className="lm__field">
+                  <span>Name</span>
+                  <input name="fullName" autoComplete="name" placeholder="Your name" onChange={() => setRegError("")} />
+                </label>
+                <label className="lm__field">
+                  <span>Email</span>
+                  <input type="email" name="email" autoComplete="email" inputMode="email" placeholder="you@company.co.ke" onChange={() => setRegError("")} />
+                </label>
+              </div>
+              <label className="lm__field">
+                <span>Phone (optional)</span>
+                <input type="tel" name="phone" autoComplete="tel" placeholder="07xx xxx xxx" />
+              </label>
+              <label className="lm__field">
+                <span>What would you like to connect about? (optional)</span>
+                <textarea name="message" rows={3} maxLength={2000} />
+              </label>
+              {regError && (
+                <p role="alert" className="lm__error">
+                  {regError}
+                </p>
+              )}
+              <button type="submit" className="lm__btn" disabled={regLoading}>
+                {regLoading ? "Registering…" : "Register"} <span aria-hidden="true">→</span>
+              </button>
+              <button type="button" className="lm__back" onClick={() => setView("outline")}>
+                ← Back to the programme outline
+              </button>
+            </form>
+          ) : registered ? (
             <div role="status" className="lm__form">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--lm-accent)" strokeWidth="2.4" strokeLinecap="square" aria-hidden="true">
                 <path d="M4 12l5 5L20 6" />
@@ -133,6 +230,7 @@ export function LeadMagnetModal({
                   {c.downloadLabel} <span aria-hidden="true">↓</span>
                 </a>
               )}
+              {registerSwitch}
             </div>
           ) : (
             <form className="lm__form" onSubmit={onSubmit} noValidate>
@@ -171,6 +269,7 @@ export function LeadMagnetModal({
                 {loading ? "Registering…" : c.cta} <span aria-hidden="true">→</span>
               </button>
               <p className="lm__fine">{c.fine}</p>
+              {registerSwitch}
             </form>
           )}
         </div>

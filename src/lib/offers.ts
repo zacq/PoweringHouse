@@ -86,6 +86,12 @@ export const PH_COACHING: LeadMagnet = {
   doneText:
     "Let’s start with a conversation about where you are and where you are called to go — we’ll follow up with a price quote.",
   downloadLabel: "Download the programme outline (PDF)",
+  register: {
+    label: "Register for the programme",
+    title: "Micro Business Growth Design",
+    intro: "Leave your details to register — we’ll confirm the price, start date and your first session.",
+    subject: "Registration — Micro Business Growth Design",
+  },
 };
 
 export interface Offer {

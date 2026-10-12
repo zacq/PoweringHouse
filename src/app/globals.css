@@ -1227,3 +1227,18 @@ button.line-card__cta{border:none;cursor:pointer}
   .themes[aria-labelledby="ways-title"]{padding-top:max(5.3rem,12vh);padding-bottom:clamp(.8rem,2vh,5.5rem)}
 }
 @media (min-width:901px){.themes[aria-labelledby="ways-title"] .themes__head{margin-bottom:clamp(.6rem,1.8vh,2.6rem)}}
+
+/* ---------- lead-magnet popup: register for the paid programme ---------- */
+.lm__switch{display:flex;flex-direction:column;gap:.55rem;margin-top:.4rem;padding-top:1rem;border-top:1px solid var(--lm-line)}
+.lm__switch > span{font-size:.85rem;color:var(--lm-muted)}
+.lm__btn.lm__btn--ghost{background:transparent;color:var(--lm-accent);border:1px solid var(--lm-accent)}
+.lm__btn.lm__btn--ghost:hover{background:color-mix(in srgb,var(--lm-accent) 12%,transparent);filter:none}
+.lm__row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.lm__field textarea{
+  min-height:5.5rem;padding:.75rem .9rem;border-radius:var(--lm-field-radius);border:1px solid var(--lm-line);
+  background:var(--lm-input);color:#fff;font:inherit;font-size:1rem;font-weight:400;resize:vertical;
+}
+.lm__field textarea:focus{outline:none;border-color:var(--lm-accent)}
+.lm__back{align-self:flex-start;background:none;border:none;padding:0;cursor:pointer;color:var(--lm-muted);font:inherit;font-size:.88rem;text-decoration:underline;text-underline-offset:3px}
+.lm__back:hover{color:var(--lm-text)}
+@media (max-width:520px){.lm__row{grid-template-columns:1fr}}

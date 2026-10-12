@@ -138,6 +138,12 @@ export const CINA_BREAKFAST: LeadMagnet = {
   doneTitle: "Your seat request is in.",
   doneText: "Download the session brief below — we’ll confirm the date and venue with you directly.",
   downloadLabel: "Download the session brief (PDF)",
+  register: {
+    label: "Register for the breakfast",
+    title: "the Executive Breakfast",
+    intro: "Leave your details to register — we’ll confirm the price, date and venue of the next round table.",
+    subject: "Registration — CINA Executive Breakfast",
+  },
 };
 
 /**
@@ -175,6 +181,12 @@ export const CINA_COHORT: LeadMagnet = {
   doneTitle: "Your catalogue is ready.",
   doneText: "Let’s build excellence, together — we’ll follow up with the next cohort dates and a price quote.",
   downloadLabel: "Download the BCIA catalogue (PDF)",
+  register: {
+    label: "Register for a cohort",
+    title: "Cohort Training",
+    intro: "Leave your details to register — tell us which programme(s) interest you and we’ll confirm the next cohort and price.",
+    subject: "Registration — CINA Cohort Training",
+  },
 };
 
 /**
