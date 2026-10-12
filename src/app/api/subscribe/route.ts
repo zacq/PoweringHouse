@@ -18,6 +18,7 @@ const LIST_SOURCES = {
   "cina-cohort": "Quote request: Cohort Training (BCIA Catalogue)",
   "ph-assessment": "Quote request: Advanced Operation Assessment",
   "cina-zoom": "CINA Free Monthly Zoom (invite)",
+  "cina-essentials": "Programme outline: Business Excellence Essentials (Cohort Training)",
 } as const;
 
 export async function POST(req: NextRequest) {

@@ -55,6 +55,7 @@ export type CinaProgramAction =
   | { kind: "register"; label: string }
   | { kind: "breakfast"; label: string }
   | { kind: "zoom"; label: string }
+  | { kind: "essentials"; label: string }
   | { kind: "diagnose"; label: string }
   | { kind: "link"; label: string; href: string };
 
@@ -101,7 +102,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
     title: "Monthly Low-Cost Training",
     description:
       "Optimizing staff potential through the practice of operations excellence. See the programs outline.",
-    action: { kind: "register", label: "View Programs" },
+    action: { kind: "essentials", label: "View the programme" },
   },
   {
     icon: "🤝",
@@ -178,6 +179,49 @@ export const CINA_ZOOM: LeadMagnet = {
     intro: "Leave your details to register — the joining link is sent to you before the session.",
     subject: "Registration — CINA Free Monthly Zoom",
     free: true,
+  },
+};
+
+/**
+ * Monthly Low-Cost Training popup — copy from the "Business Excellence Essentials" cohort flyer
+ * (offers (3).jpeg). The flyer itself is the downloadable outline; Register shares the Cohort
+ * Training schedule (Airtable Events, Programme = Cohort Training).
+ */
+export const CINA_ESSENTIALS: LeadMagnet = {
+  list: "cina-essentials",
+  pdf: "/downloads/cina-business-excellence-essentials.jpg",
+  pdfName: "CINA — Business Excellence Essentials (programme outline).jpg",
+  briefBadge: "2-DAY",
+  eyebrow: "Cohort Training · 2-Day Intensive",
+  title: "Business Excellence Essentials",
+  theme: "A practical, hands-on programme on operations, finance, strategy and ESG.",
+  reasons: [
+    {
+      t: "Day 1 · Build the operational & financial base",
+      d: "Foundation of Operations Excellence, and Business Finance Operations — cash flow, costs, budgeting and controls.",
+    },
+    {
+      t: "Day 2 · Align strategy & sustainability",
+      d: "Strategy Deployment into clear priorities, and Developing your ESG Profile to strengthen credibility.",
+    },
+    {
+      t: "What you walk away with",
+      d: "Consistent, high-performing operations, command of business finance, a deployable strategy and a developing ESG profile.",
+    },
+  ],
+  quote: "Limited cohort seats available.",
+  briefTitle: "Get the programme outline",
+  briefLine: "Both days, all four modules and what you’ll walk away with — download it as soon as you register.",
+  cta: "Get the programme outline",
+  fine: "No spam. Just the outline, then cohort dates and the price from CINA.",
+  doneTitle: "Your programme outline is ready.",
+  doneText: "Limited cohort seats — register below to reserve yours.",
+  downloadLabel: "Download the programme outline",
+  register: {
+    label: "Reserve your seat",
+    title: "Business Excellence Essentials",
+    intro: "Leave your details to reserve your cohort seat — we’ll confirm the price and send joining details.",
+    subject: "Registration — CINA Business Excellence Essentials (Cohort Training)",
   },
 };
 

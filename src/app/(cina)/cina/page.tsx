@@ -11,6 +11,7 @@ import { getSchedules, type ProgrammeSchedule } from "@/lib/schedule";
 import {
   CINA_BREAKFAST,
   CINA_ZOOM,
+  CINA_ESSENTIALS,
   CINA_COHORT,
   CINA_COMMUNITY,
   CINA_CYCLE,
@@ -49,10 +50,12 @@ function ProgramAction({
   program,
   breakfast,
   zoom,
+  cohort,
 }: {
   program: CinaProgram;
   breakfast: ProgrammeSchedule;
   zoom: ProgrammeSchedule;
+  cohort: ProgrammeSchedule;
 }) {
   const { action } = program;
   const content = (
@@ -60,6 +63,9 @@ function ProgramAction({
       {action.label} <span aria-hidden="true">→</span>
     </>
   );
+  if (action.kind === "essentials") {
+    return <LeadMagnetModal content={CINA_ESSENTIALS} schedule={cohort} label={action.label} className="cina-textlink" />;
+  }
   if (action.kind === "zoom") {
     return <LeadMagnetModal content={CINA_ZOOM} schedule={zoom} label={action.label} className="cina-textlink" />;
   }
@@ -252,6 +258,7 @@ export default async function CinaPage() {
                   <p className="cina-program__text">{p.description}</p>
                   <ProgramAction program={p} breakfast={schedules["Executive Breakfast"]}
                     zoom={schedules["Free Monthly Zooms"]}
+                    cohort={schedules["Cohort Training"]}
                   />
                 </article>
               ))}
