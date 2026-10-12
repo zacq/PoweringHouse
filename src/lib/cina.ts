@@ -432,10 +432,10 @@ export const CINA_IMPACT: string[] = [
  */
 export const CINA_NEXT_STEPS: { tag: string; title: string; description: string; cta: string }[] = [
   {
-    tag: "Free · 1:1",
-    title: "Free OpEx Assessment",
-    description: "A free face-to-face dialogue and assessment — plus free affiliate membership.",
-    cta: "Book my free assessment",
+    tag: "Paid · 1:1",
+    title: "Advanced OpEx Assessment",
+    description: "An expert walk-through of your operation across the seven pillars — clear improvement priorities and first moves.",
+    cta: "Request assessment quote",
   },
   {
     tag: "Cohort",

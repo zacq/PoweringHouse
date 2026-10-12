@@ -302,7 +302,7 @@ export default function CinaPage() {
                 Put the framework to work in your business.
               </h2>
               <p className="cina-lede cina-lede--blue">
-                Start with a free one-to-one OpEx assessment, or bring your team into the next cohort training.
+                Request an advanced one-to-one OpEx assessment, or bring your team into the next cohort training.
               </p>
               <div className="cina-framework__grid">
                 {CINA_NEXT_STEPS.map((step) => (
@@ -310,7 +310,7 @@ export default function CinaPage() {
                     <p className="cina-program__tag">{step.tag}</p>
                     <h3>{step.title}</h3>
                     <p className="cina-framework__text">{step.description}</p>
-                    {step.title === "Free OpEx Assessment" ? (
+                    {step.title === "Advanced OpEx Assessment" ? (
                       <LeadMagnetModal
                         content={PH_ASSESSMENT}
                         label={step.cta}
