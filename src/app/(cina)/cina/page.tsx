@@ -74,7 +74,11 @@ function ProgramAction({
     );
   }
   return (
-    <a className="cina-textlink" href={action.kind === "diagnose" ? "#diagnose" : action.href}>
+    <a
+      className="cina-textlink"
+      href={action.kind === "diagnose" ? "#diagnose" : action.href}
+      {...(action.kind === "link" && action.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
       {content}
     </a>
   );

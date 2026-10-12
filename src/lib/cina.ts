@@ -93,8 +93,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
     tag: "Free content",
     title: "YouTube: Step of Power",
     description: "Content that builds awareness and drives action toward operational excellence.",
-    // DRAFT: YouTube channel URL not yet supplied.
-    action: { kind: "link", label: "Watch & Subscribe", href: "#" },
+    action: { kind: "link", label: "Watch & Subscribe", href: "https://www.youtube.com/@PoweringHouseTransformative" },
   },
   {
     icon: "📘",
