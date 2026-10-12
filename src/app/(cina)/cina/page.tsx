@@ -6,6 +6,7 @@ import { Expandable } from "@/components/expandable";
 import { SymptomChecker } from "@/components/cina/symptom-checker";
 import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";
+import { PH_ASSESSMENT } from "@/lib/offers";
 import {
   CINA_BREAKFAST,
   CINA_COHORT,
@@ -309,7 +310,13 @@ export default function CinaPage() {
                     <p className="cina-program__tag">{step.tag}</p>
                     <h3>{step.title}</h3>
                     <p className="cina-framework__text">{step.description}</p>
-                    {step.title === "Cohort Training" ? (
+                    {step.title === "Free OpEx Assessment" ? (
+                      <LeadMagnetModal
+                        content={PH_ASSESSMENT}
+                        label={step.cta}
+                        className="cina-btn cina-btn--amber cina-btn--block"
+                      />
+                    ) : step.title === "Cohort Training" ? (
                       <LeadMagnetModal
                         content={CINA_COHORT}
                         label={step.cta}
