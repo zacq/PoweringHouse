@@ -1,6 +1,6 @@
 import { listRecords } from "./airtable";
 
-export type Programme = "Micro Business Growth Design" | "Executive Breakfast" | "Cohort Training";
+export type Programme = "Micro Business Growth Design" | "Executive Breakfast" | "Cohort Training" | "Free Monthly Zooms";
 
 export interface ProgrammeSchedule {
   date: string;
@@ -57,10 +57,16 @@ export async function getProgrammeSchedule(programme: Programme): Promise<Progra
 }
 
 export async function getSchedules(): Promise<Record<Programme, ProgrammeSchedule>> {
-  const [mbgd, eb, ct] = await Promise.all([
+  const [mbgd, eb, ct, zoom] = await Promise.all([
     getProgrammeSchedule("Micro Business Growth Design"),
     getProgrammeSchedule("Executive Breakfast"),
     getProgrammeSchedule("Cohort Training"),
+    getProgrammeSchedule("Free Monthly Zooms"),
   ]);
-  return { "Micro Business Growth Design": mbgd, "Executive Breakfast": eb, "Cohort Training": ct };
+  return {
+    "Micro Business Growth Design": mbgd,
+    "Executive Breakfast": eb,
+    "Cohort Training": ct,
+    "Free Monthly Zooms": zoom,
+  };
 }

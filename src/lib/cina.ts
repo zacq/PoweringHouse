@@ -54,6 +54,7 @@ export const CINA_CYCLE: string[] = [
 export type CinaProgramAction =
   | { kind: "register"; label: string }
   | { kind: "breakfast"; label: string }
+  | { kind: "zoom"; label: string }
   | { kind: "diagnose"; label: string }
   | { kind: "link"; label: string; href: string };
 
@@ -71,7 +72,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
     tag: "Free",
     title: "Free Monthly Zooms",
     description: "Monthly virtual sessions for awareness and practical insights on operations improvement.",
-    action: { kind: "register", label: "Register Interest" },
+    action: { kind: "zoom", label: "Register Interest" },
   },
   {
     icon: "☕",
@@ -144,6 +145,40 @@ export const CINA_BREAKFAST: LeadMagnet = {
     title: "the Executive Breakfast",
     intro: "Leave your details to register — we’ll confirm the price, date and venue of the next round table.",
     subject: "Registration — CINA Executive Breakfast",
+  },
+};
+
+/**
+ * Free Monthly Zooms popup — copy from the Free Zoom flyer ("Business Continuous Improvement &
+ * Excellence"). No document: the outline step sends the session invite; Register books a seat.
+ */
+export const CINA_ZOOM: LeadMagnet = {
+  list: "cina-zoom",
+  briefBadge: "ZOOM",
+  eyebrow: "Free Zoom · Business Continuous Improvement & Excellence",
+  title: "Reclaim and Refill",
+  theme: "From wastages and under-utilised potential — your 45 minutes of real investment.",
+  reasons: [
+    {
+      t: "Operational Excellence",
+      d: "Optimal flow, reduced waste — the practical side of continuous improvement.",
+    },
+    { t: "Streamlining processes", d: "For smooth, steady flow across the operation." },
+    { t: "Spotting and cutting waste", d: "To improve operations — monthly, practical, free." },
+  ],
+  quote: "Connect. Collaborate. Improve. Excel.",
+  briefTitle: "Get the session invite",
+  briefLine: "Tell us where to send the invite and reminders for the next free monthly Zoom.",
+  cta: "Send me the invite",
+  fine: "No spam. Just the Zoom invite and reminders from CINA.",
+  doneTitle: "You’re on the list.",
+  doneText: "We’ll send the invite and reminders for the next session.",
+  register: {
+    label: "Register for the next Zoom",
+    title: "the Free Monthly Zoom",
+    intro: "Leave your details to register — the joining link is sent to you before the session.",
+    subject: "Registration — CINA Free Monthly Zoom",
+    free: true,
   },
 };
 

@@ -1254,3 +1254,5 @@ button.line-card__cta{border:none;cursor:pointer}
 .lm__details dd{margin:0;color:#fff;font-size:1rem;line-height:1.45}
 .lm__mono{font-family:ui-monospace,monospace;font-size:1.15rem!important;letter-spacing:.06em}
 @media (max-width:760px){.lm__details{margin-top:1rem}}
+/* Popups opened from inside a CINA card must not inherit the card's dark heading colour. */
+.modal.lm .lm__title,.modal.lm .lm__form h4{color:#fff}

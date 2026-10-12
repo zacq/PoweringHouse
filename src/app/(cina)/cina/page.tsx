@@ -10,6 +10,7 @@ import { PH_ASSESSMENT } from "@/lib/offers";
 import { getSchedules, type ProgrammeSchedule } from "@/lib/schedule";
 import {
   CINA_BREAKFAST,
+  CINA_ZOOM,
   CINA_COHORT,
   CINA_COMMUNITY,
   CINA_CYCLE,
@@ -44,13 +45,24 @@ function BookButton({ className = "cina-btn cina-btn--amber" }: { className?: st
   );
 }
 
-function ProgramAction({ program, breakfast }: { program: CinaProgram; breakfast: ProgrammeSchedule }) {
+function ProgramAction({
+  program,
+  breakfast,
+  zoom,
+}: {
+  program: CinaProgram;
+  breakfast: ProgrammeSchedule;
+  zoom: ProgrammeSchedule;
+}) {
   const { action } = program;
   const content = (
     <>
       {action.label} <span aria-hidden="true">→</span>
     </>
   );
+  if (action.kind === "zoom") {
+    return <LeadMagnetModal content={CINA_ZOOM} schedule={zoom} label={action.label} className="cina-textlink" />;
+  }
   if (action.kind === "breakfast") {
     return <LeadMagnetModal content={CINA_BREAKFAST} schedule={breakfast} label={action.label} className="cina-textlink" />;
   }
@@ -234,7 +246,9 @@ export default async function CinaPage() {
                   <p className="cina-program__tag">{p.tag}</p>
                   <h3>{p.title}</h3>
                   <p className="cina-program__text">{p.description}</p>
-                  <ProgramAction program={p} breakfast={schedules["Executive Breakfast"]} />
+                  <ProgramAction program={p} breakfast={schedules["Executive Breakfast"]}
+                    zoom={schedules["Free Monthly Zooms"]}
+                  />
                 </article>
               ))}
             </Expandable>

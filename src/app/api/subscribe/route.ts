@@ -17,6 +17,7 @@ const LIST_SOURCES = {
   "ph-coaching": "Quote request: Micro Business Growth Design (Personal Brand & Business Coaching)",
   "cina-cohort": "Quote request: Cohort Training (BCIA Catalogue)",
   "ph-assessment": "Quote request: Advanced Operation Assessment",
+  "cina-zoom": "CINA Free Monthly Zoom (invite)",
 } as const;
 
 export async function POST(req: NextRequest) {

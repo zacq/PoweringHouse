@@ -10,7 +10,7 @@ import { PAYMENT } from "@/lib/payment";
  */
 export interface LeadMagnet {
   /** /api/subscribe `list` value — decides the Airtable Subscribers Source. */
-  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching" | "cina-cohort" | "ph-assessment";
+  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching" | "cina-cohort" | "ph-assessment" | "cina-zoom";
   pdf?: string;
   pdfName?: string;
   /** Short label on the tile beside the brief box (default "PDF"). */
@@ -28,7 +28,7 @@ export interface LeadMagnet {
   doneText: string;
   downloadLabel?: string;
   /** Paid programmes: adds a "Register" switch that turns the panel into a registration form. */
-  register?: { label: string; title: string; intro: string; subject: string };
+  register?: { label: string; title: string; intro: string; subject: string; free?: boolean };
 }
 
 /**
@@ -91,7 +91,7 @@ export function LeadMagnetModal({
 
   const registerSwitch = c.register && (
     <div className="lm__switch">
-      <span>Ready to join the paid programme?</span>
+      <span>{c.register.free ? "Want a seat at the next session?" : "Ready to join the paid programme?"}</span>
       <button type="button" className="lm__btn lm__btn--ghost" onClick={() => setView("register")}>
         {c.register.label} <span aria-hidden="true">→</span>
       </button>
@@ -167,20 +167,28 @@ export function LeadMagnetModal({
                 <dt>Venue</dt>
                 <dd>{schedule?.venue ?? "To be confirmed"}</dd>
               </div>
-              <div>
-                <dt>Paybill</dt>
-                <dd className="lm__mono">{PAYMENT.paybill}</dd>
-              </div>
-              <div>
-                <dt>Account No</dt>
-                <dd>{PAYMENT.account}</dd>
-              </div>
+              {!c.register.free && (
+                <>
+                  <div>
+                    <dt>Paybill</dt>
+                    <dd className="lm__mono">{PAYMENT.paybill}</dd>
+                  </div>
+                  <div>
+                    <dt>Account No</dt>
+                    <dd>{PAYMENT.account}</dd>
+                  </div>
+                </>
+              )}
               <div>
                 <dt>Next</dt>
                 <dd>{schedule?.next ?? "To be confirmed"}</dd>
               </div>
             </dl>
-            <p className="lm__quote">Pay via M-Pesa Paybill using your company name as the account number.</p>
+            <p className="lm__quote">
+              {c.register.free
+                ? "Free to attend — the joining link is sent to you after registration."
+                : "Pay via M-Pesa Paybill using your company name as the account number."}
+            </p>
           </div>
         ) : (
         <div className="lm__pitch">
