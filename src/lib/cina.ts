@@ -56,6 +56,7 @@ export type CinaProgramAction =
   | { kind: "breakfast"; label: string }
   | { kind: "zoom"; label: string }
   | { kind: "essentials"; label: string }
+  | { kind: "visit"; label: string }
   | { kind: "diagnose"; label: string }
   | { kind: "link"; label: string; href: string };
 
@@ -109,7 +110,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
     tag: "Free · 1:1",
     title: "1:1 Physical Assessment",
     description: "A free face-to-face dialogue and assessment — plus free affiliate membership.",
-    action: { kind: "register", label: "Request a Visit" },
+    action: { kind: "visit", label: "Request a Visit" },
   },
 ];
 
@@ -180,6 +181,39 @@ export const CINA_ZOOM: LeadMagnet = {
     subject: "Registration — CINA Free Monthly Zoom",
     free: true,
   },
+};
+
+/**
+ * 1:1 Physical Assessment popup — copy from this card and the Craftsmanship Legacy guide's
+ * "Try a Free Operation Assessment". Free and document-less: the form requests the visit.
+ */
+export const CINA_VISIT: LeadMagnet = {
+  list: "cina-visit",
+  briefBadge: "1:1",
+  eyebrow: "Free · 1:1 Physical Assessment",
+  title: "An expert on your floor",
+  theme: "A free face-to-face dialogue and assessment — plus free affiliate membership.",
+  reasons: [
+    {
+      t: "Walk the floor together",
+      d: "An expert walk-through of your floor, warehouse or fleet to surface quick wins.",
+    },
+    {
+      t: "At no cost, with no obligation",
+      d: "A candid conversation about where value is leaking and the first moves to make.",
+    },
+    {
+      t: "Free affiliate membership",
+      d: "Join the CINA network of practitioners, business leaders and improvement champions.",
+    },
+  ],
+  quote: "The production floor already holds the answers.",
+  briefTitle: "Request your visit",
+  briefLine: "Tell us who you are — we’ll call to agree a date and time for your free 1:1 assessment.",
+  cta: "Request my visit",
+  fine: "No spam. Just a call from CINA to schedule your visit.",
+  doneTitle: "Your visit request is in.",
+  doneText: "We’ll be in touch shortly to agree a date and time for your free 1:1 assessment.",
 };
 
 /**

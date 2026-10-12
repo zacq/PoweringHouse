@@ -12,6 +12,7 @@ import {
   CINA_BREAKFAST,
   CINA_ZOOM,
   CINA_ESSENTIALS,
+  CINA_VISIT,
   CINA_COHORT,
   CINA_COMMUNITY,
   CINA_CYCLE,
@@ -63,6 +64,9 @@ function ProgramAction({
       {action.label} <span aria-hidden="true">→</span>
     </>
   );
+  if (action.kind === "visit") {
+    return <LeadMagnetModal content={CINA_VISIT} label={action.label} className="cina-textlink" />;
+  }
   if (action.kind === "essentials") {
     return <LeadMagnetModal content={CINA_ESSENTIALS} schedule={cohort} label={action.label} className="cina-textlink" />;
   }

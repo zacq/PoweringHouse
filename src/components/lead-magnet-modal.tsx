@@ -10,7 +10,7 @@ import { PAYMENT } from "@/lib/payment";
  */
 export interface LeadMagnet {
   /** /api/subscribe `list` value — decides the Airtable Subscribers Source. */
-  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching" | "cina-cohort" | "ph-assessment" | "cina-zoom" | "cina-essentials";
+  list: "cina-breakfast" | "cina-craftsmanship" | "ph-coaching" | "cina-cohort" | "ph-assessment" | "cina-zoom" | "cina-essentials" | "cina-visit";
   pdf?: string;
   pdfName?: string;
   /** Short label on the tile beside the brief box (default "PDF"). */
