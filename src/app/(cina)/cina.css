@@ -21,7 +21,7 @@ html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
   --c-mist:#AAB6CB;
 
   /* Height of the sticky menu bar + ticker; sections size themselves to the window minus this. */
-  --cina-head:9.65rem;
+  --cina-head:7.35rem;
   --c-serif:var(--font-cina-serif),Georgia,serif;
   --c-mono:var(--font-cina-mono),ui-monospace,monospace;
   --c-sans:var(--font-hanken),system-ui,sans-serif;
@@ -502,7 +502,7 @@ html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
    as well as large monitors. */
 @media (min-width:901px){
   .cina-hero{
-    min-height:calc(100dvh - var(--cina-head));display:flex;align-items:center;
+    min-height:calc(100dvh - 9.65rem);display:flex;align-items:center;
     padding:clamp(1.5rem,4vh,4rem) 0 clamp(2rem,5vh,4.5rem);
   }
   .cina-hero__grid{width:min(100% - 2*var(--gutter),104rem);align-items:center;gap:clamp(2rem,5vw,5rem)}
@@ -511,7 +511,7 @@ html:has(.cina){font-size:12.8px;scroll-behavior:smooth}
   .cina-hero__body{margin-top:clamp(.6rem,1.8vh,1.6rem);font-size:min(1.28rem,2.6vh)}
   .cina-hero .cina-eyebrow{margin-bottom:clamp(.5rem,1.6vh,1.1rem)}
   .cina-hero .cina-actions{margin-top:clamp(1rem,3vh,2.4rem)}
-  .cina-hero__media{margin-top:0;justify-self:end;width:min(100%,calc((100dvh - var(--cina-head) - 11vh) * .8))}
+  .cina-hero__media{margin-top:0;justify-self:end;width:min(100%,calc((100dvh - 9.65rem - 11vh) * .8))}
   .cina-hero__stat{bottom:clamp(1rem,4vh,3.2rem);padding:clamp(.9rem,2vh,1.5rem) clamp(1.1rem,2vh,1.8rem)}
   .cina-hero__stat-num{font-size:min(3.4rem,6vh)}
 }
@@ -716,4 +716,7 @@ html[data-cina-scrolled] .cina-brand__name{font-size:1.4rem}
 html[data-cina-scrolled] .cina-brand__sub{max-height:0;opacity:0;margin-top:0}
 html[data-cina-scrolled] .cina-header .cina-btn--blue{padding:.55rem 1.2rem;font-size:.95rem}
 /* Sections size to the window minus the (now slimmer) header. */
-html[data-cina-scrolled] .cina{--cina-head:7.35rem}
+/* Section sizing stays constant (the compact height) so shrinking the bar never resizes the page. */
+
+/* No scroll anchoring here: the menu bar changing height must not nudge the scroll position. */
+html:has(.cina){overflow-anchor:none}
