@@ -11,10 +11,17 @@ export interface ProgrammeSchedule {
 interface EventFields {
   Title: string;
   "Starts At": string;
+  "Date Label": string;
   Location: string;
 }
 
 const TBC = "To be confirmed";
+
+/** An event's display date: its "Date Label" when set, else Starts At in Nairobi time. */
+export function eventDate(fields: { "Starts At"?: string; "Date Label"?: string }): string {
+  if (fields["Date Label"]?.trim()) return fields["Date Label"].trim();
+  return fields["Starts At"] ? formatDate(fields["Starts At"]) : TBC;
+}
 
 function formatDate(iso: string): string {
   return new Intl.DateTimeFormat("en-GB", {
@@ -43,9 +50,9 @@ export async function getProgrammeSchedule(programme: Programme): Promise<Progra
     .map((r) => r.fields);
   const [first, second] = upcoming;
   return {
-    date: first ? formatDate(first["Starts At"]!) : TBC,
+    date: first ? eventDate(first) : TBC,
     venue: first?.Location || TBC,
-    next: second ? `${formatDate(second["Starts At"]!)}${second.Location ? ` · ${second.Location}` : ""}` : TBC,
+    next: second ? `${eventDate(second)}${second.Location ? ` · ${second.Location}` : ""}` : TBC,
   };
 }
 

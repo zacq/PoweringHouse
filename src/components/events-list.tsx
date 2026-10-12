@@ -1,21 +1,13 @@
 import { listRecords } from "@/lib/airtable";
+import { eventDate } from "@/lib/schedule";
 
 interface EventFields {
   Title: string;
   Description: string;
   "Starts At": string;
+  "Date Label": string;
   Location: string;
   Link: string;
-}
-
-function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
 }
 
 export async function EventsList() {
@@ -38,7 +30,7 @@ export async function EventsList() {
     <div className="themes__grid">
       {events.map((ev) => (
         <div className="theme" key={ev.id}>
-          <span className="theme__tag">{formatDate(ev.startsAt)}</span>
+          <span className="theme__tag">{eventDate(ev)}</span>
           <h3>{ev.Title}</h3>
           {ev.Description && <p>{ev.Description}</p>}
           {ev.Location && <span className="theme__count">{ev.Location}</span>}
@@ -48,7 +40,7 @@ export async function EventsList() {
               href={ev.Link}
               style={{ marginTop: ".8rem", padding: ".5rem .9rem", fontSize: ".82rem" }}
             >
-              Details
+              {ev.Link.includes("forms.") ? "Register" : "Details"}
             </a>
           )}
         </div>

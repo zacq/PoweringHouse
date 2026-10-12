@@ -7,8 +7,9 @@
 import type { LeadMagnet } from "@/components/lead-magnet-modal";
 
 export const CINA_TICKER: string[] = [
-  // DRAFT: the start of this item is cut off in the screenshot — only "…va Stanley, Nairobi. Reserve your seat." is visible.
-  "☕ Executive Roundtable Breakfast — Sarova Stanley, Nairobi. Reserve your seat.",
+  "🎥 Free Zoom, Wed 21 Oct, 10:00am — Operational Excellence: optimal flow, reduced waste. Register now.",
+  "☕ Executive Breakfast, Wed 11 Nov — Kenya Comfort Hotel, 7:30am. Reserve your seat (KES 1,200).",
+  "🎓 Cohort Training: Business Excellence Essentials — 18 & 19 Nov, Best Western Premier, Westlands.",
   "🔔 CINA is growing — invite a fellow business owner to join the network.",
   // DRAFT: the end of this item is cut off in the screenshot after "diagnose you…".
   "📊 Free 5-minute Self-Assessment live now — diagnose your operational health.",
@@ -74,7 +75,7 @@ export const CINA_PROGRAMS: CinaProgram[] = [
   },
   {
     icon: "☕",
-    tag: "Paid · In person",
+    tag: "KES 1,200 · In person",
     title: "Executive Roundtable Breakfast",
     description: "Exclusive in-person dialogue for Business Owners, CEOs and Executive Decision Makers.",
     action: { kind: "breakfast", label: "Reserve your seat & get the brief" },

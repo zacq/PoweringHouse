@@ -159,6 +159,7 @@ export const OFFER_TRACKS: OfferTrack[] = [
         title: "Executive Breakfast",
         badge: "Paid",
         paid: true,
+        price: "KES 1,200",
         description: "An executive round table dialogue and breakfast — structured dialogue with a real return.",
         actions: [{ kind: "breakfast", label: "Reserve & request a quote" }],
       },
