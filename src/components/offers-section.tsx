@@ -1,10 +1,24 @@
 import Link from "next/link";
 import { LeadMagnetModal } from "./lead-magnet-modal";
 import { RegisterModal } from "./register-modal";
+import { getSchedules } from "@/lib/schedule";
+import type { Programme, ProgrammeSchedule } from "@/lib/schedule";
 import { CINA_BREAKFAST, CINA_COHORT, CINA_CRAFTSMANSHIP } from "@/lib/cina";
 import { OFFER_TRACKS, PH_ASSESSMENT, PH_COACHING, type Offer, type OfferAction } from "@/lib/offers";
 
-function Action({ offer, action, primary }: { offer: Offer; action: OfferAction; primary: boolean }) {
+type Schedules = Record<Programme, ProgrammeSchedule>;
+
+function Action({
+  offer,
+  action,
+  primary,
+  schedules,
+}: {
+  offer: Offer;
+  action: OfferAction;
+  primary: boolean;
+  schedules: Schedules;
+}) {
   const className = `btn ${primary ? "btn--primary" : "btn--ghost"} offer__btn`;
   switch (action.kind) {
     case "link":
@@ -16,11 +30,11 @@ function Action({ offer, action, primary }: { offer: Offer; action: OfferAction;
     case "craftsmanship":
       return <LeadMagnetModal content={CINA_CRAFTSMANSHIP} label={action.label} className={className} />;
     case "breakfast":
-      return <LeadMagnetModal content={CINA_BREAKFAST} label={action.label} className={className} />;
+      return <LeadMagnetModal content={CINA_BREAKFAST} schedule={schedules["Executive Breakfast"]} label={action.label} className={className} />;
     case "coaching":
-      return <LeadMagnetModal content={PH_COACHING} label={action.label} className={className} />;
+      return <LeadMagnetModal content={PH_COACHING} schedule={schedules["Micro Business Growth Design"]} label={action.label} className={className} />;
     case "cohort":
-      return <LeadMagnetModal content={CINA_COHORT} label={action.label} className={className} />;
+      return <LeadMagnetModal content={CINA_COHORT} schedule={schedules["Cohort Training"]} label={action.label} className={className} />;
     case "assessment":
       return <LeadMagnetModal content={PH_ASSESSMENT} label={action.label} className={className} />;
     case "quote":
@@ -33,7 +47,8 @@ function Action({ offer, action, primary }: { offer: Offer; action: OfferAction;
 }
 
 /** Home page: every offer, by track, with its price (or "Price on request") and next step. */
-export function OffersSection() {
+export async function OffersSection() {
+  const schedules = await getSchedules();
   return (
     <section className="offers" id="offers" aria-labelledby="offers-title">
       <div className="themes__head">
@@ -67,7 +82,7 @@ export function OffersSection() {
                   </div>
                   <div className="offer__actions">
                     {offer.actions.map((action, j) => (
-                      <Action key={action.label} offer={offer} action={action} primary={j === 0} />
+                      <Action key={action.label} offer={offer} action={action} primary={j === 0} schedules={schedules} />
                     ))}
                   </div>
                 </li>

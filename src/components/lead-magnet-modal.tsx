@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import type { ProgrammeSchedule } from "@/lib/schedule";
+import { PAYMENT } from "@/lib/payment";
 
 /**
  * A document gated behind name + email (Executive Breakfast brief, e-resources…), or — with no `pdf` —
@@ -36,10 +38,13 @@ export interface LeadMagnet {
  */
 export function LeadMagnetModal({
   content: c,
+  schedule,
   label,
   className,
 }: {
   content: LeadMagnet;
+  /** Paid programmes: upcoming date/venue (from Airtable Events), shown while registering. */
+  schedule?: ProgrammeSchedule;
   label: string;
   className?: string;
 }) {
@@ -148,6 +153,36 @@ export function LeadMagnetModal({
           ×
         </button>
 
+        {view !== "outline" && c.register ? (
+          <div className="lm__pitch">
+            <p className="lm__eyebrow">Registration details</p>
+            <h3 className="lm__title">{c.register.title.replace(/^the /, "")}</h3>
+            <p className="lm__theme">Secure your place — details for the upcoming session.</p>
+            <dl className="lm__details">
+              <div>
+                <dt>Date</dt>
+                <dd>{schedule?.date ?? "To be confirmed"}</dd>
+              </div>
+              <div>
+                <dt>Venue</dt>
+                <dd>{schedule?.venue ?? "To be confirmed"}</dd>
+              </div>
+              <div>
+                <dt>Paybill</dt>
+                <dd className="lm__mono">{PAYMENT.paybill}</dd>
+              </div>
+              <div>
+                <dt>Account No</dt>
+                <dd>{PAYMENT.account}</dd>
+              </div>
+              <div>
+                <dt>Next</dt>
+                <dd>{schedule?.next ?? "To be confirmed"}</dd>
+              </div>
+            </dl>
+            <p className="lm__quote">Pay via M-Pesa Paybill using your company name as the account number.</p>
+          </div>
+        ) : (
         <div className="lm__pitch">
           <p className="lm__eyebrow">{c.eyebrow}</p>
           <h3 className="lm__title">{c.title}</h3>
@@ -162,6 +197,7 @@ export function LeadMagnetModal({
           </ul>
           <p className="lm__quote">“{c.quote}”</p>
         </div>
+        )}
 
         <div className="lm__panel">
           {view === "registered" && c.register ? (

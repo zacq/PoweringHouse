@@ -7,6 +7,7 @@ import { SymptomChecker } from "@/components/cina/symptom-checker";
 import { LeadMagnetModal } from "@/components/lead-magnet-modal";
 import { RegisterModal } from "@/components/register-modal";
 import { PH_ASSESSMENT } from "@/lib/offers";
+import { getSchedules, type ProgrammeSchedule } from "@/lib/schedule";
 import {
   CINA_BREAKFAST,
   CINA_COHORT,
@@ -43,7 +44,7 @@ function BookButton({ className = "cina-btn cina-btn--amber" }: { className?: st
   );
 }
 
-function ProgramAction({ program }: { program: CinaProgram }) {
+function ProgramAction({ program, breakfast }: { program: CinaProgram; breakfast: ProgrammeSchedule }) {
   const { action } = program;
   const content = (
     <>
@@ -51,7 +52,7 @@ function ProgramAction({ program }: { program: CinaProgram }) {
     </>
   );
   if (action.kind === "breakfast") {
-    return <LeadMagnetModal content={CINA_BREAKFAST} label={action.label} className="cina-textlink" />;
+    return <LeadMagnetModal content={CINA_BREAKFAST} schedule={breakfast} label={action.label} className="cina-textlink" />;
   }
   if (action.kind === "register") {
     return (
@@ -67,7 +68,10 @@ function ProgramAction({ program }: { program: CinaProgram }) {
   );
 }
 
-export default function CinaPage() {
+export const revalidate = 3600;
+
+export default async function CinaPage() {
+  const schedules = await getSchedules();
   return (
     <>
       <CinaHeader />
@@ -230,7 +234,7 @@ export default function CinaPage() {
                   <p className="cina-program__tag">{p.tag}</p>
                   <h3>{p.title}</h3>
                   <p className="cina-program__text">{p.description}</p>
-                  <ProgramAction program={p} />
+                  <ProgramAction program={p} breakfast={schedules["Executive Breakfast"]} />
                 </article>
               ))}
             </Expandable>
@@ -319,6 +323,7 @@ export default function CinaPage() {
                     ) : step.title === "Cohort Training" ? (
                       <LeadMagnetModal
                         content={CINA_COHORT}
+                        schedule={schedules["Cohort Training"]}
                         label={step.cta}
                         className="cina-btn cina-btn--amber cina-btn--block"
                       />
