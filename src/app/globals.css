@@ -1256,3 +1256,10 @@ button.line-card__cta{border:none;cursor:pointer}
 @media (max-width:760px){.lm__details{margin-top:1rem}}
 /* Popups opened from inside a CINA card must not inherit the card's dark heading colour. */
 .modal.lm .lm__title,.modal.lm .lm__form h4{color:#fff}
+.event__register{padding:.5rem .9rem;font-size:.82rem}
+/* Popups rendered inside a card (event cards, offer cards) keep their own typography. */
+.modal.lm .lm__eyebrow{font:700 .72rem var(--lm-label);letter-spacing:.2em;text-transform:uppercase;color:var(--lm-accent);margin:0}
+.modal.lm .lm__title{font-family:var(--lm-heading);font-weight:700;font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.1;letter-spacing:-.01em;margin:.9rem 0 0}
+.modal.lm .lm__theme{font-family:var(--accent);font-style:italic;font-size:1.15rem;line-height:1.45;color:var(--lm-accent);margin:.7rem 0 0}
+.modal.lm .lm__quote{font-size:1.05rem;line-height:1.5}
+.modal.lm .lm__form h4{font-size:1.3rem;line-height:1.2;margin:0}
