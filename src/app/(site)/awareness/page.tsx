@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { GrowthKitBar, GrowthKitForm } from "@/components/growth-kit-form";
 import { Expandable } from "@/components/expandable";
-import { RegisterModal } from "@/components/register-modal";
+import { LeadMagnetModal } from "@/components/lead-magnet-modal";
+import { PH_CLARITY, PH_COACHING } from "@/lib/offers";
+import { getSchedules } from "@/lib/schedule";
 import { WAYS_WE_HELP } from "@/lib/ways-we-help";
 import {
   GK_BARS,
@@ -65,7 +67,10 @@ function NumberedList({ items, initial, moreLabel }: { items: NumberedItem[]; in
   );
 }
 
-export default function GrowthKitPage() {
+export const revalidate = 3600;
+
+export default async function GrowthKitPage() {
+  const coaching = (await getSchedules())["Micro Business Growth Design"];
   return (
     <div className="gk">
       {/* ---------- hero ---------- */}
@@ -372,14 +377,12 @@ export default function GrowthKitPage() {
                     <span className="gk-num">{way.tag}</span>
                     <h4>{way.title}</h4>
                     <p>{way.blurb}</p>
-                    <RegisterModal
+                    <LeadMagnetModal
+                      content={way.slug === "1-1-clarity-session" ? PH_CLARITY : PH_COACHING}
                       label={way.slug === "1-1-clarity-session" ? "Book a 1:1 session" : "Register for coaching"}
-                      subject={`${way.title} (Awareness page)`}
+                      schedule={way.slug === "1-1-clarity-session" ? undefined : coaching}
                       className="btn btn--primary gk-btn-wide"
-                    >
-                      {way.slug === "1-1-clarity-session" ? "Book a 1:1 session" : "Register for coaching"}
-                      <span aria-hidden="true">→</span>
-                    </RegisterModal>
+                    />
                   </div>
                 ))}
               </div>

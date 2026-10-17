@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WAYS_WE_HELP } from "@/lib/ways-we-help";
-import { RegisterModal } from "@/components/register-modal";
+import { LeadMagnetModal } from "@/components/lead-magnet-modal";
+import { PH_CLARITY, PH_COACHING, PH_COMMUNITY } from "@/lib/offers";
+import { getSchedules } from "@/lib/schedule";
+
+const POPUPS = {
+  "free-360-entrepreneurial-community": { content: PH_COMMUNITY, label: "Join the community" },
+  "1-1-clarity-session": { content: PH_CLARITY, label: "Request a session" },
+  "boot-camp-business-design-coaching": { content: PH_COACHING, label: "Get the programme & register" },
+} as const;
 
 export const metadata: Metadata = {
   title: "Ways We Help",
   description: "Six ways to work together, from free to one-to-one.",
 };
 
-export default function WaysWeHelpPage() {
+export const revalidate = 3600;
+
+export default async function WaysWeHelpPage() {
+  const schedules = await getSchedules();
   return (
     <section className="themes" aria-labelledby="ways-title">
       <div className="themes__head">
@@ -31,8 +42,15 @@ export default function WaysWeHelpPage() {
                 Connect with the self-paced platform
               </a>
             )}
-            {way.cta === "REG_FORM" && (
-              <RegisterModal label="Register your interest" subject={way.title} />
+            {way.cta === "REG_FORM" && way.slug in POPUPS && (
+              <div style={{ marginTop: ".8rem" }}>
+                <LeadMagnetModal
+                  content={POPUPS[way.slug as keyof typeof POPUPS].content}
+                  label={POPUPS[way.slug as keyof typeof POPUPS].label}
+                  schedule={way.slug === "boot-camp-business-design-coaching" ? schedules["Micro Business Growth Design"] : undefined}
+                  className="btn btn--ghost event__register"
+                />
+              </div>
             )}
             {way.cta === "GROWTH_KIT" && (
               <Link

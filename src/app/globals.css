@@ -1263,3 +1263,4 @@ button.line-card__cta{border:none;cursor:pointer}
 .modal.lm .lm__theme{font-family:var(--accent);font-style:italic;font-size:1.15rem;line-height:1.45;color:var(--lm-accent);margin:.7rem 0 0}
 .modal.lm .lm__quote{font-size:1.05rem;line-height:1.5}
 .modal.lm .lm__form h4{font-size:1.3rem;line-height:1.2;margin:0}
+dialog.modal.lm h3.lm__title{font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.1;margin:.9rem 0 0;color:#fff}

@@ -18,6 +18,8 @@ const LIST_SOURCES = {
   "cina-cohort": "Quote request: Cohort Training (BCIA Catalogue)",
   "ph-assessment": "Quote request: Advanced Operation Assessment",
   "cina-zoom": "CINA Free Monthly Zoom (invite)",
+  "ph-community": "Join: FREE 360° Entrepreneurial Community",
+  "ph-clarity": "Session request: 1:1 Clarity Session",
   "cina-visit": "Visit request: CINA 1:1 Physical Assessment",
   "cina-essentials": "Programme outline: Business Excellence Essentials (Cohort Training)",
 } as const;

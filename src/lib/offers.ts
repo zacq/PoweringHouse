@@ -94,6 +94,50 @@ export const PH_COACHING: LeadMagnet = {
   },
 };
 
+/**
+ * Ways We Help popups — copy from the content map's Menu 2 boxes and the coaching programme.
+ * Community is free; the 1:1 Clarity Session is a request (scheduled directly with GK's team).
+ */
+export const PH_COMMUNITY: LeadMagnet = {
+  list: "ph-community",
+  briefBadge: "FREE",
+  eyebrow: "Free · 360° Entrepreneurial Community",
+  title: "Don’t walk alone.",
+  theme: "Join your peers in a free, well-curated entrepreneurial community.",
+  reasons: [
+    { t: "Peers on the same journey", d: "Founders building micro and small businesses — learning, sharing and growing together." },
+    { t: "Well-curated programmes", d: "Practical sessions on business design, money discipline and growth systems." },
+    { t: "Free to join", d: "No cost, no catch — just show up, contribute and grow." },
+  ],
+  quote: "Every business is scalable.",
+  briefTitle: "Join the community",
+  briefLine: "Tell us who you are — we’ll send your welcome and the next community programme.",
+  cta: "Join the community",
+  fine: "No spam. Just community updates from Powering House.",
+  doneTitle: "Welcome to the community.",
+  doneText: "Look out for your welcome note and details of the next programme.",
+};
+
+export const PH_CLARITY: LeadMagnet = {
+  list: "ph-clarity",
+  briefBadge: "1:1",
+  eyebrow: "1:1 Clarity Session",
+  title: "Don’t walk in doubt.",
+  theme: "Doubts will kill all your dreams. Feel welcome.",
+  reasons: [
+    { t: "One-to-one with Gachoka", d: "A focused session on your business, your numbers and the decision in front of you." },
+    { t: "Leave with clarity", d: "On what your business is really selling, where it is stuck and the next move to make." },
+    { t: "Limited sessions", d: "The most personal way to work together — booked directly with GK’s team." },
+  ],
+  quote: "You don’t take time growing the business — you take time becoming the person who can grow it.",
+  briefTitle: "Request your session",
+  briefLine: "Tell us who you are — we’ll call to confirm the price and book a time that suits you.",
+  cta: "Request my session",
+  fine: "No spam. Just a call from Powering House to book your session.",
+  doneTitle: "Your session request is in.",
+  doneText: "We’ll be in touch shortly to confirm the price and book your 1:1.",
+};
+
 export interface Offer {
   id: string;
   title: string;
